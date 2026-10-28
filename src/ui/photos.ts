@@ -14,6 +14,8 @@ import red1536 from '../assets/recipes/red-croissants-1536.webp';
 import red768 from '../assets/recipes/red-croissants-768.webp';
 import risotto1536 from '../assets/recipes/risotto-1536.webp';
 import risotto768 from '../assets/recipes/risotto-768.webp';
+import wheatRye1536 from '../assets/recipes/wheat-rye-sourdough-1536.webp';
+import wheatRye768 from '../assets/recipes/wheat-rye-sourdough-768.webp';
 
 export interface RecipePhoto {
   src: string;
@@ -26,6 +28,7 @@ const photo = (small: string, large: string, alt: string): RecipePhoto => ({ src
 /** Still-life photos of each recipe's ingredients (AI-generated; not the finished bake). A missing id simply shows no photo. */
 export const RECIPE_PHOTOS: Record<string, RecipePhoto> = {
   classic_sourdough: photo(sourdough768, sourdough1536, 'Sourdough starter in a jar, a bowl of flour, a linen-lined proofing basket, a water jug, salt and a bench scraper on a stone bench.'),
+  sourdough_wheat_rye: photo(wheatRye768, wheatRye1536, 'Bowls of white, whole wheat and dark rye flour, a firm ball of stiff starter on a saucer, salt, a water jug, a linen-lined proofing basket and scattered grains.'),
   poolish_pizza: photo(pizza768, pizza1536, 'A bowl of bubbly poolish under linen, flour, salt, barley malt and olive oil, with a wooden pizza peel behind.'),
   bens_focaccia: photo(focaccia768, focaccia1536, 'An oiled roasting tray beside olive oil, flaky salt, rosemary, cherry tomatoes, olives and a bowl of flour.'),
   bens_raisin_bread: photo(raisin768, raisin1536, 'A lidded loaf tin with sultanas, malt extract, cinnamon, an orange and fresh zest, and a bowl of flour.'),
