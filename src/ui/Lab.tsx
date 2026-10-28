@@ -9,6 +9,8 @@ import {
 import { computeMetrics, type BasisMode } from '../engine/metrics';
 import { formatMeasure, formatMetric } from '../engine/format';
 import { IngredientsView, RatiosView } from './Views';
+import { Inclusions, EMPTY_INCLUSIONS, type InclusionState } from './Inclusions';
+import { doughFlour, planInclusions, supportsInclusions, withInclusions } from '../engine/inclusions';
 import { PrintSheet } from './PrintSheet';
 import { Icon } from './icons';
 import { defaultMode, phrasesFor, type Phrase } from './sentences';
@@ -94,6 +96,7 @@ function LabBench({ seed, variant, routeId, store, carry, go }: { seed: Recipe; 
   const [error, setError] = useState<string | null>(null);
   const [basis, setBasis] = useState<BasisMode>('recipe');
   const [showOriginal, setShowOriginal] = useState(false);
+  const [inclusions, setInclusions] = useState<InclusionState>(EMPTY_INCLUSIONS);
 
   useEffect(() => {
     carry.current = null;
@@ -107,6 +110,12 @@ function LabBench({ seed, variant, routeId, store, carry, go }: { seed: Recipe; 
 
   const scaled = useMemo(() => scaleRecipe(seed, { factor, amounts, tweaks }), [seed, factor, amounts, tweaks]);
   const mass = useMemo(() => calculateDoughMass(scaled), [scaled]);
+  // Inclusions are a separate stage layered on top: dough weight, hydration and metrics stay on `scaled`.
+  const canInclude = supportsInclusions(seed);
+  const flourNow = useMemo(() => doughFlour(scaled), [scaled]);
+  const incPlan = useMemo(() => planInclusions({ flourG: flourNow, strength: inclusions.strength, picks: inclusions.picks, customs: inclusions.customs }), [flourNow, inclusions]);
+  const view = useMemo(() => (canInclude ? withInclusions(scaled, incPlan) : scaled), [canInclude, scaled, incPlan]);
+  const loaves = /loaf/.test(seed.yield.unit) && seed.yield.count ? seed.yield.count * factor : null;
   const metrics = useMemo(() => computeMetrics(scaled, { stockPerG: tweaks.stockPerG }), [scaled, tweaks.stockPerG]);
   const phrases = phrasesFor(seed, modes, base);
   const phrase = phrases.find((p) => p.mode === mode) ?? phrases[0];
@@ -214,14 +223,16 @@ function LabBench({ seed, variant, routeId, store, carry, go }: { seed: Recipe; 
         </div>
       </div>
 
-      <IngredientsView scaled={scaled} settings={settings} showOriginal={showOriginal} />
+      {canInclude && <Inclusions state={inclusions} plan={incPlan} loaves={loaves} onChange={setInclusions} />}
+
+      <IngredientsView scaled={view} settings={settings} showOriginal={showOriginal} />
 
       <details className="lab-ratios" open>
         <summary><Icon name="chevron" size={16} /> Ratios at this size</summary>
-        <RatiosView scaled={scaled} basis={basis} onBasis={setBasis} settings={settings} />
+        <RatiosView scaled={view} basis={basis} onBasis={setBasis} settings={settings} />
       </details>
 
-      <PrintSheet scaled={scaled} title={title} settings={settings} scaleLabel={isOne ? 'original quantities' : `scaled ${+factor.toFixed(3)}×`} edited={!!variant} />
+      <PrintSheet scaled={view} title={title} settings={settings} scaleLabel={isOne ? 'original quantities' : `scaled ${+factor.toFixed(3)}×`} edited={!!variant} />
     </>
   );
 }

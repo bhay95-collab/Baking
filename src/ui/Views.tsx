@@ -83,7 +83,11 @@ export function IngredientsView({ scaled, settings, showOriginal = false }: { sc
               {c.id === 'starter_build' && <BuildSummary scaled={scaled} settings={settings} />}
             </tbody>
           </table>
-          {!c.includeInDoughMass && <p className="hint stage-note">Not counted in dough weight.</p>}
+          {!c.includeInDoughMass && (
+            <p className="hint stage-note">
+              {c.id === 'inclusions' ? 'Fold in at the last stretch and fold, or near the end of mixing. Not counted in dough weight or hydration.' : 'Not counted in dough weight.'}
+            </p>
+          )}
         </section>
       ))}
       {!isRice && (

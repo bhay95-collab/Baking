@@ -18,6 +18,7 @@ Ben's own formulas with the baking maths done properly: preferments and starter 
 ## Operating Context
 - Recipes section: read-only originals, method, notes, baker's percentages. Personal versions (variants) are made from here.
 - Ratio Lab: the one place scaling happens, driven by plain-language targets (people, balls × grams, loaves, buns, trays, flour, dough weight, multiplier).
+- Inclusions: on every bread and pizza recipe, Ratio Lab suggests amounts for add-ins (cheese, jalapeños, nuts, seeds, fruit, olives, herbs, spices, or the user's own) as a % of the flour weighed into the dough, with Light / Classic / Loaded strength. Several bulk add-ins together are scaled down to a cap (20 / 30 / 40% of flour). Prep advice only; no water change. Inclusions are shown as their own stage and never change dough weight or hydration. Library: `src/data/inclusions.json` (starting points, not tested formulas).
 - Used mid-bake, often one-handed; printing a bake sheet is part of the ritual.
 - Works offline after first load; no account, no backend, data stays in the browser with JSON export/import.
 

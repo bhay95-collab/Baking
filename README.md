@@ -4,6 +4,7 @@ Private, local-first recipe book and scaler. Nine recipes (classic white sourdou
 
 - **Recipes** — the originals exactly as written, with method, notes and baker's percentages. Make your own version of any recipe here.
 - **Ratio Lab** — the one place scaling happens. Finish a sentence ("Make 14 pizza balls of 250 g", "Feed 8 people", "Make 5 loaves") and every stage is recalculated.
+- **Inclusions** — pick cheese, jalapeños, nuts, spices and more; the tool suggests amounts as a share of the flour, scaled to the batch.
 - Versions, print sheets and JSON backup. No account, no backend — everything stays on the device and works offline after the first load.
 
 ## Run it

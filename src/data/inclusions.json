@@ -1,0 +1,349 @@
+{
+  "version": "1.0.0",
+  "note": "Suggested amounts are % of the flour weighed into the dough (baker's percentage). They are starting points from common practice, not tested formulas for these doughs.",
+  "caps_pct": {
+    "light": 20,
+    "classic": 30,
+    "loaded": 40
+  },
+  "categories": [
+    {
+      "id": "cheese_heat",
+      "label": "Cheese & heat"
+    },
+    {
+      "id": "nuts_seeds",
+      "label": "Nuts, seeds & grains"
+    },
+    {
+      "id": "fruit_veg",
+      "label": "Fruit, olives & vegetables"
+    },
+    {
+      "id": "herbs_spices",
+      "label": "Herbs & spices"
+    }
+  ],
+  "items": [
+    {
+      "id": "cheddar",
+      "name": "Cheddar, cubed",
+      "category": "cheese_heat",
+      "kind": "bulk",
+      "light": 15,
+      "classic": 25,
+      "loaded": 35,
+      "prep": "Cut into 1 cm cubes and chill. Fold in at the last stretch and fold so it stays in pieces."
+    },
+    {
+      "id": "gruyere",
+      "name": "Gruyère, cubed",
+      "category": "cheese_heat",
+      "kind": "bulk",
+      "light": 15,
+      "classic": 25,
+      "loaded": 35,
+      "prep": "Cut into 1 cm cubes and chill. Fold in at the last stretch and fold."
+    },
+    {
+      "id": "parmesan",
+      "name": "Parmesan, grated",
+      "category": "cheese_heat",
+      "kind": "bulk",
+      "light": 8,
+      "classic": 12,
+      "loaded": 18,
+      "prep": "Grate finely. Salty, so taste before adding extra salt to the dough."
+    },
+    {
+      "id": "feta",
+      "name": "Feta, crumbled",
+      "category": "cheese_heat",
+      "kind": "bulk",
+      "light": 10,
+      "classic": 18,
+      "loaded": 25,
+      "prep": "Drain and pat dry, then crumble. Salty and soft; fold in gently."
+    },
+    {
+      "id": "jalapeno_fresh",
+      "name": "Jalapeños, fresh, diced",
+      "category": "cheese_heat",
+      "kind": "bulk",
+      "light": 8,
+      "classic": 12,
+      "loaded": 18,
+      "prep": "Remove seeds for less heat. Dice small and blot dry; they release water."
+    },
+    {
+      "id": "jalapeno_pickled",
+      "name": "Jalapeños, pickled, chopped",
+      "category": "cheese_heat",
+      "kind": "bulk",
+      "light": 8,
+      "classic": 12,
+      "loaded": 18,
+      "prep": "Drain well, chop and pat very dry. Brine makes the dough sticky."
+    },
+    {
+      "id": "chilli_flakes",
+      "name": "Chilli flakes",
+      "category": "cheese_heat",
+      "kind": "flavour",
+      "light": 0.3,
+      "classic": 0.6,
+      "loaded": 1.0,
+      "prep": "Mix into the flour, or sprinkle over at the last fold."
+    },
+    {
+      "id": "black_pepper",
+      "name": "Black pepper, cracked",
+      "category": "cheese_heat",
+      "kind": "flavour",
+      "light": 0.5,
+      "classic": 1.0,
+      "loaded": 1.5,
+      "prep": "Crack coarsely just before using."
+    },
+    {
+      "id": "walnuts",
+      "name": "Walnuts",
+      "category": "nuts_seeds",
+      "kind": "bulk",
+      "light": 12,
+      "classic": 20,
+      "loaded": 30,
+      "prep": "Toast until fragrant, cool, then chop roughly. Fold in at the last fold."
+    },
+    {
+      "id": "pecans",
+      "name": "Pecans",
+      "category": "nuts_seeds",
+      "kind": "bulk",
+      "light": 12,
+      "classic": 20,
+      "loaded": 30,
+      "prep": "Toast until fragrant, cool, then chop roughly."
+    },
+    {
+      "id": "almonds",
+      "name": "Almonds",
+      "category": "nuts_seeds",
+      "kind": "bulk",
+      "light": 10,
+      "classic": 18,
+      "loaded": 25,
+      "prep": "Toast, cool and chop. Skins on or off."
+    },
+    {
+      "id": "hazelnuts",
+      "name": "Hazelnuts",
+      "category": "nuts_seeds",
+      "kind": "bulk",
+      "light": 10,
+      "classic": 18,
+      "loaded": 25,
+      "prep": "Toast, rub off the skins, cool and chop roughly."
+    },
+    {
+      "id": "sunflower_seeds",
+      "name": "Sunflower seeds",
+      "category": "nuts_seeds",
+      "kind": "bulk",
+      "light": 8,
+      "classic": 12,
+      "loaded": 18,
+      "prep": "Toast lightly and cool. Seeds drink some water, so the dough may feel a little stiffer."
+    },
+    {
+      "id": "pumpkin_seeds",
+      "name": "Pumpkin seeds",
+      "category": "nuts_seeds",
+      "kind": "bulk",
+      "light": 8,
+      "classic": 12,
+      "loaded": 18,
+      "prep": "Toast lightly and cool."
+    },
+    {
+      "id": "sesame_seeds",
+      "name": "Sesame seeds",
+      "category": "nuts_seeds",
+      "kind": "bulk",
+      "light": 5,
+      "classic": 8,
+      "loaded": 12,
+      "prep": "Toast lightly. Keep some back to coat the outside of the loaf if you like."
+    },
+    {
+      "id": "flax_seeds",
+      "name": "Flax seeds",
+      "category": "nuts_seeds",
+      "kind": "bulk",
+      "light": 4,
+      "classic": 6,
+      "loaded": 10,
+      "prep": "Use whole or lightly cracked. They absorb a lot of water, so the dough will feel stiffer."
+    },
+    {
+      "id": "rolled_oats",
+      "name": "Rolled oats",
+      "category": "nuts_seeds",
+      "kind": "bulk",
+      "light": 5,
+      "classic": 10,
+      "loaded": 15,
+      "prep": "Toast lightly and cool. Oats absorb water, so the dough may feel stiffer."
+    },
+    {
+      "id": "raisins",
+      "name": "Raisins or sultanas",
+      "category": "fruit_veg",
+      "kind": "bulk",
+      "light": 15,
+      "classic": 25,
+      "loaded": 35,
+      "prep": "Soak in warm water or tea for 30 minutes, then drain and pat dry so they do not steal dough water."
+    },
+    {
+      "id": "cranberries",
+      "name": "Dried cranberries",
+      "category": "fruit_veg",
+      "kind": "bulk",
+      "light": 12,
+      "classic": 20,
+      "loaded": 30,
+      "prep": "Soak briefly in warm water, drain and pat dry."
+    },
+    {
+      "id": "figs",
+      "name": "Dried figs, chopped",
+      "category": "fruit_veg",
+      "kind": "bulk",
+      "light": 12,
+      "classic": 20,
+      "loaded": 28,
+      "prep": "Snip off the stems, chop and soak briefly. Drain and pat dry."
+    },
+    {
+      "id": "apricots",
+      "name": "Dried apricots, chopped",
+      "category": "fruit_veg",
+      "kind": "bulk",
+      "light": 12,
+      "classic": 20,
+      "loaded": 28,
+      "prep": "Chop to the size of a raisin. Soak briefly, drain and pat dry."
+    },
+    {
+      "id": "olives",
+      "name": "Olives, pitted",
+      "category": "fruit_veg",
+      "kind": "bulk",
+      "light": 15,
+      "classic": 25,
+      "loaded": 35,
+      "prep": "Drain, halve and pat very dry. Olives are salty and wet."
+    },
+    {
+      "id": "sundried_tomato",
+      "name": "Sun-dried tomatoes",
+      "category": "fruit_veg",
+      "kind": "bulk",
+      "light": 10,
+      "classic": 16,
+      "loaded": 24,
+      "prep": "Oil-packed: drain and blot well. Dry-packed: soften in warm water, then dry. Chop small."
+    },
+    {
+      "id": "roasted_garlic",
+      "name": "Roasted garlic cloves",
+      "category": "fruit_veg",
+      "kind": "bulk",
+      "light": 6,
+      "classic": 10,
+      "loaded": 16,
+      "prep": "Roast until soft and let them cool. Fold in whole or lightly mashed."
+    },
+    {
+      "id": "caramelised_onion",
+      "name": "Caramelised onion",
+      "category": "fruit_veg",
+      "kind": "bulk",
+      "light": 10,
+      "classic": 16,
+      "loaded": 24,
+      "prep": "Cook down until jammy, cool completely and drain off any oil."
+    },
+    {
+      "id": "rosemary",
+      "name": "Rosemary, fresh",
+      "category": "herbs_spices",
+      "kind": "flavour",
+      "light": 1.0,
+      "classic": 1.8,
+      "loaded": 2.8,
+      "prep": "Strip the leaves and chop very fine."
+    },
+    {
+      "id": "thyme",
+      "name": "Thyme, fresh",
+      "category": "herbs_spices",
+      "kind": "flavour",
+      "light": 1.0,
+      "classic": 1.6,
+      "loaded": 2.4,
+      "prep": "Strip the leaves. Use whole or lightly chopped."
+    },
+    {
+      "id": "oregano_dried",
+      "name": "Oregano, dried",
+      "category": "herbs_spices",
+      "kind": "flavour",
+      "light": 0.4,
+      "classic": 0.7,
+      "loaded": 1.0,
+      "prep": "Rub between your fingers to wake it up before adding."
+    },
+    {
+      "id": "cinnamon",
+      "name": "Cinnamon, ground",
+      "category": "herbs_spices",
+      "kind": "flavour",
+      "light": 0.6,
+      "classic": 1.2,
+      "loaded": 1.8,
+      "prep": "Mix into the flour so it does not clump."
+    },
+    {
+      "id": "caraway",
+      "name": "Caraway seeds",
+      "category": "herbs_spices",
+      "kind": "flavour",
+      "light": 0.8,
+      "classic": 1.5,
+      "loaded": 2.2,
+      "prep": "Toast lightly for a mellower flavour."
+    },
+    {
+      "id": "fennel_seed",
+      "name": "Fennel seeds",
+      "category": "herbs_spices",
+      "kind": "flavour",
+      "light": 0.6,
+      "classic": 1.0,
+      "loaded": 1.6,
+      "prep": "Toast lightly and crush a little."
+    },
+    {
+      "id": "zaatar",
+      "name": "Za’atar",
+      "category": "herbs_spices",
+      "kind": "flavour",
+      "light": 1.0,
+      "classic": 2.0,
+      "loaded": 3.0,
+      "prep": "Mix into the flour, or sprinkle over at the last fold."
+    }
+  ]
+}

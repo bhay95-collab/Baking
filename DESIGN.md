@@ -233,6 +233,12 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 - Estimated gram equivalents read "≈ 5 g, estimated".
 - The poolish transfer row sits on paper.
 
+### Inclusions Panel
+- A collapsed `details` under the result bar: label-style summary with a bronze chevron and "n added" on the right. Opens by itself once something is added.
+- A dropdown (grouped by category) adds an item. Strength is a three-pill segment (Light / Classic / Loaded).
+- Each added item is a hairline row: name and "% of flour" on the left, a serif grams field (bronze underline, the same blank as the scaling sentence) and a remove button on the right. Typing your own amount turns the figure ink-coloured and shows "Back to n g".
+- A summary line gives the total and grams per loaf. A paper notice explains when combined amounts were scaled down; a rust message appears above 40% of flour.
+
 ### Scaling Sentence (signature component)
 - The display serif sentence with inline `<input>` blanks: bronze-ink value, bronze underline, translucent paper fill. Hover and focus go to white with an ink underline.
 - The portion choice is an inline `<select>` in the same style.
