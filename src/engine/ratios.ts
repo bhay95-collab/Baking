@@ -2,7 +2,7 @@ import ratiosRaw from '../data/ratios.json';
 import conversionsRaw from '../data/conversions.json';
 import { parseNumber } from './parse';
 
-export type RatioUnit = 'g' | 'ml' | 'cup' | 'tbsp' | 'tsp' | 'egg';
+export type RatioUnit = 'g' | 'ml' | 'cup' | 'tbsp' | 'tsp' | 'egg' | 'piece' | 'clove';
 export type RatioStatus = 'solid' | 'check' | 'varies';
 export type CupStandard = 'au' | 'us';
 
@@ -29,7 +29,8 @@ export interface RatioVariant {
 export interface RatioCard {
   id: string;
   name: string;
-  group: string;
+  /** Section the card lives in (see `RatioLibrary.sections`). */
+  section: string;
   headline: string;
   status: RatioStatus;
   flag?: string;
@@ -42,12 +43,29 @@ export interface RatioCard {
   see?: string[];
 }
 
+export interface RatioGroup {
+  id: string;
+  label: string;
+}
+
+/** A short list of related cards. Groups hold sections so no screen shows a long list. */
+export interface RatioSection {
+  id: string;
+  group: string;
+  label: string;
+  blurb: string;
+}
+
 export interface RatioLibrary {
   version: string;
   note: string;
-  groups: { id: string; label: string }[];
+  groups: RatioGroup[];
+  sections: RatioSection[];
   cards: RatioCard[];
 }
+
+/** Most cards a section may hold before it should be split. */
+export const MAX_SECTION_CARDS = 8;
 
 export interface Conversion {
   id: string;
@@ -81,6 +99,14 @@ export function defaultVariant(card: RatioCard): RatioVariant {
 
 export function getCard(id: string): RatioCard | undefined {
   return RATIOS.cards.find((c) => c.id === id);
+}
+
+export function getSection(id: string): RatioSection | undefined {
+  return RATIOS.sections.find((s) => s.id === id);
+}
+
+export function cardsIn(sectionId: string): RatioCard[] {
+  return RATIOS.cards.filter((c) => c.section === sectionId);
 }
 
 /** Volume of one `unit` in ml, for volume units only. */
@@ -171,12 +197,20 @@ export function parseAmount(text: string): { ok: true; value: number } | { ok: f
 export function validateRatios(lib: RatioLibrary): string[] {
   const errs: string[] = [];
   const groups = new Set(lib.groups.map((g) => g.id));
+  const sections = new Set<string>();
   const ids = new Set<string>();
-  const units = new Set(['g', 'ml', 'cup', 'tbsp', 'tsp', 'egg']);
+  const units = new Set(['g', 'ml', 'cup', 'tbsp', 'tsp', 'egg', 'piece', 'clove']);
+  for (const sec of lib.sections) {
+    if (sections.has(sec.id)) errs.push(`duplicate section ${sec.id}`);
+    sections.add(sec.id);
+    if (!groups.has(sec.group)) errs.push(`section ${sec.id}: unknown group ${sec.group}`);
+    if (!sec.blurb.trim()) errs.push(`section ${sec.id}: missing blurb`);
+  }
+  for (const g of lib.groups) if (!lib.sections.some((sec) => sec.group === g.id)) errs.push(`group ${g.id} has no sections`);
   for (const c of lib.cards) {
     if (ids.has(c.id)) errs.push(`duplicate card ${c.id}`);
     ids.add(c.id);
-    if (!groups.has(c.group)) errs.push(`${c.id}: unknown group ${c.group}`);
+    if (!sections.has(c.section)) errs.push(`${c.id}: unknown section ${c.section}`);
     if (!['solid', 'check', 'varies'].includes(c.status)) errs.push(`${c.id}: bad status`);
     if (c.status !== 'solid' && !c.flag) errs.push(`${c.id}: ${c.status} cards need a flag explaining why`);
     if (!c.variants.length) errs.push(`${c.id}: no variants`);
@@ -198,6 +232,11 @@ export function validateRatios(lib: RatioLibrary): string[] {
       }
       if (c.bakers && !iids.has(c.bakers)) errs.push(`${c.id}/${v.id}: bakers ingredient ${c.bakers} missing`);
     }
+  }
+  for (const sec of lib.sections) {
+    const n = lib.cards.filter((c) => c.section === sec.id).length;
+    if (n > MAX_SECTION_CARDS) errs.push(`section ${sec.id}: ${n} cards is too many, split it (max ${MAX_SECTION_CARDS})`);
+    if (n === 0) errs.push(`section ${sec.id}: empty`);
   }
   return errs;
 }

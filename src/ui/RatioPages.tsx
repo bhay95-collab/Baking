@@ -1,5 +1,5 @@
 import { Fragment, useId, useMemo, useState } from 'react';
-import { CONVERSIONS, MEASURES, RATIOS, baseAmount, defaultVariant, fromGrams, getCard, parseAmount, solveVariant, toGrams, type CupStandard, type RatioCard, type RatioIngredient, type SolvedRow } from '../engine/ratios';
+import { CONVERSIONS, MEASURES, RATIOS, baseAmount, cardsIn, defaultVariant, fromGrams, getCard, getSection, parseAmount, solveVariant, toGrams, type CupStandard, type RatioCard, type RatioIngredient, type SolvedRow } from '../engine/ratios';
 import { getSeedRecipe } from '../engine/seed';
 import { formatAmount, formatFraction, formatMeasure, formatPercent } from '../engine/format';
 import { unitLabel } from '../engine/units';
@@ -7,51 +7,119 @@ import { Icon } from './icons';
 import type { AppStore } from './store';
 
 const CONVERTER_ID = 'cups';
+const CONVERTER_SECTION = 'tools';
 
 /* ------------------------------------------------------------------ list */
 
-export function RatioIndex() {
+interface Entry { id: string; name: string; meta: string; flag: boolean }
+
+const CONVERTER_ENTRY: Entry = { id: CONVERTER_ID, name: 'Cups to grams', meta: 'Flour, sugar, butter and more', flag: false };
+
+/** The cards in a section, plus the converter where it lives. */
+function entriesIn(sectionId: string): Entry[] {
+  return [
+    ...cardsIn(sectionId).map((c) => ({ id: c.id, name: c.name, meta: c.headline, flag: c.status !== 'solid' })),
+    ...(sectionId === CONVERTER_SECTION ? [CONVERTER_ENTRY] : []),
+  ];
+}
+
+const countText = (n: number) => `${n} ${n === 1 ? 'ratio' : 'ratios'}`;
+
+function EntryList({ entries, sectionLabel }: { entries: Entry[]; sectionLabel?: (id: string) => string | undefined }) {
+  return (
+    <ul className="ratio-list">
+      {entries.map((e) => (
+        <li key={e.id}>
+          <a href={`#/ratios/${e.id}`}>
+            <span className="ix-name">{e.name}</span>
+            <span className="ix-meta">{sectionLabel?.(e.id) ? `${sectionLabel(e.id)} · ` : ''}{e.meta}{e.flag ? ' · starting point' : ''}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Overview of sections, one section's cards, or flat search results. */
+export function RatioIndex({ section }: { section?: string }) {
   const [q, setQ] = useState('');
   const needle = q.trim().toLowerCase();
-  const groups = useMemo(
-    () =>
-      RATIOS.groups
-        .map((g) => {
-          const entries = [
-            ...RATIOS.cards.filter((c) => c.group === g.id).map((c) => ({ id: c.id, name: c.name, meta: c.headline, flag: c.status !== 'solid' })),
-            ...(g.id === 'tools' ? [{ id: CONVERTER_ID, name: 'Cups to grams', meta: 'Flour, sugar, butter and more', flag: false }] : []),
-          ].filter((e) => !needle || `${e.name} ${e.meta} ${g.label}`.toLowerCase().includes(needle));
-          return { ...g, entries };
-        })
-        .filter((g) => g.entries.length > 0),
-    [needle],
-  );
+  const searching = needle.length >= 2;
+
+  const results = useMemo(() => {
+    if (!searching) return [];
+    return RATIOS.sections.flatMap((sec) =>
+      entriesIn(sec.id)
+        .filter((e) => `${e.name} ${e.meta} ${sec.label}`.toLowerCase().includes(needle))
+        .map((e) => ({ ...e, section: sec.label })),
+    );
+  }, [needle, searching]);
+
+  if (section !== undefined && !searching) {
+    const sec = getSection(section);
+    if (!sec) {
+      return (
+        <div className="page">
+          <h1>Section not found</h1>
+          <p><a href="#/ratios">See all ratios</a>.</p>
+        </div>
+      );
+    }
+    return (
+      <div className="page">
+        <a className="back" href="#/ratios"><Icon name="back" size={16} /> All ratios</a>
+        <header className="page-head">
+          <h1>{sec.label}</h1>
+          <p className="lede">{sec.blurb}</p>
+        </header>
+        <SearchBox q={q} setQ={setQ} />
+        <EntryList entries={entriesIn(sec.id)} />
+      </div>
+    );
+  }
+
   return (
     <div className="page">
       <header className="page-head">
         <h1>Quick Ratios</h1>
         <p className="lede">The proportions cooks reach for, ready to scale. Type what you have and get the rest.</p>
       </header>
-      <div className="field search">
-        <label htmlFor="ratio-search">Find a ratio</label>
-        <input id="ratio-search" type="search" inputMode="search" autoComplete="off" spellCheck={false} placeholder="Rice, pastry, brine…" value={q} onChange={(e) => setQ(e.target.value)} />
-      </div>
-      {groups.length === 0 && <p className="empty">Nothing matches “{q}”. Try a shorter word.</p>}
-      {groups.map((g) => (
-        <section key={g.id} className="ratio-group" aria-labelledby={`rg-${g.id}`}>
-          <h2 id={`rg-${g.id}`} className="stage-title">{g.label}</h2>
-          <ul className="ratio-list">
-            {g.entries.map((e) => (
-              <li key={e.id}>
-                <a href={`#/ratios/${e.id}`}>
-                  <span className="ix-name">{e.name}</span>
-                  <span className="ix-meta">{e.meta}{e.flag ? ' · starting point' : ''}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <SearchBox q={q} setQ={setQ} />
+      {searching ? (
+        results.length === 0 ? (
+          <p className="empty">Nothing matches “{q.trim()}”. Try a shorter word.</p>
+        ) : (
+          <section className="ratio-group" aria-label="Search results">
+            <EntryList entries={results} sectionLabel={(id) => results.find((r) => r.id === id)?.section} />
+          </section>
+        )
+      ) : (
+        RATIOS.groups.map((g) => (
+          <section key={g.id} className="ratio-group" aria-labelledby={`rg-${g.id}`}>
+            <h2 id={`rg-${g.id}`} className="stage-title">{g.label}</h2>
+            <ul className="section-list">
+              {RATIOS.sections.filter((sec) => sec.group === g.id).map((sec) => (
+                <li key={sec.id}>
+                  <a href={`#/ratios/in/${sec.id}`}>
+                    <span className="ix-name">{sec.label}</span>
+                    <span className="ix-meta">{sec.blurb}</span>
+                    <span className="ix-count">{countText(entriesIn(sec.id).length)}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      )}
+    </div>
+  );
+}
+
+function SearchBox({ q, setQ }: { q: string; setQ: (v: string) => void }) {
+  return (
+    <div className="field search">
+      <label htmlFor="ratio-search">Find a ratio</label>
+      <input id="ratio-search" type="search" inputMode="search" autoComplete="off" spellCheck={false} placeholder="Rice, pastry, pesto, butter…" value={q} onChange={(e) => setQ(e.target.value)} />
     </div>
   );
 }
@@ -73,6 +141,15 @@ export function RatioDetail({ id, store }: { id: string; store: AppStore }) {
     );
   }
   return <CardView key={card.id} card={card} std={store.state.settings.cup} />;
+}
+
+function BackLink({ section }: { section: string }) {
+  const sec = getSection(section);
+  return (
+    <a className="back" href={sec ? `#/ratios/in/${sec.id}` : '#/ratios'}>
+      <Icon name="back" size={16} /> {sec ? sec.label : 'All ratios'}
+    </a>
+  );
 }
 
 function CardView({ card, std }: { card: RatioCard; std: CupStandard }) {
@@ -120,7 +197,7 @@ function CardView({ card, std }: { card: RatioCard; std: CupStandard }) {
 
   return (
     <article className="page ratio-card" aria-labelledby={`${uid}-h`}>
-      <a className="back" href="#/ratios"><Icon name="back" size={16} /> All ratios</a>
+      <BackLink section={card.section} />
       <header className="detail-head">
         <h1 id={`${uid}-h`}>{card.name}</h1>
         <p className="ratio-headline">{variant.headline ?? card.headline}</p>
@@ -167,7 +244,7 @@ function CardView({ card, std }: { card: RatioCard; std: CupStandard }) {
             onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
           />
           {unitText && <> {unitText}</>}
-          {anchor.unit !== 'egg' && ' of'}{' '}
+          {anchor.unit !== 'egg' && anchor.unit !== 'piece' && ' of'}{' '}
           <select className="blank select" aria-label="Which ingredient you have" value={anchor.id} onChange={(e) => pickAnchor(e.target.value)}>
             {variant.ingredients.map((i) => <option key={i.id} value={i.id}>{i.name}</option>)}
           </select>
@@ -253,7 +330,7 @@ function Converter({ store }: { store: AppStore }) {
 
   return (
     <article className="page ratio-card" aria-labelledby={`${uid}-h`}>
-      <a className="back" href="#/ratios"><Icon name="back" size={16} /> All ratios</a>
+      <BackLink section={CONVERTER_SECTION} />
       <header className="detail-head">
         <h1 id={`${uid}-h`}>Cups to grams</h1>
         <p className="ratio-headline">{MEASURES[std].label}</p>

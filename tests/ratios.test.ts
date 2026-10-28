@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CONVERSIONS, MEASURES, RATIOS, baseAmount, defaultVariant, equivalentGrams, fromGrams, getCard, parseAmount, solveVariant, toGrams, validateRatios } from '../src/engine/ratios';
+import { CONVERSIONS, MAX_SECTION_CARDS, MEASURES, RATIOS, baseAmount, cardsIn, defaultVariant, equivalentGrams, fromGrams, getCard, parseAmount, solveVariant, toGrams, validateRatios } from '../src/engine/ratios';
 import { formatAmount } from '../src/engine/format';
 
 const card = (id: string) => getCard(id)!;
@@ -12,7 +12,22 @@ const solve = (cid: string, vid: string, anchor: string, amount: number, std: 'a
 describe('ratio library', () => {
   it('is well formed', () => {
     expect(validateRatios(RATIOS)).toEqual([]);
-    expect(RATIOS.cards.length).toBe(30);
+    expect(RATIOS.cards.length).toBe(49);
+  });
+  it('splits everything into short sections', () => {
+    expect(RATIOS.groups.length).toBeLessThanOrEqual(4);
+    for (const sec of RATIOS.sections) {
+      const n = cardsIn(sec.id).length;
+      expect(n, sec.id).toBeGreaterThan(0);
+      expect(n, sec.id).toBeLessThanOrEqual(MAX_SECTION_CARDS);
+    }
+    for (const g of RATIOS.groups) expect(RATIOS.sections.filter((s) => s.group === g.id).length, g.id).toBeLessThanOrEqual(4);
+    expect(RATIOS.cards.every((c) => RATIOS.sections.some((s) => s.id === c.section))).toBe(true);
+  });
+  it('rejects a section that grows too long', () => {
+    const bad = structuredClone(RATIOS);
+    for (const c of bad.cards.slice(0, MAX_SECTION_CARDS + 1)) c.section = 'dough';
+    expect(validateRatios(bad).some((e) => e.includes('too many'))).toBe(true);
   });
   it('opens on the headline version', () => {
     expect(defaultVariant(card('vinaigrette')).id).toBe('classic');
@@ -40,7 +55,9 @@ describe('ratio library', () => {
   it('covers the agreed list', () => {
     const ids = RATIOS.cards.map((c) => c.id);
     for (const id of ['yeast_loaf', 'ciabatta', 'pasta_egg', 'pasta_semolina', 'pie_dough', 'biscuits', 'pancakes', 'pound_cake', 'sponge', 'cookies', 'choux', 'meringue', 'custard', 'ganache',
-      'rice', 'pasta_cooking', 'polenta', 'grains', 'stock', 'roux', 'vinaigrette', 'syrup', 'jam', 'coffee', 'wet_brine', 'dry_brine', 'quick_pickle', 'fermenting', 'leavening', 'starter'])
+      'rice', 'pasta_cooking', 'polenta', 'grains', 'stock', 'roux', 'vinaigrette', 'syrup', 'jam', 'coffee', 'wet_brine', 'dry_brine', 'quick_pickle', 'fermenting', 'leavening', 'starter',
+      'mayonnaise', 'tahini_sauce', 'tzatziki', 'hummus', 'guacamole', 'chimichurri', 'salsa_verde', 'pesto', 'gremolata', 'pico', 'red_wine_sauce', 'hollandaise', 'beurre_blanc', 'tomato_sauce',
+      'cowboy_butter', 'garlic_herb_butter', 'honey_butter', 'chilli_lime_butter', 'miso_butter'])
       expect(ids, id).toContain(id);
   });
 });
@@ -127,6 +144,28 @@ describe('solving ratios', () => {
     expect(row(r, 'bp').amount).toBeCloseTo(1, 9);
     expect(equivalentGrams(card('leavening').variants[0].ingredients[1], 1, 'au')).toBeCloseTo(4, 6);
     expect(row(solve('leavening', 'soda', 'flour', 120), 'soda').amount).toBeCloseTo(0.25, 9);
+  });
+  it('sauces: hollandaise, mayonnaise, chimichurri', () => {
+    const h = solve('hollandaise', 'hollandaise', 'yolk', 3);
+    expect(row(h, 'butter').amount).toBeCloseTo(225, 9);
+    expect(row(solve('hollandaise', 'hollandaise', 'butter', 450), 'yolk').amount).toBeCloseTo(6, 9);
+    expect(row(solve('mayonnaise', 'mayo', 'yolk', 1), 'oil').amount).toBeCloseTo(200, 9);
+    const c = solve('chimichurri', 'classic', 'parsley', 120);
+    expect(row(c, 'oil').amount).toBeCloseTo(250, 9);
+    expect(row(c, 'garlic').amount).toBeCloseTo(8, 9);
+    expect(row(solve('red_wine_sauce', 'everyday', 'wine', 500), 'stock').amount).toBeCloseTo(500, 9);
+  });
+  it('flavoured butters scale off the butter', () => {
+    const r = solve('cowboy_butter', 'standard', 'butter', 250);
+    expect(row(r, 'mustard').amount).toBeCloseTo(30, 9);
+    expect(row(r, 'garlic').amount).toBeCloseTo(8, 9);
+    expect(row(solve('miso_butter', 'standard', 'miso', 80), 'butter').amount).toBeCloseTo(250, 9);
+  });
+  it('counts read naturally: cloves and whole pieces', () => {
+    expect(formatAmount(4, 'clove').text).toBe('4 cloves');
+    expect(formatAmount(1, 'clove').text).toBe('1 clove');
+    expect(formatAmount(0.5, 'clove').text).toBe('½ clove');
+    expect(formatAmount(3, 'piece').text).toBe('3');
   });
   it('rejects bad anchors', () => {
     for (const bad of [0, -3, NaN, Infinity]) expect(() => solve('vinaigrette', 'classic', 'oil', bad)).toThrow();

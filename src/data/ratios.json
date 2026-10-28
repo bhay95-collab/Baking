@@ -1,1947 +1,3209 @@
 {
- "version": "1.0.0",
- "note": "Ratios are common starting points. Where sources disagree the card says so.",
- "groups": [
-  {
-   "id": "baking",
-   "label": "Baking"
-  },
-  {
-   "id": "staples",
-   "label": "Cooking staples"
-  },
-  {
-   "id": "preserving",
-   "label": "Preserving and seasoning"
-  },
-  {
-   "id": "tools",
-   "label": "Baking tools"
-  }
- ],
- "cards": [
-  {
-   "id": "yeast_loaf",
-   "name": "Everyday yeast loaf",
-   "group": "baking",
-   "headline": "100 flour : 65 water : 2 salt : 1 yeast",
-   "status": "solid",
-   "variants": [
+  "version": "1.1.0",
+  "note": "Ratios are common starting points. Where sources disagree the card says so.",
+  "groups": [
     {
-     "id": "standard",
-     "label": "Standard 65%",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Bread flour",
-       "amount": 500,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 325,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 10,
-       "unit": "g"
-      },
-      {
-       "id": "yeast",
-       "name": "Instant yeast",
-       "amount": 5,
-       "unit": "g"
-      }
-     ]
+      "id": "baking",
+      "label": "Baking and sweets"
     },
     {
-     "id": "drier",
-     "label": "Drier 60%",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Bread flour",
-       "amount": 500,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 300,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 10,
-       "unit": "g"
-      },
-      {
-       "id": "yeast",
-       "name": "Instant yeast",
-       "amount": 5,
-       "unit": "g"
-      }
-     ]
+      "id": "cooking",
+      "label": "Everyday cooking"
     },
     {
-     "id": "wetter",
-     "label": "Wetter 70%",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Bread flour",
-       "amount": 500,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 350,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 10,
-       "unit": "g"
-      },
-      {
-       "id": "yeast",
-       "name": "Instant yeast",
-       "amount": 5,
-       "unit": "g"
-      }
-     ]
+      "id": "sauces",
+      "label": "Sauces, dips and butters"
+    },
+    {
+      "id": "keeping",
+      "label": "Preserving and tools"
     }
-   ],
-   "notes": [
-    "Percentages are of the flour weight. Home loaves usually land between 60 and 75% water.",
-    "Instant (easy-blend) yeast. Use about 1.5 times as much active dry yeast.",
-    "More water makes a more open, stickier dough."
-   ],
-   "bakers": "flour",
-   "see": [
-    "bens_raisin_bread",
-    "bens_focaccia"
-   ]
-  },
-  {
-   "id": "ciabatta",
-   "name": "Ciabatta and high-hydration dough",
-   "group": "baking",
-   "headline": "100 flour : 78 water : 2 salt : 0.5 yeast",
-   "status": "varies",
-   "variants": [
+  ],
+  "cards": [
     {
-     "id": "standard",
-     "label": "78% water",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Strong bread flour",
-       "amount": 500,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 390,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 10,
-       "unit": "g"
-      },
-      {
-       "id": "yeast",
-       "name": "Instant yeast",
-       "amount": 2.5,
-       "unit": "g"
-      }
-     ]
+      "id": "yeast_loaf",
+      "name": "Everyday yeast loaf",
+      "section": "dough",
+      "headline": "100 flour : 65 water : 2 salt : 1 yeast",
+      "status": "solid",
+      "bakers": "flour",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard 65%",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Bread flour",
+              "amount": 500,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 325,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 10,
+              "unit": "g"
+            },
+            {
+              "id": "yeast",
+              "name": "Instant yeast",
+              "amount": 5,
+              "unit": "g"
+            }
+          ]
+        },
+        {
+          "id": "drier",
+          "label": "Drier 60%",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Bread flour",
+              "amount": 500,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 300,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 10,
+              "unit": "g"
+            },
+            {
+              "id": "yeast",
+              "name": "Instant yeast",
+              "amount": 5,
+              "unit": "g"
+            }
+          ]
+        },
+        {
+          "id": "wetter",
+          "label": "Wetter 70%",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Bread flour",
+              "amount": 500,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 350,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 10,
+              "unit": "g"
+            },
+            {
+              "id": "yeast",
+              "name": "Instant yeast",
+              "amount": 5,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Percentages are of the flour weight. Home loaves usually land between 60 and 75% water.",
+        "Instant (easy-blend) yeast. Use about 1.5 times as much active dry yeast.",
+        "More water makes a more open, stickier dough."
+      ],
+      "see": [
+        "bens_raisin_bread",
+        "bens_focaccia"
+      ]
+    },
+    {
+      "id": "ciabatta",
+      "name": "Ciabatta and high-hydration dough",
+      "section": "dough",
+      "headline": "100 flour : 78 water : 2 salt : 0.5 yeast",
+      "status": "varies",
+      "flag": "Bakers use anywhere from 75 to 85% water. This is a middle figure.",
+      "bakers": "flour",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "78% water",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Strong bread flour",
+              "amount": 500,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 390,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 10,
+              "unit": "g"
+            },
+            {
+              "id": "yeast",
+              "name": "Instant yeast",
+              "amount": 2.5,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Very wet and sticky: fold it rather than knead it.",
+        "Bakers use anywhere from 75 to 85% water for this style."
+      ]
+    },
+    {
+      "id": "pasta_egg",
+      "name": "Egg pasta",
+      "section": "dough",
+      "headline": "100 g flour per egg, or 3 flour : 2 egg",
+      "status": "check",
+      "flag": "Home cooks use two different ratios. 100 g flour per egg is the common one; 3:2 by weight is richer and more yolky.",
+      "variants": [
+        {
+          "id": "per_egg",
+          "label": "100 g flour per egg",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "00 or plain flour",
+              "amount": 200,
+              "unit": "g"
+            },
+            {
+              "id": "egg",
+              "name": "Eggs",
+              "amount": 2,
+              "unit": "egg",
+              "gPerUnit": 55
+            }
+          ],
+          "headline": "100 g flour : 1 egg"
+        },
+        {
+          "id": "rich",
+          "label": "Richer, 3 : 2 by weight",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "00 or plain flour",
+              "amount": 300,
+              "unit": "g"
+            },
+            {
+              "id": "egg",
+              "name": "Egg (weighed, beaten)",
+              "amount": 200,
+              "unit": "g"
+            }
+          ],
+          "headline": "3 flour : 2 egg"
+        }
+      ],
+      "notes": [
+        "Knead until smooth, then rest it wrapped for 30 minutes before rolling.",
+        "If it is crumbly, add a few drops of water; if sticky, a dusting of flour."
+      ]
+    },
+    {
+      "id": "pasta_semolina",
+      "name": "Eggless pasta (semolina)",
+      "section": "dough",
+      "headline": "2 semolina : 1 water",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "2 : 1",
+          "ingredients": [
+            {
+              "id": "semolina",
+              "name": "Semolina (fine)",
+              "amount": 200,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Warm water",
+              "amount": 100,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Knead 8 to 10 minutes. The dough is stiff at first and softens as it rests.",
+        "Good for orecchiette, cavatelli and other shaped pasta."
+      ]
+    },
+    {
+      "id": "starter",
+      "name": "Sourdough starter feeding",
+      "section": "dough",
+      "headline": "1 : 1 : 1 liquid, 1 : 5 : 3 stiff",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "liquid",
+          "label": "Liquid starter, 1 : 1 : 1",
+          "ingredients": [
+            {
+              "id": "starter",
+              "name": "Starter",
+              "amount": 20,
+              "unit": "g"
+            },
+            {
+              "id": "flour",
+              "name": "Flour",
+              "amount": 20,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 20,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 starter : 1 flour : 1 water"
+        },
+        {
+          "id": "stiff",
+          "label": "Stiff starter, 1 : 5 : 3",
+          "ingredients": [
+            {
+              "id": "starter",
+              "name": "Starter",
+              "amount": 15,
+              "unit": "g"
+            },
+            {
+              "id": "flour",
+              "name": "Flour",
+              "amount": 75,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 45,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 starter : 5 flour : 3 water"
+        }
+      ],
+      "notes": [
+        "By weight. Feed at the same time each day, or keep it in the fridge and feed weekly.",
+        "The stiff build is the one used in the sourdough recipes."
+      ],
+      "see": [
+        "classic_sourdough",
+        "sourdough_wheat_rye"
+      ]
+    },
+    {
+      "id": "pie_dough",
+      "name": "Pie and shortcrust pastry",
+      "section": "pastry",
+      "headline": "3 flour : 2 fat : 1 water, or 2 flour : 1 butter",
+      "status": "check",
+      "flag": "3:2:1 is the classic by-weight pie ratio but it is rich. Many cooks use less fat; the 2:1 version is a common shortcrust.",
+      "variants": [
+        {
+          "id": "rich",
+          "label": "Flaky pie dough, 3 : 2 : 1",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 300,
+              "unit": "g"
+            },
+            {
+              "id": "fat",
+              "name": "Cold butter",
+              "amount": 200,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Ice water",
+              "amount": 100,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 4,
+              "unit": "g"
+            }
+          ],
+          "headline": "3 flour : 2 fat : 1 water"
+        },
+        {
+          "id": "short",
+          "label": "Shortcrust, 2 : 1",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 250,
+              "unit": "g"
+            },
+            {
+              "id": "fat",
+              "name": "Cold butter",
+              "amount": 125,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Ice water",
+              "amount": 60,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 3,
+              "unit": "g"
+            }
+          ],
+          "headline": "2 flour : 1 butter"
+        }
+      ],
+      "notes": [
+        "Keep the butter cold and in visible pieces, and use the water a little at a time.",
+        "Rest the dough in the fridge for at least 30 minutes before rolling."
+      ]
+    },
+    {
+      "id": "biscuits",
+      "name": "Biscuits and scones",
+      "section": "pastry",
+      "headline": "3 flour : 1 fat : 2 liquid",
+      "status": "solid",
+      "bakers": "flour",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "3 : 1 : 2",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 360,
+              "unit": "g"
+            },
+            {
+              "id": "fat",
+              "name": "Cold butter",
+              "amount": 120,
+              "unit": "g"
+            },
+            {
+              "id": "milk",
+              "name": "Cold milk",
+              "amount": 240,
+              "unit": "ml",
+              "gPerMl": 1.03
+            },
+            {
+              "id": "bp",
+              "name": "Baking powder",
+              "amount": 12,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 6,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Cut the butter in coarsely and mix as little as you can once the milk goes in.",
+        "Baking powder is about 3 teaspoons here; see the leavening card for other doughs."
+      ]
+    },
+    {
+      "id": "pancakes",
+      "name": "Pancakes",
+      "section": "pastry",
+      "headline": "Everyday, or 2 flour : 2 milk : 1 egg : 1 butter",
+      "status": "varies",
+      "flag": "The 2:2:1:1 batter is very rich. The everyday version is closer to what most recipes use.",
+      "variants": [
+        {
+          "id": "everyday",
+          "label": "Everyday",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 190,
+              "unit": "g"
+            },
+            {
+              "id": "milk",
+              "name": "Milk",
+              "amount": 300,
+              "unit": "ml",
+              "gPerMl": 1.03
+            },
+            {
+              "id": "egg",
+              "name": "Egg",
+              "amount": 1,
+              "unit": "egg",
+              "gPerUnit": 55
+            },
+            {
+              "id": "butter",
+              "name": "Melted butter",
+              "amount": 40,
+              "unit": "g"
+            },
+            {
+              "id": "bp",
+              "name": "Baking powder",
+              "amount": 10,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 12,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 2,
+              "unit": "g"
+            }
+          ],
+          "headline": "190 g flour : 300 ml milk : 1 egg"
+        },
+        {
+          "id": "rich",
+          "label": "Rich, 2 : 2 : 1 : 1",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 240,
+              "unit": "g"
+            },
+            {
+              "id": "milk",
+              "name": "Milk",
+              "amount": 240,
+              "unit": "ml",
+              "gPerMl": 1.03
+            },
+            {
+              "id": "egg",
+              "name": "Egg (weighed, beaten)",
+              "amount": 120,
+              "unit": "g"
+            },
+            {
+              "id": "butter",
+              "name": "Melted butter",
+              "amount": 120,
+              "unit": "g"
+            },
+            {
+              "id": "bp",
+              "name": "Baking powder",
+              "amount": 10,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 3,
+              "unit": "g"
+            }
+          ],
+          "headline": "2 flour : 2 milk : 1 egg : 1 butter"
+        }
+      ],
+      "notes": [
+        "Do not overmix. A few lumps are fine.",
+        "Rest the batter 5 to 10 minutes for tender pancakes."
+      ]
+    },
+    {
+      "id": "choux",
+      "name": "Choux pastry",
+      "section": "pastry",
+      "headline": "2 water : 1 butter : 1 flour : 2 egg",
+      "status": "check",
+      "flag": "Recipes differ on how much egg to add. Add it gradually and stop when the paste is glossy and drops slowly.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "By weight",
+          "ingredients": [
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 200,
+              "unit": "ml",
+              "gPerMl": 1
+            },
+            {
+              "id": "butter",
+              "name": "Butter",
+              "amount": 100,
+              "unit": "g"
+            },
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 100,
+              "unit": "g"
+            },
+            {
+              "id": "egg",
+              "name": "Egg (weighed, beaten)",
+              "amount": 200,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 2,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Bring the water and butter to a boil, add the flour all at once and stir until it leaves the pan.",
+        "Beat in the egg gradually. You may not need all of it; the paste should fall off the spoon in a thick ribbon."
+      ]
+    },
+    {
+      "id": "pound_cake",
+      "name": "Pound cake",
+      "section": "pastry",
+      "headline": "1 : 1 : 1 : 1 butter : sugar : egg : flour",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "By weight",
+          "ingredients": [
+            {
+              "id": "butter",
+              "name": "Soft butter",
+              "amount": 225,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Caster sugar",
+              "amount": 225,
+              "unit": "g"
+            },
+            {
+              "id": "egg",
+              "name": "Egg (weighed, beaten)",
+              "amount": 225,
+              "unit": "g"
+            },
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 225,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "The name comes from a pound of each. Four large eggs weigh about 225 g.",
+        "Cream the butter and sugar well, then add the egg a little at a time so it does not split.",
+        "Add a pinch of salt and a little vanilla."
+      ]
+    },
+    {
+      "id": "sponge",
+      "name": "Sponge cake",
+      "section": "pastry",
+      "headline": "1 : 1 : 1 egg : sugar : flour",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "By weight",
+          "ingredients": [
+            {
+              "id": "egg",
+              "name": "Eggs (weighed)",
+              "amount": 150,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Caster sugar",
+              "amount": 150,
+              "unit": "g"
+            },
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 150,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Three eggs weigh about 150 g.",
+        "Whisk the eggs and sugar until pale and thick, then fold in the flour gently."
+      ]
+    },
+    {
+      "id": "cookies",
+      "name": "Shortbread-style cookies",
+      "section": "pastry",
+      "headline": "1 sugar : 2 fat : 3 flour",
+      "status": "check",
+      "flag": "This is a shortbread-type ratio, not a general cookie ratio.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "1 : 2 : 3",
+          "ingredients": [
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 100,
+              "unit": "g"
+            },
+            {
+              "id": "butter",
+              "name": "Soft butter",
+              "amount": 200,
+              "unit": "g"
+            },
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 300,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "A good base for shortbread and simple butter cookies.",
+        "Chocolate-chip style cookies use more sugar and an egg, so this is not their ratio."
+      ]
+    },
+    {
+      "id": "meringue",
+      "name": "Meringue",
+      "section": "sweets",
+      "headline": "1 : 2 egg white : sugar (hard), 1 : 1 (soft)",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "hard",
+          "label": "Hard meringue, 1 : 2",
+          "ingredients": [
+            {
+              "id": "white",
+              "name": "Egg whites",
+              "amount": 100,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Caster sugar",
+              "amount": 200,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 egg white : 2 sugar"
+        },
+        {
+          "id": "soft",
+          "label": "Soft meringue, 1 : 1",
+          "ingredients": [
+            {
+              "id": "white",
+              "name": "Egg whites",
+              "amount": 100,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Caster sugar",
+              "amount": 100,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 egg white : 1 sugar"
+        }
+      ],
+      "notes": [
+        "Three egg whites weigh about 100 g.",
+        "Add the sugar slowly once the whites are foamy.",
+        "Hard meringue is for baking crisp; soft is for toppings and pavlova centres."
+      ]
+    },
+    {
+      "id": "custard",
+      "name": "Baked custard",
+      "section": "sweets",
+      "headline": "2 liquid : 1 egg",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "By weight",
+          "ingredients": [
+            {
+              "id": "milk",
+              "name": "Milk or cream",
+              "amount": 250,
+              "unit": "ml",
+              "gPerMl": 1.03
+            },
+            {
+              "id": "egg",
+              "name": "Egg (weighed, beaten)",
+              "amount": 125,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 50,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Two and a half eggs weigh about 125 g.",
+        "Cook gently, in a water bath if baking, so it sets without curdling."
+      ]
+    },
+    {
+      "id": "ganache",
+      "name": "Chocolate ganache",
+      "section": "sweets",
+      "headline": "1 : 1 for glazes, 2 : 1 for truffles",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "glaze",
+          "label": "Glaze or sauce, 1 : 1",
+          "ingredients": [
+            {
+              "id": "cream",
+              "name": "Cream",
+              "amount": 200,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "choc",
+              "name": "Dark chocolate",
+              "amount": 200,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 cream : 1 chocolate"
+        },
+        {
+          "id": "truffle",
+          "label": "Truffles, 2 : 1",
+          "ingredients": [
+            {
+              "id": "choc",
+              "name": "Dark chocolate",
+              "amount": 300,
+              "unit": "g"
+            },
+            {
+              "id": "cream",
+              "name": "Cream",
+              "amount": 150,
+              "unit": "ml",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "2 chocolate : 1 cream"
+        }
+      ],
+      "notes": [
+        "Pour hot cream over chopped chocolate, wait a minute, then stir from the centre outwards.",
+        "Milk and white chocolate are softer, so use more chocolate for the same firmness."
+      ]
+    },
+    {
+      "id": "syrup",
+      "name": "Sugar syrup",
+      "section": "sweets",
+      "headline": "1 : 1 simple, 2 : 1 rich",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "simple",
+          "label": "Simple, 1 : 1",
+          "ingredients": [
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 200,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 200,
+              "unit": "ml",
+              "gPerMl": 1
+            }
+          ],
+          "headline": "1 sugar : 1 water"
+        },
+        {
+          "id": "rich",
+          "label": "Rich, 2 : 1",
+          "ingredients": [
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 400,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 200,
+              "unit": "ml",
+              "gPerMl": 1
+            }
+          ],
+          "headline": "2 sugar : 1 water"
+        }
+      ],
+      "notes": [
+        "Heat just until the sugar dissolves. It keeps for a few weeks in the fridge.",
+        "Rich syrup is thicker and keeps longer."
+      ]
+    },
+    {
+      "id": "jam",
+      "name": "Jam",
+      "section": "sweets",
+      "headline": "1 fruit : 1 sugar by weight",
+      "status": "varies",
+      "flag": "Fruit varies in pectin and sweetness, and lower sugar will not keep as long. Store lower-sugar jam in the fridge.",
+      "variants": [
+        {
+          "id": "traditional",
+          "label": "Traditional, 1 : 1",
+          "ingredients": [
+            {
+              "id": "fruit",
+              "name": "Fruit",
+              "amount": 500,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 500,
+              "unit": "g"
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 30,
+              "unit": "ml",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "1 fruit : 1 sugar"
+        },
+        {
+          "id": "lower",
+          "label": "Lower sugar, 1 : 0.7",
+          "ingredients": [
+            {
+              "id": "fruit",
+              "name": "Fruit",
+              "amount": 500,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 350,
+              "unit": "g"
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 30,
+              "unit": "ml",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "1 fruit : 0.7 sugar"
+        }
+      ],
+      "notes": [
+        "Jam sets at about 105 °C, or when a drop wrinkles on a cold plate.",
+        "Low-pectin fruit (strawberries, cherries) may need extra lemon juice or added pectin."
+      ]
+    },
+    {
+      "id": "rice",
+      "name": "Rice (open pot, absorption)",
+      "section": "staples",
+      "headline": "1 rice : 1.5 to 2.25 water, by volume",
+      "status": "varies",
+      "flag": "Sources disagree. America's Test Kitchen found 1:1 works in a sealed bag, but an open pot loses water to steam, so more is needed. Treat these as starting points.",
+      "variants": [
+        {
+          "id": "jasmine",
+          "label": "Jasmine or basmati",
+          "ingredients": [
+            {
+              "id": "rice",
+              "name": "Jasmine or basmati rice",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.78
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 1.5,
+              "unit": "cup",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "1 rice : 1.5 water"
+        },
+        {
+          "id": "white",
+          "label": "Long-grain white",
+          "ingredients": [
+            {
+              "id": "rice",
+              "name": "Long-grain white rice",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.78
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 1.75,
+              "unit": "cup",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "1 rice : 1.75 water"
+        },
+        {
+          "id": "sushi",
+          "label": "Sushi or short-grain",
+          "ingredients": [
+            {
+              "id": "rice",
+              "name": "Sushi or short-grain rice",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.78
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 1.2,
+              "unit": "cup",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "1 rice : 1.2 water"
+        },
+        {
+          "id": "brown",
+          "label": "Brown",
+          "ingredients": [
+            {
+              "id": "rice",
+              "name": "Brown rice",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.78
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 2.25,
+              "unit": "cup",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "1 rice : 2.25 water"
+        }
+      ],
+      "notes": [
+        "Rinse white rice until the water runs mostly clear. Bring to a boil, cover, turn down low and leave the lid on.",
+        "Rest it, covered, for 10 minutes off the heat before fluffing."
+      ]
+    },
+    {
+      "id": "pasta_cooking",
+      "name": "Cooking pasta",
+      "section": "staples",
+      "headline": "100 g pasta : 1 litre water : 10 g salt",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Per person",
+          "ingredients": [
+            {
+              "id": "pasta",
+              "name": "Dried pasta",
+              "amount": 100,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 1000,
+              "unit": "ml",
+              "gPerMl": 1
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 10,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "80 g per person is a lighter serve; 100 g is a generous one.",
+        "Use a big pot. The water should taste like mild sea water."
+      ]
+    },
+    {
+      "id": "polenta",
+      "name": "Polenta",
+      "section": "staples",
+      "headline": "1 polenta : 4 to 5 water, by volume",
+      "status": "varies",
+      "flag": "Brands and grinds vary. Check the packet for coarse polenta.",
+      "variants": [
+        {
+          "id": "coarse",
+          "label": "Firm, 1 : 4",
+          "ingredients": [
+            {
+              "id": "polenta",
+              "name": "Coarse polenta",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.59
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 4,
+              "unit": "cup",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "1 polenta : 4 water"
+        },
+        {
+          "id": "creamy",
+          "label": "Creamy, 1 : 5",
+          "ingredients": [
+            {
+              "id": "polenta",
+              "name": "Coarse polenta",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.59
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 5,
+              "unit": "cup",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "1 polenta : 5 water"
+        }
+      ],
+      "notes": [
+        "Whisk the polenta into simmering salted water, then cook, stirring often, until thick.",
+        "Instant polenta is different: follow the packet."
+      ]
+    },
+    {
+      "id": "grains",
+      "name": "Quinoa, couscous and oats",
+      "section": "staples",
+      "headline": "1 : 2 quinoa, 1 : 1 couscous, 1 : 2 rolled oats, 1 : 3 steel-cut",
+      "status": "varies",
+      "flag": "Brands differ; packets are the final word.",
+      "variants": [
+        {
+          "id": "quinoa",
+          "label": "Quinoa",
+          "ingredients": [
+            {
+              "id": "grain",
+              "name": "Quinoa",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.72
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 2,
+              "unit": "cup",
+              "gPerMl": 1
+            }
+          ],
+          "headline": "1 quinoa : 2 water"
+        },
+        {
+          "id": "couscous",
+          "label": "Couscous",
+          "ingredients": [
+            {
+              "id": "grain",
+              "name": "Couscous",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.7
+            },
+            {
+              "id": "water",
+              "name": "Boiling water",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 1
+            }
+          ],
+          "headline": "1 couscous : 1 water"
+        },
+        {
+          "id": "rolled",
+          "label": "Rolled oats",
+          "ingredients": [
+            {
+              "id": "grain",
+              "name": "Rolled oats",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.376
+            },
+            {
+              "id": "water",
+              "name": "Water or milk",
+              "amount": 2,
+              "unit": "cup",
+              "gPerMl": 1
+            }
+          ],
+          "headline": "1 oats : 2 liquid"
+        },
+        {
+          "id": "steel",
+          "label": "Steel-cut oats",
+          "ingredients": [
+            {
+              "id": "grain",
+              "name": "Steel-cut oats",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 0.68
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 3,
+              "unit": "cup",
+              "gPerMl": 1
+            }
+          ],
+          "headline": "1 oats : 3 water"
+        }
+      ],
+      "notes": [
+        "Quinoa: rinse first, simmer covered about 15 minutes, then rest.",
+        "Couscous: pour boiling water over, cover and leave 5 minutes, then fluff with a fork."
+      ]
+    },
+    {
+      "id": "stock",
+      "name": "Stock",
+      "section": "staples",
+      "headline": "1 bones : 2 water, by weight",
+      "status": "check",
+      "flag": "Cooks use anywhere from 1:1.5 to 1:3. Cover the bones with water and adjust to taste.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Bones and vegetables",
+          "ingredients": [
+            {
+              "id": "bones",
+              "name": "Bones",
+              "amount": 1000,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Cold water",
+              "amount": 2000,
+              "unit": "ml",
+              "gPerMl": 1
+            },
+            {
+              "id": "veg",
+              "name": "Onion, carrot and celery",
+              "amount": 250,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Start with cold water, bring it to a bare simmer and skim. Do not boil hard.",
+        "Chicken stock takes 3 to 4 hours; beef 6 to 8."
+      ]
+    },
+    {
+      "id": "coffee",
+      "name": "Coffee",
+      "section": "staples",
+      "headline": "1 : 16 coffee : water",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "filter",
+          "label": "Filter or pour-over, 1 : 16",
+          "ingredients": [
+            {
+              "id": "coffee",
+              "name": "Ground coffee",
+              "amount": 20,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 320,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 coffee : 16 water"
+        },
+        {
+          "id": "press",
+          "label": "French press, 1 : 15",
+          "ingredients": [
+            {
+              "id": "coffee",
+              "name": "Ground coffee",
+              "amount": 30,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 450,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 coffee : 15 water"
+        },
+        {
+          "id": "espresso",
+          "label": "Espresso, 1 : 2",
+          "ingredients": [
+            {
+              "id": "coffee",
+              "name": "Ground coffee (in)",
+              "amount": 18,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Espresso (out)",
+              "amount": 36,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 coffee in : 2 espresso out"
+        }
+      ],
+      "notes": [
+        "Weigh the water too; 1 ml of water is 1 g.",
+        "Adjust the grind before the ratio if it tastes sour or bitter."
+      ]
+    },
+    {
+      "id": "vinaigrette",
+      "name": "Vinaigrette",
+      "section": "dressings",
+      "headline": "3 oil : 1 vinegar",
+      "status": "solid",
+      "default": "classic",
+      "variants": [
+        {
+          "id": "mild",
+          "label": "Mild, 4 : 1",
+          "ingredients": [
+            {
+              "id": "oil",
+              "name": "Oil",
+              "amount": 200,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "vinegar",
+              "name": "Vinegar or lemon juice",
+              "amount": 50,
+              "unit": "ml",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "4 oil : 1 vinegar"
+        },
+        {
+          "id": "classic",
+          "label": "Classic, 3 : 1",
+          "ingredients": [
+            {
+              "id": "oil",
+              "name": "Oil",
+              "amount": 150,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "vinegar",
+              "name": "Vinegar or lemon juice",
+              "amount": 50,
+              "unit": "ml",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "3 oil : 1 vinegar"
+        },
+        {
+          "id": "sharp",
+          "label": "Sharp, 2 : 1",
+          "ingredients": [
+            {
+              "id": "oil",
+              "name": "Oil",
+              "amount": 100,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "vinegar",
+              "name": "Vinegar or lemon juice",
+              "amount": 50,
+              "unit": "ml",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "2 oil : 1 vinegar"
+        }
+      ],
+      "notes": [
+        "A teaspoon of mustard per half cup helps it stay together.",
+        "Season with salt and pepper, and taste it on a leaf."
+      ]
+    },
+    {
+      "id": "mayonnaise",
+      "name": "Mayonnaise and aioli",
+      "section": "dressings",
+      "headline": "1 yolk : 200 ml oil",
+      "status": "check",
+      "flag": "A thin yolk takes less oil, a large one more. Stop adding oil when it is as thick as you like.",
+      "variants": [
+        {
+          "id": "mayo",
+          "label": "Mayonnaise",
+          "ingredients": [
+            {
+              "id": "yolk",
+              "name": "Egg yolks",
+              "amount": 2,
+              "unit": "piece"
+            },
+            {
+              "id": "oil",
+              "name": "Neutral oil",
+              "amount": 400,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 20,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 2,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 yolk : 200 ml oil"
+        },
+        {
+          "id": "aioli",
+          "label": "Aioli",
+          "ingredients": [
+            {
+              "id": "yolk",
+              "name": "Egg yolks",
+              "amount": 2,
+              "unit": "piece"
+            },
+            {
+              "id": "oil",
+              "name": "Oil",
+              "amount": 400,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic",
+              "amount": 2,
+              "unit": "clove"
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 20,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 2,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 yolk : 200 ml oil, plus garlic"
+        }
+      ],
+      "notes": [
+        "Add the oil a few drops at a time at first, then in a thin stream, whisking all the while.",
+        "If it splits, start again with a fresh yolk and whisk the split mixture into it slowly.",
+        "This uses raw egg. Use fresh, clean eggs, keep it cold and use within 3 days. Skip it for anyone pregnant, elderly or unwell."
+      ]
+    },
+    {
+      "id": "tahini_sauce",
+      "name": "Tahini sauce",
+      "section": "dressings",
+      "headline": "2 tahini : 1 lemon : 2 water",
+      "status": "varies",
+      "flag": "Sauces are made to taste. Start here, then adjust the acid, salt and heat.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "tahini",
+              "name": "Tahini",
+              "amount": 60,
+              "unit": "g"
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 30,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "water",
+              "name": "Cold water",
+              "amount": 60,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 1,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "It goes thick and stiff at first. Keep whisking and it turns pale and pourable.",
+        "Add more water for a drizzle, less for a dip."
+      ]
+    },
+    {
+      "id": "tzatziki",
+      "name": "Tzatziki",
+      "section": "dressings",
+      "headline": "2 yoghurt : 1 cucumber",
+      "status": "varies",
+      "flag": "Sauces are made to taste. Start here, then adjust the acid, salt and heat.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "yoghurt",
+              "name": "Greek yoghurt",
+              "amount": 250,
+              "unit": "g"
+            },
+            {
+              "id": "cucumber",
+              "name": "Cucumber, grated",
+              "amount": 125,
+              "unit": "g"
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic",
+              "amount": 1,
+              "unit": "clove"
+            },
+            {
+              "id": "oil",
+              "name": "Olive oil",
+              "amount": 15,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 10,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 2,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Salt the grated cucumber, leave it 10 minutes and squeeze it dry, or the tzatziki turns watery.",
+        "It is better after an hour in the fridge."
+      ]
+    },
+    {
+      "id": "hummus",
+      "name": "Hummus",
+      "section": "dressings",
+      "headline": "4 chickpeas : 1 tahini",
+      "status": "varies",
+      "flag": "Sauces are made to taste. Start here, then adjust the acid, salt and heat.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "chickpeas",
+              "name": "Cooked chickpeas, drained",
+              "amount": 240,
+              "unit": "g"
+            },
+            {
+              "id": "tahini",
+              "name": "Tahini",
+              "amount": 60,
+              "unit": "g"
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 45,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "water",
+              "name": "Ice-cold water",
+              "amount": 45,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic",
+              "amount": 1,
+              "unit": "clove"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 3,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "A 400 g tin of chickpeas gives about 240 g once drained.",
+        "Blend for a few minutes, adding the cold water slowly, for a smooth, pale result."
+      ]
+    },
+    {
+      "id": "guacamole",
+      "name": "Guacamole",
+      "section": "dressings",
+      "headline": "10 avocado : 1 lime juice",
+      "status": "varies",
+      "flag": "Sauces are made to taste. Start here, then adjust the acid, salt and heat.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "avocado",
+              "name": "Avocado flesh",
+              "amount": 300,
+              "unit": "g"
+            },
+            {
+              "id": "lime",
+              "name": "Lime juice",
+              "amount": 30,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "onion",
+              "name": "Red onion, finely diced",
+              "amount": 30,
+              "unit": "g"
+            },
+            {
+              "id": "coriander",
+              "name": "Coriander, chopped",
+              "amount": 8,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 2,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "About two medium avocados give 300 g of flesh.",
+        "Press cling film onto the surface to stop it browning."
+      ]
+    },
+    {
+      "id": "chimichurri",
+      "name": "Chimichurri",
+      "section": "herb",
+      "headline": "60 g parsley : 125 ml oil : 45 ml vinegar",
+      "status": "check",
+      "flag": "Argentine families each have their own. Start here, then change the vinegar, garlic and chilli to taste.",
+      "variants": [
+        {
+          "id": "classic",
+          "label": "Classic",
+          "ingredients": [
+            {
+              "id": "parsley",
+              "name": "Parsley, leaves",
+              "amount": 60,
+              "unit": "g"
+            },
+            {
+              "id": "oil",
+              "name": "Olive oil",
+              "amount": 125,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "vinegar",
+              "name": "Red wine vinegar",
+              "amount": 45,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic",
+              "amount": 4,
+              "unit": "clove"
+            },
+            {
+              "id": "oregano",
+              "name": "Dried oregano",
+              "amount": 1.5,
+              "unit": "tsp",
+              "gPerMl": 0.2
+            },
+            {
+              "id": "chilli",
+              "name": "Chilli flakes",
+              "amount": 0.5,
+              "unit": "tsp",
+              "gPerMl": 0.35
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 3,
+              "unit": "g"
+            }
+          ],
+          "headline": "60 g parsley : 125 ml oil : 45 ml vinegar"
+        },
+        {
+          "id": "sharp",
+          "label": "Sharper",
+          "ingredients": [
+            {
+              "id": "parsley",
+              "name": "Parsley, leaves",
+              "amount": 60,
+              "unit": "g"
+            },
+            {
+              "id": "oil",
+              "name": "Olive oil",
+              "amount": 100,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "vinegar",
+              "name": "Red wine vinegar",
+              "amount": 60,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic",
+              "amount": 4,
+              "unit": "clove"
+            },
+            {
+              "id": "oregano",
+              "name": "Dried oregano",
+              "amount": 1.5,
+              "unit": "tsp",
+              "gPerMl": 0.2
+            },
+            {
+              "id": "chilli",
+              "name": "Chilli flakes",
+              "amount": 0.5,
+              "unit": "tsp",
+              "gPerMl": 0.35
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 3,
+              "unit": "g"
+            }
+          ],
+          "headline": "60 g parsley : 100 ml oil : 60 ml vinegar"
+        }
+      ],
+      "notes": [
+        "Chop by hand and stir. A food processor turns it into a paste.",
+        "Rest it for 30 minutes before serving. Keep it in the fridge for up to a week.",
+        "Serve with steak, lamb, chicken or grilled vegetables."
+      ]
+    },
+    {
+      "id": "salsa_verde",
+      "name": "Salsa verde (Italian)",
+      "section": "herb",
+      "headline": "60 g parsley : 125 ml oil",
+      "status": "check",
+      "flag": "Capers and anchovies are salty, so taste before adding any salt. Adjust the vinegar and oil to taste.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "parsley",
+              "name": "Flat-leaf parsley, leaves",
+              "amount": 60,
+              "unit": "g"
+            },
+            {
+              "id": "oil",
+              "name": "Olive oil",
+              "amount": 125,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "capers",
+              "name": "Capers, rinsed",
+              "amount": 20,
+              "unit": "g"
+            },
+            {
+              "id": "anchovy",
+              "name": "Anchovy fillets",
+              "amount": 12,
+              "unit": "g"
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic",
+              "amount": 1,
+              "unit": "clove"
+            },
+            {
+              "id": "mustard",
+              "name": "Dijon mustard",
+              "amount": 5,
+              "unit": "g"
+            },
+            {
+              "id": "vinegar",
+              "name": "Red wine vinegar",
+              "amount": 20,
+              "unit": "ml",
+              "gPerMl": 1.0
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Chop everything finely by hand and stir in the oil.",
+        "Good with boiled or roast meat, fish and potatoes. It keeps about 5 days in the fridge.",
+        "The Mexican salsa verde, made from tomatillos, is a different sauce."
+      ]
+    },
+    {
+      "id": "pesto",
+      "name": "Basil pesto",
+      "section": "herb",
+      "headline": "50 g basil : 120 ml oil",
+      "status": "check",
+      "flag": "Nuts, cheese and garlic are all adjustable. Parmesan is salty, so taste before adding any salt.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "basil",
+              "name": "Basil leaves",
+              "amount": 50,
+              "unit": "g"
+            },
+            {
+              "id": "pinenuts",
+              "name": "Pine nuts",
+              "amount": 40,
+              "unit": "g"
+            },
+            {
+              "id": "parmesan",
+              "name": "Parmesan, grated",
+              "amount": 50,
+              "unit": "g"
+            },
+            {
+              "id": "oil",
+              "name": "Olive oil",
+              "amount": 120,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic",
+              "amount": 2,
+              "unit": "clove"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 1,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Pulse, do not blitz for long, or the heat turns the basil dark.",
+        "A film of oil on top keeps the colour. Use within a week, or freeze in ice cube trays.",
+        "Loosen with a spoon of pasta water when you toss it through pasta."
+      ]
+    },
+    {
+      "id": "gremolata",
+      "name": "Gremolata",
+      "section": "herb",
+      "headline": "30 g parsley : 4 g lemon zest : 1 garlic",
+      "status": "varies",
+      "flag": "Sauces are made to taste. Start here, then adjust the acid, salt and heat.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "parsley",
+              "name": "Parsley, leaves",
+              "amount": 30,
+              "unit": "g"
+            },
+            {
+              "id": "zest",
+              "name": "Lemon zest",
+              "amount": 4,
+              "unit": "g"
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic",
+              "amount": 1,
+              "unit": "clove"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Chop everything together very fine and use it the same day.",
+        "Sprinkle over braises, osso buco, grilled fish or roast vegetables just before serving."
+      ]
+    },
+    {
+      "id": "pico",
+      "name": "Pico de gallo",
+      "section": "herb",
+      "headline": "5 tomato : 1 onion",
+      "status": "varies",
+      "flag": "Sauces are made to taste. Start here, then adjust the acid, salt and heat.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "tomato",
+              "name": "Firm tomatoes, diced",
+              "amount": 400,
+              "unit": "g"
+            },
+            {
+              "id": "onion",
+              "name": "White onion, finely diced",
+              "amount": 80,
+              "unit": "g"
+            },
+            {
+              "id": "jalapeno",
+              "name": "Jalapeño chilli",
+              "amount": 1,
+              "unit": "piece"
+            },
+            {
+              "id": "coriander",
+              "name": "Coriander, chopped",
+              "amount": 15,
+              "unit": "g"
+            },
+            {
+              "id": "lime",
+              "name": "Lime juice",
+              "amount": 30,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 3,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Salt it at the end and use it within a day. It gets watery as it sits.",
+        "Remove the jalapeño seeds for less heat."
+      ]
+    },
+    {
+      "id": "red_wine_sauce",
+      "name": "Red wine sauce",
+      "section": "classic",
+      "headline": "1 wine : 1 stock, reduced by half",
+      "status": "check",
+      "flag": "The thickness depends on how far you reduce it, and a salty stock will make a salty sauce. Taste before adding salt.",
+      "default": "everyday",
+      "variants": [
+        {
+          "id": "everyday",
+          "label": "Everyday",
+          "ingredients": [
+            {
+              "id": "wine",
+              "name": "Red wine",
+              "amount": 250,
+              "unit": "ml",
+              "gPerMl": 0.99
+            },
+            {
+              "id": "stock",
+              "name": "Beef stock",
+              "amount": 250,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "shallot",
+              "name": "Shallot, finely diced",
+              "amount": 40,
+              "unit": "g"
+            },
+            {
+              "id": "butter",
+              "name": "Cold butter",
+              "amount": 30,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 wine : 1 stock"
+        },
+        {
+          "id": "bordelaise",
+          "label": "Bordelaise",
+          "ingredients": [
+            {
+              "id": "wine",
+              "name": "Red wine",
+              "amount": 500,
+              "unit": "ml",
+              "gPerMl": 0.99
+            },
+            {
+              "id": "stock",
+              "name": "Beef stock",
+              "amount": 750,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "shallot",
+              "name": "Shallot, finely diced",
+              "amount": 120,
+              "unit": "g"
+            },
+            {
+              "id": "butter",
+              "name": "Cold butter",
+              "amount": 30,
+              "unit": "g"
+            }
+          ],
+          "headline": "2 wine : 3 stock, reduced",
+          "note": "Classic bordelaise reduces for longer and is often finished with bone marrow."
+        }
+      ],
+      "notes": [
+        "Simmer the shallot and wine until it is nearly syrup, add the stock and reduce until it coats a spoon.",
+        "Take it off the heat and swirl in the cold butter to give it a gloss.",
+        "Strain if you want it smooth. A pinch of sugar or a splash of vinegar corrects a sauce that is too sharp or too flat."
+      ]
+    },
+    {
+      "id": "hollandaise",
+      "name": "Hollandaise and béarnaise",
+      "section": "classic",
+      "headline": "1 yolk : 75 g butter",
+      "status": "check",
+      "flag": "It is easy to split, and a yolk that is large or small changes how much butter it takes. Stop when it is as thick as you like.",
+      "variants": [
+        {
+          "id": "hollandaise",
+          "label": "Hollandaise",
+          "ingredients": [
+            {
+              "id": "butter",
+              "name": "Clarified or melted butter",
+              "amount": 225,
+              "unit": "g"
+            },
+            {
+              "id": "yolk",
+              "name": "Egg yolks",
+              "amount": 3,
+              "unit": "piece"
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 15,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 15,
+              "unit": "ml",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "1 yolk : 75 g butter"
+        },
+        {
+          "id": "bearnaise",
+          "label": "Béarnaise",
+          "ingredients": [
+            {
+              "id": "butter",
+              "name": "Clarified or melted butter",
+              "amount": 225,
+              "unit": "g"
+            },
+            {
+              "id": "yolk",
+              "name": "Egg yolks",
+              "amount": 3,
+              "unit": "piece"
+            },
+            {
+              "id": "vinegar",
+              "name": "White wine vinegar",
+              "amount": 50,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "wine",
+              "name": "White wine",
+              "amount": 50,
+              "unit": "ml",
+              "gPerMl": 0.99
+            },
+            {
+              "id": "shallot",
+              "name": "Shallot, finely diced",
+              "amount": 20,
+              "unit": "g"
+            },
+            {
+              "id": "tarragon",
+              "name": "Tarragon, chopped",
+              "amount": 5,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 yolk : 75 g butter, with a tarragon reduction",
+          "note": "Reduce the vinegar, wine and shallot by about two thirds, strain, then use it in place of the lemon and water."
+        }
+      ],
+      "notes": [
+        "Whisk the yolks with the water or reduction over barely simmering water until thick, then whisk in the warm butter slowly.",
+        "Keep it warm, not hot. It splits if it gets too hot or too cold.",
+        "This uses lightly cooked egg yolk. Serve it fresh, and skip it for anyone pregnant, elderly or unwell."
+      ]
+    },
+    {
+      "id": "beurre_blanc",
+      "name": "Beurre blanc",
+      "section": "classic",
+      "headline": "120 ml wine : 225 g cold butter",
+      "status": "check",
+      "flag": "It is easy to split, and the cream is a safety net that you can leave out. Season with salt and lemon at the end.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "butter",
+              "name": "Cold butter, cubed",
+              "amount": 225,
+              "unit": "g"
+            },
+            {
+              "id": "wine",
+              "name": "Dry white wine",
+              "amount": 120,
+              "unit": "ml",
+              "gPerMl": 0.99
+            },
+            {
+              "id": "vinegar",
+              "name": "White wine vinegar",
+              "amount": 30,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "shallot",
+              "name": "Shallot, finely diced",
+              "amount": 30,
+              "unit": "g"
+            },
+            {
+              "id": "cream",
+              "name": "Cream",
+              "amount": 15,
+              "unit": "ml",
+              "gPerMl": 0.99
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Simmer the wine, vinegar and shallot until about 2 tablespoons remain, add the cream, then whisk in the cold butter a few cubes at a time over low heat.",
+        "Keep it warm, not hot, and serve straight away. It splits if it boils or cools too far.",
+        "Strain out the shallot for a smooth sauce. Lovely with fish and scallops."
+      ]
+    },
+    {
+      "id": "tomato_sauce",
+      "name": "Tomato sauce",
+      "section": "classic",
+      "headline": "800 g tomato : 60 ml oil",
+      "status": "varies",
+      "flag": "Sauces are made to taste. Start here, then adjust the acid, salt and heat.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "tomato",
+              "name": "Tinned tomatoes",
+              "amount": 800,
+              "unit": "g"
+            },
+            {
+              "id": "oil",
+              "name": "Olive oil",
+              "amount": 60,
+              "unit": "ml",
+              "gPerMl": 0.92
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic",
+              "amount": 3,
+              "unit": "clove"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 6,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Warm the garlic in the oil, add the tomatoes and simmer for about 20 minutes, until it thickens.",
+        "A pinch of sugar or a knob of butter softens tinned tomatoes that taste sharp.",
+        "Two 400 g tins make one batch, enough for about 500 g of pasta."
+      ]
+    },
+    {
+      "id": "roux",
+      "name": "Roux, white sauce and gravy",
+      "section": "classic",
+      "headline": "1 tbsp flour + 1 tbsp butter per cup, for thin",
+      "status": "solid",
+      "default": "medium",
+      "variants": [
+        {
+          "id": "thin",
+          "label": "Thin (soup)",
+          "ingredients": [
+            {
+              "id": "liquid",
+              "name": "Hot milk or stock",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 1,
+              "unit": "tbsp",
+              "gPerMl": 0.507
+            },
+            {
+              "id": "butter",
+              "name": "Butter",
+              "amount": 1,
+              "unit": "tbsp",
+              "gPerMl": 0.96
+            }
+          ],
+          "headline": "1 tbsp flour + 1 tbsp butter per cup"
+        },
+        {
+          "id": "medium",
+          "label": "Medium (sauce)",
+          "ingredients": [
+            {
+              "id": "liquid",
+              "name": "Hot milk or stock",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 2,
+              "unit": "tbsp",
+              "gPerMl": 0.507
+            },
+            {
+              "id": "butter",
+              "name": "Butter",
+              "amount": 2,
+              "unit": "tbsp",
+              "gPerMl": 0.96
+            }
+          ],
+          "headline": "2 tbsp flour + 2 tbsp butter per cup"
+        },
+        {
+          "id": "thick",
+          "label": "Thick (béchamel base)",
+          "ingredients": [
+            {
+              "id": "liquid",
+              "name": "Hot milk or stock",
+              "amount": 1,
+              "unit": "cup",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 3,
+              "unit": "tbsp",
+              "gPerMl": 0.507
+            },
+            {
+              "id": "butter",
+              "name": "Butter",
+              "amount": 3,
+              "unit": "tbsp",
+              "gPerMl": 0.96
+            }
+          ],
+          "headline": "3 tbsp flour + 3 tbsp butter per cup"
+        }
+      ],
+      "notes": [
+        "Melt the butter, stir in the flour and cook for a minute or two, then add the hot liquid gradually, whisking.",
+        "The same amount of butter and flour by volume is the home-cook shortcut; chefs use equal weights.",
+        "Medium makes a pouring white sauce. For gravy, use the pan fat in place of the butter and add hot stock."
+      ]
+    },
+    {
+      "id": "cowboy_butter",
+      "name": "Cowboy butter",
+      "section": "butters",
+      "headline": "125 g butter : 15 g Dijon : 20 ml lemon",
+      "status": "check",
+      "flag": "Garlic, cayenne and salt are the knobs to turn. Start here and adjust to your taste.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "butter",
+              "name": "Soft butter",
+              "amount": 125,
+              "unit": "g"
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic, grated",
+              "amount": 4,
+              "unit": "clove"
+            },
+            {
+              "id": "mustard",
+              "name": "Dijon mustard",
+              "amount": 15,
+              "unit": "g"
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 20,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "zest",
+              "name": "Lemon zest",
+              "amount": 2,
+              "unit": "g"
+            },
+            {
+              "id": "parsley",
+              "name": "Parsley, chopped",
+              "amount": 8,
+              "unit": "g"
+            },
+            {
+              "id": "chives",
+              "name": "Chives, chopped",
+              "amount": 5,
+              "unit": "g"
+            },
+            {
+              "id": "paprika",
+              "name": "Smoked paprika",
+              "amount": 2.5,
+              "unit": "g"
+            },
+            {
+              "id": "cayenne",
+              "name": "Cayenne",
+              "amount": 1,
+              "unit": "g"
+            },
+            {
+              "id": "worcestershire",
+              "name": "Worcestershire sauce",
+              "amount": 5,
+              "unit": "ml",
+              "gPerMl": 1.1
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 1.5,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "A steak butter: garlicky, lemony and a little hot.",
+        "Soften the butter, do not melt it. Mix, roll in baking paper and chill until firm.",
+        "Keep it in the fridge and use within about a week, or freeze it in slices.",
+        "Slice a coin onto hot steak, fish, corn or vegetables."
+      ]
+    },
+    {
+      "id": "garlic_herb_butter",
+      "name": "Garlic herb butter",
+      "section": "butters",
+      "headline": "125 g butter : 2 garlic : 10 g parsley",
+      "status": "varies",
+      "flag": "Sauces are made to taste. Start here, then adjust the acid, salt and heat.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "butter",
+              "name": "Soft butter",
+              "amount": 125,
+              "unit": "g"
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic, grated",
+              "amount": 2,
+              "unit": "clove"
+            },
+            {
+              "id": "parsley",
+              "name": "Parsley, chopped",
+              "amount": 10,
+              "unit": "g"
+            },
+            {
+              "id": "lemon",
+              "name": "Lemon juice",
+              "amount": 10,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 1.5,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Good for garlic bread, prawns, mushrooms and baked potatoes.",
+        "Soften the butter, do not melt it. Mix, roll in baking paper and chill until firm.",
+        "Keep it in the fridge and use within about a week, or freeze it in slices.",
+        "Slice a coin onto hot steak, fish, corn or vegetables."
+      ]
+    },
+    {
+      "id": "honey_butter",
+      "name": "Honey butter",
+      "section": "butters",
+      "headline": "125 g butter : 30 g honey",
+      "status": "varies",
+      "flag": "Honey varies in sweetness and thickness, and salted butter needs less salt. Taste before adding the salt.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "butter",
+              "name": "Soft butter",
+              "amount": 125,
+              "unit": "g"
+            },
+            {
+              "id": "honey",
+              "name": "Honey",
+              "amount": 30,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Flaky salt",
+              "amount": 0.5,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Good on hot bread, scones, pancakes, cornbread or roasted carrots.",
+        "Soften the butter, do not melt it. Mix, roll in baking paper and chill until firm.",
+        "Keep it in the fridge and use within about a week, or freeze it in slices.",
+        "Slice a coin onto hot steak, fish, corn or vegetables."
+      ]
+    },
+    {
+      "id": "chilli_lime_butter",
+      "name": "Chilli lime butter",
+      "section": "butters",
+      "headline": "125 g butter : 10 ml lime : 1 g chilli",
+      "status": "varies",
+      "flag": "Sauces are made to taste. Start here, then adjust the acid, salt and heat.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "butter",
+              "name": "Soft butter",
+              "amount": 125,
+              "unit": "g"
+            },
+            {
+              "id": "zest",
+              "name": "Lime zest",
+              "amount": 2,
+              "unit": "g"
+            },
+            {
+              "id": "lime",
+              "name": "Lime juice",
+              "amount": 10,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "chilli",
+              "name": "Chilli flakes",
+              "amount": 1,
+              "unit": "g"
+            },
+            {
+              "id": "coriander",
+              "name": "Coriander, chopped",
+              "amount": 5,
+              "unit": "g"
+            },
+            {
+              "id": "garlic",
+              "name": "Garlic, grated",
+              "amount": 1,
+              "unit": "clove"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 1.5,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Very good on corn, grilled fish, prawns and chicken.",
+        "Soften the butter, do not melt it. Mix, roll in baking paper and chill until firm.",
+        "Keep it in the fridge and use within about a week, or freeze it in slices.",
+        "Slice a coin onto hot steak, fish, corn or vegetables."
+      ]
+    },
+    {
+      "id": "miso_butter",
+      "name": "Miso butter",
+      "section": "butters",
+      "headline": "125 g butter : 40 g white miso",
+      "status": "varies",
+      "flag": "Miso brands differ in saltiness. Start with less and taste.",
+      "variants": [
+        {
+          "id": "standard",
+          "label": "Standard",
+          "ingredients": [
+            {
+              "id": "butter",
+              "name": "Soft butter",
+              "amount": 125,
+              "unit": "g"
+            },
+            {
+              "id": "miso",
+              "name": "White (shiro) miso",
+              "amount": 40,
+              "unit": "g"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Miso is already salty, so do not add salt.",
+        "Try it on corn, mushrooms, roasted vegetables, fish or noodles.",
+        "Soften the butter, do not melt it. Mix, roll in baking paper and chill until firm.",
+        "Keep it in the fridge and use within about a week, or freeze it in slices.",
+        "Slice a coin onto hot steak, fish, corn or vegetables."
+      ]
+    },
+    {
+      "id": "wet_brine",
+      "name": "Wet brine",
+      "section": "preserving",
+      "headline": "5% salt: 50 g per litre of water",
+      "status": "varies",
+      "flag": "Sources range from 1% to 7%. 5% is common for chicken and pork; check times for the cut you are brining.",
+      "default": "standard",
+      "variants": [
+        {
+          "id": "light",
+          "label": "Light, 3.5%",
+          "ingredients": [
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 35,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 1000,
+              "unit": "ml",
+              "gPerMl": 1
+            }
+          ],
+          "headline": "3.5% salt: 35 g per litre"
+        },
+        {
+          "id": "standard",
+          "label": "Standard, 5%",
+          "ingredients": [
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 50,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 1000,
+              "unit": "ml",
+              "gPerMl": 1
+            }
+          ],
+          "headline": "5% salt: 50 g per litre"
+        },
+        {
+          "id": "strong",
+          "label": "Strong, 7%",
+          "ingredients": [
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 70,
+              "unit": "g"
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 1000,
+              "unit": "ml",
+              "gPerMl": 1
+            }
+          ],
+          "headline": "7% salt: 70 g per litre"
+        }
+      ],
+      "notes": [
+        "Stronger brines work faster, so soak for less time.",
+        "Rinse and pat dry before cooking, and go easy on extra salt afterwards.",
+        "Keep the meat cold, in the fridge, while it brines."
+      ]
+    },
+    {
+      "id": "dry_brine",
+      "name": "Dry brine (salting meat)",
+      "section": "preserving",
+      "headline": "1 to 1.75% salt of the meat's weight",
+      "status": "check",
+      "flag": "Guides range from about 1% to 2% of meat weight. Lighter amounts need less time; start low and adjust to taste.",
+      "default": "standard",
+      "variants": [
+        {
+          "id": "light",
+          "label": "Steaks and chops, 1%",
+          "ingredients": [
+            {
+              "id": "meat",
+              "name": "Meat",
+              "amount": 1000,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 10,
+              "unit": "g"
+            }
+          ],
+          "headline": "1% salt of meat weight"
+        },
+        {
+          "id": "standard",
+          "label": "Roasts and whole birds, 1.5%",
+          "ingredients": [
+            {
+              "id": "meat",
+              "name": "Meat",
+              "amount": 1000,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 15,
+              "unit": "g"
+            }
+          ],
+          "headline": "1.5% salt of meat weight"
+        },
+        {
+          "id": "turkey",
+          "label": "Whole turkey, 1.75%",
+          "ingredients": [
+            {
+              "id": "meat",
+              "name": "Meat",
+              "amount": 1000,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 17.5,
+              "unit": "g"
+            }
+          ],
+          "headline": "1.75% salt of meat weight"
+        }
+      ],
+      "notes": [
+        "Salt all sides, rest uncovered in the fridge, and do not add more salt when cooking.",
+        "Weigh the meat without the bone if you can."
+      ]
+    },
+    {
+      "id": "quick_pickle",
+      "name": "Quick pickle (fridge)",
+      "section": "preserving",
+      "headline": "1 vinegar : 1 water, plus salt and sugar",
+      "status": "varies",
+      "flag": "Recipes vary a lot on salt and sugar. Weigh the salt, because spoons of different salts weigh very differently.",
+      "variants": [
+        {
+          "id": "classic",
+          "label": "Classic, 1 : 1",
+          "ingredients": [
+            {
+              "id": "vinegar",
+              "name": "Vinegar (5%)",
+              "amount": 250,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 250,
+              "unit": "ml",
+              "gPerMl": 1
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 12,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 15,
+              "unit": "g"
+            }
+          ],
+          "headline": "1 vinegar : 1 water"
+        },
+        {
+          "id": "sharp",
+          "label": "Sharp, 2 : 1",
+          "ingredients": [
+            {
+              "id": "vinegar",
+              "name": "Vinegar (5%)",
+              "amount": 300,
+              "unit": "ml",
+              "gPerMl": 1.0
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 150,
+              "unit": "ml",
+              "gPerMl": 1
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 9,
+              "unit": "g"
+            },
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 12,
+              "unit": "g"
+            }
+          ],
+          "headline": "2 vinegar : 1 water"
+        }
+      ],
+      "notes": [
+        "Pour the hot brine over raw vegetables packed in a clean jar. Cool, then keep in the fridge.",
+        "These are fridge pickles only, not for canning or shelf storage."
+      ]
+    },
+    {
+      "id": "fermenting",
+      "name": "Fermenting vegetables",
+      "section": "preserving",
+      "headline": "2% salt for sauerkraut, 3.5 to 5% brine for pickles",
+      "status": "check",
+      "flag": "Fermenting is a food-safety matter. Use these as starting points and check them against a trusted guide.",
+      "variants": [
+        {
+          "id": "kraut",
+          "label": "Sauerkraut, 2%",
+          "ingredients": [
+            {
+              "id": "veg",
+              "name": "Shredded cabbage",
+              "amount": 1000,
+              "unit": "g"
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 20,
+              "unit": "g"
+            }
+          ],
+          "headline": "2% salt of cabbage weight"
+        },
+        {
+          "id": "mild",
+          "label": "Brine pickles, 3.5%",
+          "ingredients": [
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 1000,
+              "unit": "ml",
+              "gPerMl": 1
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 35,
+              "unit": "g"
+            }
+          ],
+          "headline": "3.5% brine: 35 g per litre"
+        },
+        {
+          "id": "classic",
+          "label": "Brine pickles, 5%",
+          "ingredients": [
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 1000,
+              "unit": "ml",
+              "gPerMl": 1
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 50,
+              "unit": "g"
+            }
+          ],
+          "headline": "5% brine: 50 g per litre"
+        }
+      ],
+      "notes": [
+        "Keep the vegetables under the brine, in a clean jar, and let gas escape.",
+        "Sources say sauerkraut should not go below about 1.5% salt.",
+        "If it smells rotten or grows fuzzy mould, throw it out."
+      ]
+    },
+    {
+      "id": "leavening",
+      "name": "Baking powder and baking soda",
+      "section": "tools",
+      "headline": "1 tsp baking powder per cup of flour",
+      "status": "solid",
+      "variants": [
+        {
+          "id": "powder",
+          "label": "Baking powder",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 240,
+              "unit": "g"
+            },
+            {
+              "id": "bp",
+              "name": "Baking powder",
+              "amount": 2,
+              "unit": "tsp",
+              "gPerMl": 0.8
+            }
+          ],
+          "headline": "1 tsp baking powder per cup of flour"
+        },
+        {
+          "id": "addins",
+          "label": "Baking powder with add-ins",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 240,
+              "unit": "g"
+            },
+            {
+              "id": "bp",
+              "name": "Baking powder",
+              "amount": 3,
+              "unit": "tsp",
+              "gPerMl": 0.8
+            }
+          ],
+          "headline": "1½ tsp per cup, with nuts or fruit"
+        },
+        {
+          "id": "soda",
+          "label": "Baking soda (with an acid)",
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Plain flour",
+              "amount": 240,
+              "unit": "g"
+            },
+            {
+              "id": "soda",
+              "name": "Baking soda",
+              "amount": 0.5,
+              "unit": "tsp",
+              "gPerMl": 1.0
+            }
+          ],
+          "headline": "¼ tsp baking soda per cup of flour"
+        }
+      ],
+      "notes": [
+        "Baking soda needs an acid in the batter, such as buttermilk, yoghurt, lemon juice or brown sugar.",
+        "A cup of plain flour is about 120 g.",
+        "Check the date: old baking powder stops working."
+      ]
     }
-   ],
-   "notes": [
-    "Very wet and sticky: fold it rather than knead it.",
-    "Bakers use anywhere from 75 to 85% water for this style."
-   ],
-   "flag": "Bakers use anywhere from 75 to 85% water. This is a middle figure.",
-   "bakers": "flour"
-  },
-  {
-   "id": "pasta_egg",
-   "name": "Egg pasta",
-   "group": "baking",
-   "headline": "100 g flour per egg, or 3 flour : 2 egg",
-   "status": "check",
-   "variants": [
+  ],
+  "sections": [
     {
-     "id": "per_egg",
-     "label": "100 g flour per egg",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "00 or plain flour",
-       "amount": 200,
-       "unit": "g"
-      },
-      {
-       "id": "egg",
-       "name": "Eggs",
-       "amount": 2,
-       "unit": "egg",
-       "gPerUnit": 55
-      }
-     ],
-     "headline": "100 g flour : 1 egg"
+      "id": "dough",
+      "group": "baking",
+      "label": "Dough",
+      "blurb": "Bread, pasta and starter."
     },
     {
-     "id": "rich",
-     "label": "Richer, 3 : 2 by weight",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "00 or plain flour",
-       "amount": 300,
-       "unit": "g"
-      },
-      {
-       "id": "egg",
-       "name": "Egg (weighed, beaten)",
-       "amount": 200,
-       "unit": "g"
-      }
-     ],
-     "headline": "3 flour : 2 egg"
+      "id": "pastry",
+      "group": "baking",
+      "label": "Pastry, cakes and batters",
+      "blurb": "Pie dough, biscuits, pancakes, cakes and cookies."
+    },
+    {
+      "id": "sweets",
+      "group": "baking",
+      "label": "Sweets and preserves",
+      "blurb": "Meringue, custard, ganache, syrup and jam."
+    },
+    {
+      "id": "staples",
+      "group": "cooking",
+      "label": "Everyday staples",
+      "blurb": "Rice, pasta, polenta, grains, stock and coffee."
+    },
+    {
+      "id": "dressings",
+      "group": "sauces",
+      "label": "Dressings and dips",
+      "blurb": "Vinaigrette, mayonnaise, tahini, tzatziki, hummus and guacamole."
+    },
+    {
+      "id": "herb",
+      "group": "sauces",
+      "label": "Herb sauces and salsas",
+      "blurb": "Chimichurri, salsa verde, pesto, gremolata and pico de gallo."
+    },
+    {
+      "id": "classic",
+      "group": "sauces",
+      "label": "Pan and classic sauces",
+      "blurb": "Red wine sauce, hollandaise, beurre blanc, tomato sauce and roux."
+    },
+    {
+      "id": "butters",
+      "group": "sauces",
+      "label": "Flavoured butters",
+      "blurb": "Cowboy, garlic herb, honey, chilli lime and miso butter."
+    },
+    {
+      "id": "preserving",
+      "group": "keeping",
+      "label": "Brines, pickles and ferments",
+      "blurb": "Wet and dry brines, quick pickles and fermenting."
+    },
+    {
+      "id": "tools",
+      "group": "keeping",
+      "label": "Tools",
+      "blurb": "Baking powder and soda, and cups to grams."
     }
-   ],
-   "notes": [
-    "Knead until smooth, then rest it wrapped for 30 minutes before rolling.",
-    "If it is crumbly, add a few drops of water; if sticky, a dusting of flour."
-   ],
-   "flag": "Home cooks use two different ratios. 100 g flour per egg is the common one; 3:2 by weight is richer and more yolky."
-  },
-  {
-   "id": "pasta_semolina",
-   "name": "Eggless pasta (semolina)",
-   "group": "baking",
-   "headline": "2 semolina : 1 water",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "standard",
-     "label": "2 : 1",
-     "ingredients": [
-      {
-       "id": "semolina",
-       "name": "Semolina (fine)",
-       "amount": 200,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Warm water",
-       "amount": 100,
-       "unit": "g"
-      }
-     ]
-    }
-   ],
-   "notes": [
-    "Knead 8 to 10 minutes. The dough is stiff at first and softens as it rests.",
-    "Good for orecchiette, cavatelli and other shaped pasta."
-   ]
-  },
-  {
-   "id": "pie_dough",
-   "name": "Pie and shortcrust pastry",
-   "group": "baking",
-   "headline": "3 flour : 2 fat : 1 water, or 2 flour : 1 butter",
-   "status": "check",
-   "variants": [
-    {
-     "id": "rich",
-     "label": "Flaky pie dough, 3 : 2 : 1",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 300,
-       "unit": "g"
-      },
-      {
-       "id": "fat",
-       "name": "Cold butter",
-       "amount": 200,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Ice water",
-       "amount": 100,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 4,
-       "unit": "g"
-      }
-     ],
-     "headline": "3 flour : 2 fat : 1 water"
-    },
-    {
-     "id": "short",
-     "label": "Shortcrust, 2 : 1",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 250,
-       "unit": "g"
-      },
-      {
-       "id": "fat",
-       "name": "Cold butter",
-       "amount": 125,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Ice water",
-       "amount": 60,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 3,
-       "unit": "g"
-      }
-     ],
-     "headline": "2 flour : 1 butter"
-    }
-   ],
-   "notes": [
-    "Keep the butter cold and in visible pieces, and use the water a little at a time.",
-    "Rest the dough in the fridge for at least 30 minutes before rolling."
-   ],
-   "flag": "3:2:1 is the classic by-weight pie ratio but it is rich. Many cooks use less fat; the 2:1 version is a common shortcrust."
-  },
-  {
-   "id": "biscuits",
-   "name": "Biscuits and scones",
-   "group": "baking",
-   "headline": "3 flour : 1 fat : 2 liquid",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "standard",
-     "label": "3 : 1 : 2",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 360,
-       "unit": "g"
-      },
-      {
-       "id": "fat",
-       "name": "Cold butter",
-       "amount": 120,
-       "unit": "g"
-      },
-      {
-       "id": "milk",
-       "name": "Cold milk",
-       "amount": 240,
-       "unit": "ml",
-       "gPerMl": 1.03
-      },
-      {
-       "id": "bp",
-       "name": "Baking powder",
-       "amount": 12,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 6,
-       "unit": "g"
-      }
-     ]
-    }
-   ],
-   "notes": [
-    "Cut the butter in coarsely and mix as little as you can once the milk goes in.",
-    "Baking powder is about 3 teaspoons here; see the leavening card for other doughs."
-   ],
-   "bakers": "flour"
-  },
-  {
-   "id": "pancakes",
-   "name": "Pancakes",
-   "group": "baking",
-   "headline": "Everyday, or 2 flour : 2 milk : 1 egg : 1 butter",
-   "status": "varies",
-   "variants": [
-    {
-     "id": "everyday",
-     "label": "Everyday",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 190,
-       "unit": "g"
-      },
-      {
-       "id": "milk",
-       "name": "Milk",
-       "amount": 300,
-       "unit": "ml",
-       "gPerMl": 1.03
-      },
-      {
-       "id": "egg",
-       "name": "Egg",
-       "amount": 1,
-       "unit": "egg",
-       "gPerUnit": 55
-      },
-      {
-       "id": "butter",
-       "name": "Melted butter",
-       "amount": 40,
-       "unit": "g"
-      },
-      {
-       "id": "bp",
-       "name": "Baking powder",
-       "amount": 10,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Sugar",
-       "amount": 12,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 2,
-       "unit": "g"
-      }
-     ],
-     "headline": "190 g flour : 300 ml milk : 1 egg"
-    },
-    {
-     "id": "rich",
-     "label": "Rich, 2 : 2 : 1 : 1",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 240,
-       "unit": "g"
-      },
-      {
-       "id": "milk",
-       "name": "Milk",
-       "amount": 240,
-       "unit": "ml",
-       "gPerMl": 1.03
-      },
-      {
-       "id": "egg",
-       "name": "Egg (weighed, beaten)",
-       "amount": 120,
-       "unit": "g"
-      },
-      {
-       "id": "butter",
-       "name": "Melted butter",
-       "amount": 120,
-       "unit": "g"
-      },
-      {
-       "id": "bp",
-       "name": "Baking powder",
-       "amount": 10,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 3,
-       "unit": "g"
-      }
-     ],
-     "headline": "2 flour : 2 milk : 1 egg : 1 butter"
-    }
-   ],
-   "notes": [
-    "Do not overmix. A few lumps are fine.",
-    "Rest the batter 5 to 10 minutes for tender pancakes."
-   ],
-   "flag": "The 2:2:1:1 batter is very rich. The everyday version is closer to what most recipes use."
-  },
-  {
-   "id": "pound_cake",
-   "name": "Pound cake",
-   "group": "baking",
-   "headline": "1 : 1 : 1 : 1 butter : sugar : egg : flour",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "standard",
-     "label": "By weight",
-     "ingredients": [
-      {
-       "id": "butter",
-       "name": "Soft butter",
-       "amount": 225,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Caster sugar",
-       "amount": 225,
-       "unit": "g"
-      },
-      {
-       "id": "egg",
-       "name": "Egg (weighed, beaten)",
-       "amount": 225,
-       "unit": "g"
-      },
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 225,
-       "unit": "g"
-      }
-     ]
-    }
-   ],
-   "notes": [
-    "The name comes from a pound of each. Four large eggs weigh about 225 g.",
-    "Cream the butter and sugar well, then add the egg a little at a time so it does not split.",
-    "Add a pinch of salt and a little vanilla."
-   ]
-  },
-  {
-   "id": "sponge",
-   "name": "Sponge cake",
-   "group": "baking",
-   "headline": "1 : 1 : 1 egg : sugar : flour",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "standard",
-     "label": "By weight",
-     "ingredients": [
-      {
-       "id": "egg",
-       "name": "Eggs (weighed)",
-       "amount": 150,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Caster sugar",
-       "amount": 150,
-       "unit": "g"
-      },
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 150,
-       "unit": "g"
-      }
-     ]
-    }
-   ],
-   "notes": [
-    "Three eggs weigh about 150 g.",
-    "Whisk the eggs and sugar until pale and thick, then fold in the flour gently."
-   ]
-  },
-  {
-   "id": "cookies",
-   "name": "Shortbread-style cookies",
-   "group": "baking",
-   "headline": "1 sugar : 2 fat : 3 flour",
-   "status": "check",
-   "variants": [
-    {
-     "id": "standard",
-     "label": "1 : 2 : 3",
-     "ingredients": [
-      {
-       "id": "sugar",
-       "name": "Sugar",
-       "amount": 100,
-       "unit": "g"
-      },
-      {
-       "id": "butter",
-       "name": "Soft butter",
-       "amount": 200,
-       "unit": "g"
-      },
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 300,
-       "unit": "g"
-      }
-     ]
-    }
-   ],
-   "notes": [
-    "A good base for shortbread and simple butter cookies.",
-    "Chocolate-chip style cookies use more sugar and an egg, so this is not their ratio."
-   ],
-   "flag": "This is a shortbread-type ratio, not a general cookie ratio."
-  },
-  {
-   "id": "choux",
-   "name": "Choux pastry",
-   "group": "baking",
-   "headline": "2 water : 1 butter : 1 flour : 2 egg",
-   "status": "check",
-   "variants": [
-    {
-     "id": "standard",
-     "label": "By weight",
-     "ingredients": [
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 200,
-       "unit": "ml",
-       "gPerMl": 1
-      },
-      {
-       "id": "butter",
-       "name": "Butter",
-       "amount": 100,
-       "unit": "g"
-      },
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 100,
-       "unit": "g"
-      },
-      {
-       "id": "egg",
-       "name": "Egg (weighed, beaten)",
-       "amount": 200,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 2,
-       "unit": "g"
-      }
-     ]
-    }
-   ],
-   "notes": [
-    "Bring the water and butter to a boil, add the flour all at once and stir until it leaves the pan.",
-    "Beat in the egg gradually. You may not need all of it; the paste should fall off the spoon in a thick ribbon."
-   ],
-   "flag": "Recipes differ on how much egg to add. Add it gradually and stop when the paste is glossy and drops slowly."
-  },
-  {
-   "id": "meringue",
-   "name": "Meringue",
-   "group": "baking",
-   "headline": "1 : 2 egg white : sugar (hard), 1 : 1 (soft)",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "hard",
-     "label": "Hard meringue, 1 : 2",
-     "ingredients": [
-      {
-       "id": "white",
-       "name": "Egg whites",
-       "amount": 100,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Caster sugar",
-       "amount": 200,
-       "unit": "g"
-      }
-     ],
-     "headline": "1 egg white : 2 sugar"
-    },
-    {
-     "id": "soft",
-     "label": "Soft meringue, 1 : 1",
-     "ingredients": [
-      {
-       "id": "white",
-       "name": "Egg whites",
-       "amount": 100,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Caster sugar",
-       "amount": 100,
-       "unit": "g"
-      }
-     ],
-     "headline": "1 egg white : 1 sugar"
-    }
-   ],
-   "notes": [
-    "Three egg whites weigh about 100 g.",
-    "Add the sugar slowly once the whites are foamy.",
-    "Hard meringue is for baking crisp; soft is for toppings and pavlova centres."
-   ]
-  },
-  {
-   "id": "custard",
-   "name": "Baked custard",
-   "group": "baking",
-   "headline": "2 liquid : 1 egg",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "standard",
-     "label": "By weight",
-     "ingredients": [
-      {
-       "id": "milk",
-       "name": "Milk or cream",
-       "amount": 250,
-       "unit": "ml",
-       "gPerMl": 1.03
-      },
-      {
-       "id": "egg",
-       "name": "Egg (weighed, beaten)",
-       "amount": 125,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Sugar",
-       "amount": 50,
-       "unit": "g"
-      }
-     ]
-    }
-   ],
-   "notes": [
-    "Two and a half eggs weigh about 125 g.",
-    "Cook gently, in a water bath if baking, so it sets without curdling."
-   ]
-  },
-  {
-   "id": "ganache",
-   "name": "Chocolate ganache",
-   "group": "baking",
-   "headline": "1 : 1 for glazes, 2 : 1 for truffles",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "glaze",
-     "label": "Glaze or sauce, 1 : 1",
-     "ingredients": [
-      {
-       "id": "cream",
-       "name": "Cream",
-       "amount": 200,
-       "unit": "ml",
-       "gPerMl": 1.0
-      },
-      {
-       "id": "choc",
-       "name": "Dark chocolate",
-       "amount": 200,
-       "unit": "g"
-      }
-     ],
-     "headline": "1 cream : 1 chocolate"
-    },
-    {
-     "id": "truffle",
-     "label": "Truffles, 2 : 1",
-     "ingredients": [
-      {
-       "id": "choc",
-       "name": "Dark chocolate",
-       "amount": 300,
-       "unit": "g"
-      },
-      {
-       "id": "cream",
-       "name": "Cream",
-       "amount": 150,
-       "unit": "ml",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "2 chocolate : 1 cream"
-    }
-   ],
-   "notes": [
-    "Pour hot cream over chopped chocolate, wait a minute, then stir from the centre outwards.",
-    "Milk and white chocolate are softer, so use more chocolate for the same firmness."
-   ]
-  },
-  {
-   "id": "rice",
-   "name": "Rice (open pot, absorption)",
-   "group": "staples",
-   "headline": "1 rice : 1.5 to 2.25 water, by volume",
-   "status": "varies",
-   "variants": [
-    {
-     "id": "jasmine",
-     "label": "Jasmine or basmati",
-     "ingredients": [
-      {
-       "id": "rice",
-       "name": "Jasmine or basmati rice",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.78
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 1.5,
-       "unit": "cup",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "1 rice : 1.5 water"
-    },
-    {
-     "id": "white",
-     "label": "Long-grain white",
-     "ingredients": [
-      {
-       "id": "rice",
-       "name": "Long-grain white rice",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.78
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 1.75,
-       "unit": "cup",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "1 rice : 1.75 water"
-    },
-    {
-     "id": "sushi",
-     "label": "Sushi or short-grain",
-     "ingredients": [
-      {
-       "id": "rice",
-       "name": "Sushi or short-grain rice",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.78
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 1.2,
-       "unit": "cup",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "1 rice : 1.2 water"
-    },
-    {
-     "id": "brown",
-     "label": "Brown",
-     "ingredients": [
-      {
-       "id": "rice",
-       "name": "Brown rice",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.78
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 2.25,
-       "unit": "cup",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "1 rice : 2.25 water"
-    }
-   ],
-   "notes": [
-    "Rinse white rice until the water runs mostly clear. Bring to a boil, cover, turn down low and leave the lid on.",
-    "Rest it, covered, for 10 minutes off the heat before fluffing."
-   ],
-   "flag": "Sources disagree. America's Test Kitchen found 1:1 works in a sealed bag, but an open pot loses water to steam, so more is needed. Treat these as starting points."
-  },
-  {
-   "id": "pasta_cooking",
-   "name": "Cooking pasta",
-   "group": "staples",
-   "headline": "100 g pasta : 1 litre water : 10 g salt",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "standard",
-     "label": "Per person",
-     "ingredients": [
-      {
-       "id": "pasta",
-       "name": "Dried pasta",
-       "amount": 100,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 1000,
-       "unit": "ml",
-       "gPerMl": 1
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 10,
-       "unit": "g"
-      }
-     ]
-    }
-   ],
-   "notes": [
-    "80 g per person is a lighter serve; 100 g is a generous one.",
-    "Use a big pot. The water should taste like mild sea water."
-   ]
-  },
-  {
-   "id": "polenta",
-   "name": "Polenta",
-   "group": "staples",
-   "headline": "1 polenta : 4 to 5 water, by volume",
-   "status": "varies",
-   "variants": [
-    {
-     "id": "coarse",
-     "label": "Firm, 1 : 4",
-     "ingredients": [
-      {
-       "id": "polenta",
-       "name": "Coarse polenta",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.59
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 4,
-       "unit": "cup",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "1 polenta : 4 water"
-    },
-    {
-     "id": "creamy",
-     "label": "Creamy, 1 : 5",
-     "ingredients": [
-      {
-       "id": "polenta",
-       "name": "Coarse polenta",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.59
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 5,
-       "unit": "cup",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "1 polenta : 5 water"
-    }
-   ],
-   "notes": [
-    "Whisk the polenta into simmering salted water, then cook, stirring often, until thick.",
-    "Instant polenta is different: follow the packet."
-   ],
-   "flag": "Brands and grinds vary. Check the packet for coarse polenta."
-  },
-  {
-   "id": "grains",
-   "name": "Quinoa, couscous and oats",
-   "group": "staples",
-   "headline": "1 : 2 quinoa, 1 : 1 couscous, 1 : 2 rolled oats, 1 : 3 steel-cut",
-   "status": "varies",
-   "variants": [
-    {
-     "id": "quinoa",
-     "label": "Quinoa",
-     "ingredients": [
-      {
-       "id": "grain",
-       "name": "Quinoa",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.72
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 2,
-       "unit": "cup",
-       "gPerMl": 1
-      }
-     ],
-     "headline": "1 quinoa : 2 water"
-    },
-    {
-     "id": "couscous",
-     "label": "Couscous",
-     "ingredients": [
-      {
-       "id": "grain",
-       "name": "Couscous",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.7
-      },
-      {
-       "id": "water",
-       "name": "Boiling water",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 1
-      }
-     ],
-     "headline": "1 couscous : 1 water"
-    },
-    {
-     "id": "rolled",
-     "label": "Rolled oats",
-     "ingredients": [
-      {
-       "id": "grain",
-       "name": "Rolled oats",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.376
-      },
-      {
-       "id": "water",
-       "name": "Water or milk",
-       "amount": 2,
-       "unit": "cup",
-       "gPerMl": 1
-      }
-     ],
-     "headline": "1 oats : 2 liquid"
-    },
-    {
-     "id": "steel",
-     "label": "Steel-cut oats",
-     "ingredients": [
-      {
-       "id": "grain",
-       "name": "Steel-cut oats",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 0.68
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 3,
-       "unit": "cup",
-       "gPerMl": 1
-      }
-     ],
-     "headline": "1 oats : 3 water"
-    }
-   ],
-   "notes": [
-    "Quinoa: rinse first, simmer covered about 15 minutes, then rest.",
-    "Couscous: pour boiling water over, cover and leave 5 minutes, then fluff with a fork."
-   ],
-   "flag": "Brands differ; packets are the final word."
-  },
-  {
-   "id": "stock",
-   "name": "Stock",
-   "group": "staples",
-   "headline": "1 bones : 2 water, by weight",
-   "status": "check",
-   "variants": [
-    {
-     "id": "standard",
-     "label": "Bones and vegetables",
-     "ingredients": [
-      {
-       "id": "bones",
-       "name": "Bones",
-       "amount": 1000,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Cold water",
-       "amount": 2000,
-       "unit": "ml",
-       "gPerMl": 1
-      },
-      {
-       "id": "veg",
-       "name": "Onion, carrot and celery",
-       "amount": 250,
-       "unit": "g"
-      }
-     ]
-    }
-   ],
-   "notes": [
-    "Start with cold water, bring it to a bare simmer and skim. Do not boil hard.",
-    "Chicken stock takes 3 to 4 hours; beef 6 to 8."
-   ],
-   "flag": "Cooks use anywhere from 1:1.5 to 1:3. Cover the bones with water and adjust to taste."
-  },
-  {
-   "id": "roux",
-   "name": "Roux (thickening)",
-   "group": "staples",
-   "headline": "1 tbsp flour + 1 tbsp butter per cup, for thin",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "thin",
-     "label": "Thin (soup)",
-     "ingredients": [
-      {
-       "id": "liquid",
-       "name": "Hot milk or stock",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 1.0
-      },
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 1,
-       "unit": "tbsp",
-       "gPerMl": 0.507
-      },
-      {
-       "id": "butter",
-       "name": "Butter",
-       "amount": 1,
-       "unit": "tbsp",
-       "gPerMl": 0.96
-      }
-     ],
-     "headline": "1 tbsp flour + 1 tbsp butter per cup"
-    },
-    {
-     "id": "medium",
-     "label": "Medium (sauce)",
-     "ingredients": [
-      {
-       "id": "liquid",
-       "name": "Hot milk or stock",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 1.0
-      },
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 2,
-       "unit": "tbsp",
-       "gPerMl": 0.507
-      },
-      {
-       "id": "butter",
-       "name": "Butter",
-       "amount": 2,
-       "unit": "tbsp",
-       "gPerMl": 0.96
-      }
-     ],
-     "headline": "2 tbsp flour + 2 tbsp butter per cup"
-    },
-    {
-     "id": "thick",
-     "label": "Thick (béchamel base)",
-     "ingredients": [
-      {
-       "id": "liquid",
-       "name": "Hot milk or stock",
-       "amount": 1,
-       "unit": "cup",
-       "gPerMl": 1.0
-      },
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 3,
-       "unit": "tbsp",
-       "gPerMl": 0.507
-      },
-      {
-       "id": "butter",
-       "name": "Butter",
-       "amount": 3,
-       "unit": "tbsp",
-       "gPerMl": 0.96
-      }
-     ],
-     "headline": "3 tbsp flour + 3 tbsp butter per cup"
-    }
-   ],
-   "notes": [
-    "Melt the butter, stir in the flour and cook for a minute or two, then add the hot liquid gradually, whisking.",
-    "The same amount of butter and flour by volume is the home-cook shortcut; chefs use equal weights."
-   ],
-   "default": "medium"
-  },
-  {
-   "id": "vinaigrette",
-   "name": "Vinaigrette",
-   "group": "staples",
-   "headline": "3 oil : 1 vinegar",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "mild",
-     "label": "Mild, 4 : 1",
-     "ingredients": [
-      {
-       "id": "oil",
-       "name": "Oil",
-       "amount": 200,
-       "unit": "ml",
-       "gPerMl": 0.92
-      },
-      {
-       "id": "vinegar",
-       "name": "Vinegar or lemon juice",
-       "amount": 50,
-       "unit": "ml",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "4 oil : 1 vinegar"
-    },
-    {
-     "id": "classic",
-     "label": "Classic, 3 : 1",
-     "ingredients": [
-      {
-       "id": "oil",
-       "name": "Oil",
-       "amount": 150,
-       "unit": "ml",
-       "gPerMl": 0.92
-      },
-      {
-       "id": "vinegar",
-       "name": "Vinegar or lemon juice",
-       "amount": 50,
-       "unit": "ml",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "3 oil : 1 vinegar"
-    },
-    {
-     "id": "sharp",
-     "label": "Sharp, 2 : 1",
-     "ingredients": [
-      {
-       "id": "oil",
-       "name": "Oil",
-       "amount": 100,
-       "unit": "ml",
-       "gPerMl": 0.92
-      },
-      {
-       "id": "vinegar",
-       "name": "Vinegar or lemon juice",
-       "amount": 50,
-       "unit": "ml",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "2 oil : 1 vinegar"
-    }
-   ],
-   "notes": [
-    "A teaspoon of mustard per half cup helps it stay together.",
-    "Season with salt and pepper, and taste it on a leaf."
-   ],
-   "default": "classic"
-  },
-  {
-   "id": "syrup",
-   "name": "Sugar syrup",
-   "group": "staples",
-   "headline": "1 : 1 simple, 2 : 1 rich",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "simple",
-     "label": "Simple, 1 : 1",
-     "ingredients": [
-      {
-       "id": "sugar",
-       "name": "Sugar",
-       "amount": 200,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 200,
-       "unit": "ml",
-       "gPerMl": 1
-      }
-     ],
-     "headline": "1 sugar : 1 water"
-    },
-    {
-     "id": "rich",
-     "label": "Rich, 2 : 1",
-     "ingredients": [
-      {
-       "id": "sugar",
-       "name": "Sugar",
-       "amount": 400,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 200,
-       "unit": "ml",
-       "gPerMl": 1
-      }
-     ],
-     "headline": "2 sugar : 1 water"
-    }
-   ],
-   "notes": [
-    "Heat just until the sugar dissolves. It keeps for a few weeks in the fridge.",
-    "Rich syrup is thicker and keeps longer."
-   ]
-  },
-  {
-   "id": "jam",
-   "name": "Jam",
-   "group": "staples",
-   "headline": "1 fruit : 1 sugar by weight",
-   "status": "varies",
-   "variants": [
-    {
-     "id": "traditional",
-     "label": "Traditional, 1 : 1",
-     "ingredients": [
-      {
-       "id": "fruit",
-       "name": "Fruit",
-       "amount": 500,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Sugar",
-       "amount": 500,
-       "unit": "g"
-      },
-      {
-       "id": "lemon",
-       "name": "Lemon juice",
-       "amount": 30,
-       "unit": "ml",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "1 fruit : 1 sugar"
-    },
-    {
-     "id": "lower",
-     "label": "Lower sugar, 1 : 0.7",
-     "ingredients": [
-      {
-       "id": "fruit",
-       "name": "Fruit",
-       "amount": 500,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Sugar",
-       "amount": 350,
-       "unit": "g"
-      },
-      {
-       "id": "lemon",
-       "name": "Lemon juice",
-       "amount": 30,
-       "unit": "ml",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "1 fruit : 0.7 sugar"
-    }
-   ],
-   "notes": [
-    "Jam sets at about 105 °C, or when a drop wrinkles on a cold plate.",
-    "Low-pectin fruit (strawberries, cherries) may need extra lemon juice or added pectin."
-   ],
-   "flag": "Fruit varies in pectin and sweetness, and lower sugar will not keep as long. Store lower-sugar jam in the fridge."
-  },
-  {
-   "id": "coffee",
-   "name": "Coffee",
-   "group": "staples",
-   "headline": "1 : 16 coffee : water",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "filter",
-     "label": "Filter or pour-over, 1 : 16",
-     "ingredients": [
-      {
-       "id": "coffee",
-       "name": "Ground coffee",
-       "amount": 20,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 320,
-       "unit": "g"
-      }
-     ],
-     "headline": "1 coffee : 16 water"
-    },
-    {
-     "id": "press",
-     "label": "French press, 1 : 15",
-     "ingredients": [
-      {
-       "id": "coffee",
-       "name": "Ground coffee",
-       "amount": 30,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 450,
-       "unit": "g"
-      }
-     ],
-     "headline": "1 coffee : 15 water"
-    },
-    {
-     "id": "espresso",
-     "label": "Espresso, 1 : 2",
-     "ingredients": [
-      {
-       "id": "coffee",
-       "name": "Ground coffee (in)",
-       "amount": 18,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Espresso (out)",
-       "amount": 36,
-       "unit": "g"
-      }
-     ],
-     "headline": "1 coffee in : 2 espresso out"
-    }
-   ],
-   "notes": [
-    "Weigh the water too; 1 ml of water is 1 g.",
-    "Adjust the grind before the ratio if it tastes sour or bitter."
-   ]
-  },
-  {
-   "id": "wet_brine",
-   "name": "Wet brine",
-   "group": "preserving",
-   "headline": "5% salt: 50 g per litre of water",
-   "status": "varies",
-   "variants": [
-    {
-     "id": "light",
-     "label": "Light, 3.5%",
-     "ingredients": [
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 35,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 1000,
-       "unit": "ml",
-       "gPerMl": 1
-      }
-     ],
-     "headline": "3.5% salt: 35 g per litre"
-    },
-    {
-     "id": "standard",
-     "label": "Standard, 5%",
-     "ingredients": [
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 50,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 1000,
-       "unit": "ml",
-       "gPerMl": 1
-      }
-     ],
-     "headline": "5% salt: 50 g per litre"
-    },
-    {
-     "id": "strong",
-     "label": "Strong, 7%",
-     "ingredients": [
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 70,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 1000,
-       "unit": "ml",
-       "gPerMl": 1
-      }
-     ],
-     "headline": "7% salt: 70 g per litre"
-    }
-   ],
-   "notes": [
-    "Stronger brines work faster, so soak for less time.",
-    "Rinse and pat dry before cooking, and go easy on extra salt afterwards.",
-    "Keep the meat cold, in the fridge, while it brines."
-   ],
-   "flag": "Sources range from 1% to 7%. 5% is common for chicken and pork; check times for the cut you are brining.",
-   "default": "standard"
-  },
-  {
-   "id": "dry_brine",
-   "name": "Dry brine (salting meat)",
-   "group": "preserving",
-   "headline": "1 to 1.75% salt of the meat's weight",
-   "status": "check",
-   "variants": [
-    {
-     "id": "light",
-     "label": "Steaks and chops, 1%",
-     "ingredients": [
-      {
-       "id": "meat",
-       "name": "Meat",
-       "amount": 1000,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 10,
-       "unit": "g"
-      }
-     ],
-     "headline": "1% salt of meat weight"
-    },
-    {
-     "id": "standard",
-     "label": "Roasts and whole birds, 1.5%",
-     "ingredients": [
-      {
-       "id": "meat",
-       "name": "Meat",
-       "amount": 1000,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 15,
-       "unit": "g"
-      }
-     ],
-     "headline": "1.5% salt of meat weight"
-    },
-    {
-     "id": "turkey",
-     "label": "Whole turkey, 1.75%",
-     "ingredients": [
-      {
-       "id": "meat",
-       "name": "Meat",
-       "amount": 1000,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 17.5,
-       "unit": "g"
-      }
-     ],
-     "headline": "1.75% salt of meat weight"
-    }
-   ],
-   "notes": [
-    "Salt all sides, rest uncovered in the fridge, and do not add more salt when cooking.",
-    "Weigh the meat without the bone if you can."
-   ],
-   "flag": "Guides range from about 1% to 2% of meat weight. Lighter amounts need less time; start low and adjust to taste.",
-   "default": "standard"
-  },
-  {
-   "id": "quick_pickle",
-   "name": "Quick pickle (fridge)",
-   "group": "preserving",
-   "headline": "1 vinegar : 1 water, plus salt and sugar",
-   "status": "varies",
-   "variants": [
-    {
-     "id": "classic",
-     "label": "Classic, 1 : 1",
-     "ingredients": [
-      {
-       "id": "vinegar",
-       "name": "Vinegar (5%)",
-       "amount": 250,
-       "unit": "ml",
-       "gPerMl": 1.0
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 250,
-       "unit": "ml",
-       "gPerMl": 1
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 12,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Sugar",
-       "amount": 15,
-       "unit": "g"
-      }
-     ],
-     "headline": "1 vinegar : 1 water"
-    },
-    {
-     "id": "sharp",
-     "label": "Sharp, 2 : 1",
-     "ingredients": [
-      {
-       "id": "vinegar",
-       "name": "Vinegar (5%)",
-       "amount": 300,
-       "unit": "ml",
-       "gPerMl": 1.0
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 150,
-       "unit": "ml",
-       "gPerMl": 1
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 9,
-       "unit": "g"
-      },
-      {
-       "id": "sugar",
-       "name": "Sugar",
-       "amount": 12,
-       "unit": "g"
-      }
-     ],
-     "headline": "2 vinegar : 1 water"
-    }
-   ],
-   "notes": [
-    "Pour the hot brine over raw vegetables packed in a clean jar. Cool, then keep in the fridge.",
-    "These are fridge pickles only, not for canning or shelf storage."
-   ],
-   "flag": "Recipes vary a lot on salt and sugar. Weigh the salt, because spoons of different salts weigh very differently."
-  },
-  {
-   "id": "fermenting",
-   "name": "Fermenting vegetables",
-   "group": "preserving",
-   "headline": "2% salt for sauerkraut, 3.5 to 5% brine for pickles",
-   "status": "check",
-   "variants": [
-    {
-     "id": "kraut",
-     "label": "Sauerkraut, 2%",
-     "ingredients": [
-      {
-       "id": "veg",
-       "name": "Shredded cabbage",
-       "amount": 1000,
-       "unit": "g"
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 20,
-       "unit": "g"
-      }
-     ],
-     "headline": "2% salt of cabbage weight"
-    },
-    {
-     "id": "mild",
-     "label": "Brine pickles, 3.5%",
-     "ingredients": [
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 1000,
-       "unit": "ml",
-       "gPerMl": 1
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 35,
-       "unit": "g"
-      }
-     ],
-     "headline": "3.5% brine: 35 g per litre"
-    },
-    {
-     "id": "classic",
-     "label": "Brine pickles, 5%",
-     "ingredients": [
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 1000,
-       "unit": "ml",
-       "gPerMl": 1
-      },
-      {
-       "id": "salt",
-       "name": "Salt",
-       "amount": 50,
-       "unit": "g"
-      }
-     ],
-     "headline": "5% brine: 50 g per litre"
-    }
-   ],
-   "notes": [
-    "Keep the vegetables under the brine, in a clean jar, and let gas escape.",
-    "Sources say sauerkraut should not go below about 1.5% salt.",
-    "If it smells rotten or grows fuzzy mould, throw it out."
-   ],
-   "flag": "Fermenting is a food-safety matter. Use these as starting points and check them against a trusted guide."
-  },
-  {
-   "id": "leavening",
-   "name": "Baking powder and baking soda",
-   "group": "tools",
-   "headline": "1 tsp baking powder per cup of flour",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "powder",
-     "label": "Baking powder",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 240,
-       "unit": "g"
-      },
-      {
-       "id": "bp",
-       "name": "Baking powder",
-       "amount": 2,
-       "unit": "tsp",
-       "gPerMl": 0.8
-      }
-     ],
-     "headline": "1 tsp baking powder per cup of flour"
-    },
-    {
-     "id": "addins",
-     "label": "Baking powder with add-ins",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 240,
-       "unit": "g"
-      },
-      {
-       "id": "bp",
-       "name": "Baking powder",
-       "amount": 3,
-       "unit": "tsp",
-       "gPerMl": 0.8
-      }
-     ],
-     "headline": "1½ tsp per cup, with nuts or fruit"
-    },
-    {
-     "id": "soda",
-     "label": "Baking soda (with an acid)",
-     "ingredients": [
-      {
-       "id": "flour",
-       "name": "Plain flour",
-       "amount": 240,
-       "unit": "g"
-      },
-      {
-       "id": "soda",
-       "name": "Baking soda",
-       "amount": 0.5,
-       "unit": "tsp",
-       "gPerMl": 1.0
-      }
-     ],
-     "headline": "¼ tsp baking soda per cup of flour"
-    }
-   ],
-   "notes": [
-    "Baking soda needs an acid in the batter, such as buttermilk, yoghurt, lemon juice or brown sugar.",
-    "A cup of plain flour is about 120 g.",
-    "Check the date: old baking powder stops working."
-   ]
-  },
-  {
-   "id": "starter",
-   "name": "Sourdough starter feeding",
-   "group": "tools",
-   "headline": "1 : 1 : 1 liquid, 1 : 5 : 3 stiff",
-   "status": "solid",
-   "variants": [
-    {
-     "id": "liquid",
-     "label": "Liquid starter, 1 : 1 : 1",
-     "ingredients": [
-      {
-       "id": "starter",
-       "name": "Starter",
-       "amount": 20,
-       "unit": "g"
-      },
-      {
-       "id": "flour",
-       "name": "Flour",
-       "amount": 20,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 20,
-       "unit": "g"
-      }
-     ],
-     "headline": "1 starter : 1 flour : 1 water"
-    },
-    {
-     "id": "stiff",
-     "label": "Stiff starter, 1 : 5 : 3",
-     "ingredients": [
-      {
-       "id": "starter",
-       "name": "Starter",
-       "amount": 15,
-       "unit": "g"
-      },
-      {
-       "id": "flour",
-       "name": "Flour",
-       "amount": 75,
-       "unit": "g"
-      },
-      {
-       "id": "water",
-       "name": "Water",
-       "amount": 45,
-       "unit": "g"
-      }
-     ],
-     "headline": "1 starter : 5 flour : 3 water"
-    }
-   ],
-   "notes": [
-    "By weight. Feed at the same time each day, or keep it in the fridge and feed weekly.",
-    "The stiff build is the one used in the sourdough recipes."
-   ],
-   "see": [
-    "classic_sourdough",
-    "sourdough_wheat_rye"
-   ]
-  }
- ]
+  ]
 }

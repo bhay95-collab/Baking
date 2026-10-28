@@ -2,7 +2,7 @@ import type { Unit } from './types';
 
 export type UnitKind = 'mass' | 'volume' | 'spoon' | 'count' | 'taste' | 'other';
 
-const COUNT_UNITS = new Set(['egg', 'orange', 'large_orange']);
+const COUNT_UNITS = new Set(['egg', 'orange', 'large_orange', 'piece', 'clove']);
 
 export function unitKind(unit: Unit): UnitKind {
   if (unit === 'g') return 'mass';
@@ -23,6 +23,8 @@ export function unitLabel(unit: Unit, amount: number | null): string {
     case 'tbsp': return 'tbsp';
     case 'cup': return one ? 'cup' : 'cups';
     case 'egg': return one ? 'egg' : 'eggs';
+    case 'piece': return '';
+    case 'clove': return amount !== null && amount <= 1 + 1e-9 ? 'clove' : 'cloves';
     case 'orange': return one ? 'orange' : 'oranges';
     case 'large_orange': return one ? 'large orange' : 'large oranges';
     case 'to_taste': return 'to taste';

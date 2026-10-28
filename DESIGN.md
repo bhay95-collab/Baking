@@ -245,7 +245,8 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 ### Ratio Card (Quick Ratios)
 - A short page: title, the ratio in bronze serif, an optional "starting point" notice (paper, 8px, only where sources disagree), version pills, then the scaling sentence ("I have [300] g of [Plain flour ▾].") and a hairline "You need" list in the same serif-quantity style as recipes.
 - Approximate weights (`≈ 390 g`) appear only for cups, spoons and eggs; millilitres and grams are already measured.
-- The list page groups cards under label headings, two columns from 900px, with a search field.
+- Browsing is three short steps so no screen is a long list: the overview shows four group headings over ten section rows (serif name, one-line blurb, bronze "5 ratios" count); a section page lists at most eight cards; the card's back link names its section. Search is one flat list across every card, from two letters, each result tagged with its section. Lists go to two columns from 900px.
+- Counts of whole items (cloves, yolks) read as "4 cloves" or a bare number, and the sentence says "4 cloves of Garlic" but "3 Egg yolks".
 
 ### Scaling Sentence (signature component)
 - The display serif sentence with inline `<input>` blanks: bronze-ink value, bronze underline, translucent paper fill. Hover and focus go to white with an ink underline.
