@@ -134,7 +134,7 @@ export function SettingsPage({ store }: { store: AppStore }) {
 
       <section className="section" aria-labelledby="ab-h">
         <h2 id="ab-h" className="section-title">About</h2>
-        <p>Recipe data v{SEED.schema_version}, {SEED.generated_on}. Eight recipes. Original quantities are frozen; your changes live in your versions only. Works offline once loaded.</p>
+        <p>Recipe data v{SEED.schema_version}, {SEED.generated_on}. {SEED.recipes.length} recipes. Original quantities are frozen; your changes live in your versions only. Works offline once loaded.</p>
       </section>
       <ConfirmDialog open={confirmReset} onClose={() => setConfirmReset(false)} title="Erase everything?" body="This removes all saved versions and resets settings on this device. It can’t be undone — export a backup first." cta="Erase" danger onConfirm={store.resetAll} />
     </div>

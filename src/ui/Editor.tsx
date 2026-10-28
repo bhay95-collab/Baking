@@ -71,7 +71,7 @@ export function VersionDialog({ open, onClose, recipe, amounts, title, initialNa
                   <div className={`edit-row${changed ? ' changed' : ''}`} key={k}>
                     <label htmlFor={`e-${k}`}>{i.name}</label>
                     {driven ? (
-                      <span className="muted small">Adjusted in Ratio Lab ({driven === 'stock' ? 'stock allowance' : 'colour strength'})</span>
+                      <span className="muted small">{driven === 'build' ? 'Worked out from the starter the dough needs' : `Adjusted in Ratio Lab (${driven === 'stock' ? 'stock allowance' : 'colour strength'})`}</span>
                     ) : (
                       <>
                         <div className="input-unit">

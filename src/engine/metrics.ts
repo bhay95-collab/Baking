@@ -100,13 +100,15 @@ export function starterBreakdown(s: ScaledRecipe): StarterBreakdown | null {
 
 export type BasisMode = 'recipe' | 'total';
 
+export const isSourdough = (s: ScaledRecipe) => s.recipe.category === 'sourdough';
+
 /** Recipes where a second denominator is meaningful. */
 export function hasAlternateBasis(s: ScaledRecipe): boolean {
-  return s.recipe.id === 'classic_sourdough' || s.recipe.id === 'croissant_red';
+  return isSourdough(s) || s.recipe.id === 'croissant_red';
 }
 
 export function basisLabel(s: ScaledRecipe, mode: BasisMode): string {
-  if (s.recipe.id === 'classic_sourdough') return mode === 'recipe' ? 'Added flour (source table)' : 'Effective total flour (incl. starter flour)';
+  if (isSourdough(s)) return mode === 'recipe' ? 'Added flour (source table)' : 'Effective total flour (incl. starter flour)';
   if (s.recipe.id === 'croissant_red') return mode === 'recipe' ? 'Main dough flour (red sheet is extra)' : 'All flour incl. red sheet';
   return s.recipe.ratio_basis.label;
 }
@@ -114,7 +116,7 @@ export function basisLabel(s: ScaledRecipe, mode: BasisMode): string {
 /** Denominator in grams, computed from the actual (scaled, possibly edited) ingredients. */
 export function basisGrams(s: ScaledRecipe, mode: BasisMode = 'recipe'): number {
   if (s.recipe.ratio_basis.unit === 'g_rice') return sum(byRole(s, ...RICE_ROLES));
-  if (s.recipe.id === 'classic_sourdough') {
+  if (isSourdough(s)) {
     const added = sum(byRole(s, ...FLOUR_ROLES));
     if (mode === 'recipe') return added;
     return starterBreakdown(s)?.totalFlour ?? added;
@@ -178,7 +180,8 @@ export function computeMetrics(s: ScaledRecipe, opts: { stockPerG?: number } = {
   const out: Metric[] = [];
 
   switch (s.recipe.id) {
-    case 'classic_sourdough': {
+    case 'classic_sourdough':
+    case 'sourdough_wheat_rye': {
       const b = starterBreakdown(s)!;
       out.push(
         m('dough', 'Dough weight', mass.grams, 'g', { approx: mass.approximate }),
@@ -188,6 +191,8 @@ export function computeMetrics(s: ScaledRecipe, opts: { stockPerG?: number } = {
         m('salt', 'Salt', pct(salt, flourAll), 'pct', { decimals: 2, hint: '% of added flour' }),
         m('pref', 'Prefermented flour', b.prefermentedFlourPct, 'pct', { decimals: 2 }),
       );
+      const wholegrain = sum(byRole(s, ...FLOUR_ROLES).filter((i) => i.id !== 'bread_flour' && i.id !== 'white_flour'));
+      if (wholegrain > 0) out.push(m('wholegrain', 'Whole wheat + rye', pct(wholegrain, flourAll), 'pct', { hint: '% of added flour' }));
       break;
     }
     case 'poolish_pizza': {

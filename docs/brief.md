@@ -1,3 +1,5 @@
+> **Update 28 Oct 2026:** the sourdough in this brief (520 g flour, 110 g 100% starter) is superseded by Ben's recipe sheet: *Classic White Sourdough* (598 g flour, 450 g water, 102 g stiff 60% starter, 14 g salt) and a new *White, Whole Wheat & Rye Sourdough*. The live data is `src/data/seed-recipes.json`; this file is kept as history.
+
 # HAY’S CRUST & CRUMB
 ## Complete Recipe Ratios + Website Agent Design & Build Brief
 

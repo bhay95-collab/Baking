@@ -3,7 +3,8 @@ import type { Recipe, SourceStatus } from '../engine/types';
 export type MethodStatus = 'none' | 'partial' | 'full' | 'proposed';
 
 export const METHOD_META: Record<string, { status: MethodStatus; note: string; asNotes?: boolean }> = {
-  classic_sourdough: { status: 'none', note: 'The source formula has no method — only quantities.' },
+  classic_sourdough: { status: 'none', note: 'The source sheet has quantities and the starter build only — no method.' },
+  sourdough_wheat_rye: { status: 'none', note: 'The source sheet has quantities and the starter build only — no method.' },
   poolish_pizza: { status: 'partial', note: 'The poster lists quantities only. No fermentation time, resting or bake settings were supplied.' },
   bens_focaccia: { status: 'full', note: 'Transcribed from the source recipe.' },
   bens_raisin_bread: { status: 'full', note: 'Transcribed from the source recipe.' },

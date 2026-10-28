@@ -80,6 +80,7 @@ export function IngredientsView({ scaled, settings, showOriginal = false }: { sc
                 </tr>
               )}
               {c.ingredients.map((i) => <Row key={i.key} i={i} settings={settings} showOriginal={showOriginal} />)}
+              {c.id === 'starter_build' && <BuildSummary scaled={scaled} settings={settings} />}
             </tbody>
           </table>
           {!c.includeInDoughMass && <p className="hint stage-note">Not counted in dough weight.</p>}
@@ -98,6 +99,25 @@ export function IngredientsView({ scaled, settings, showOriginal = false }: { sc
         </div>
       )}
     </div>
+  );
+}
+
+/** "Use X g, keep Y g" under a starter build: the dough takes what it needs, the rest seeds the next build. */
+function BuildSummary({ scaled, settings }: { scaled: ScaledRecipe; settings: Settings }) {
+  const build = scaled.components.find((c) => c.id === 'starter_build')?.ingredients ?? [];
+  const total = build.reduce((a, i) => a + (i.grams ?? 0), 0);
+  const used = scaled.components.flatMap((c) => c.ingredients).find((i) => i.role === 'starter')?.grams ?? 0;
+  const seed = build.find((i) => i.role === 'build_seed')?.grams ?? 0;
+  return (
+    <tr className="transfer">
+      <th scope="row" className="ing-name">
+        <span>Use {formatMeasure(used, settings.precision)} g in the dough</span>
+        <span className="note-line">
+          Build makes {formatMeasure(total, settings.precision)} g. The rest is enough to seed your next build of this size ({formatMeasure(seed, settings.precision)} g) with some lost to the jar.
+        </span>
+      </th>
+      <td className="qty"><span className="qty-main"><b>{formatMeasure(total - used, settings.precision)}</b> <span className="unit">g kept</span></span></td>
+    </tr>
   );
 }
 
@@ -174,7 +194,7 @@ export function RatiosView({ scaled, basis, onBasis, settings }: { scaled: Scale
   const alt = hasAlternateBasis(scaled);
   const rows = ratioRows(scaled, basis);
   const denom = basisGrams(scaled, basis);
-  const sb = r.id === 'classic_sourdough' ? starterBreakdown(scaled) : null;
+  const sb = r.category === 'sourdough' ? starterBreakdown(scaled) : null;
   const pb = r.id === 'poolish_pizza' ? calculatePreferment(scaled) : null;
   const names = new Map(scaled.components.flatMap((c) => c.ingredients.map((i) => [i.key, c.label] as const)));
   return (
@@ -185,8 +205,8 @@ export function RatiosView({ scaled, basis, onBasis, settings }: { scaled: Scale
       {rice && <p className="hint">These compare grams of rice with millilitres of wine and stock. They are practical ratios, not baker’s percentages.</p>}
       {alt && (
         <div role="radiogroup" aria-label="Percentage basis" className="seg">
-          <button type="button" role="radio" aria-checked={basis === 'recipe'} className={basis === 'recipe' ? 'on' : ''} onClick={() => onBasis('recipe')}>{r.id === 'classic_sourdough' ? 'Added flour' : 'Main dough flour'}</button>
-          <button type="button" role="radio" aria-checked={basis === 'total'} className={basis === 'total' ? 'on' : ''} onClick={() => onBasis('total')}>{r.id === 'classic_sourdough' ? 'Effective flour' : 'All flour'}</button>
+          <button type="button" role="radio" aria-checked={basis === 'recipe'} className={basis === 'recipe' ? 'on' : ''} onClick={() => onBasis('recipe')}>{r.category === 'sourdough' ? 'Added flour' : 'Main dough flour'}</button>
+          <button type="button" role="radio" aria-checked={basis === 'total'} className={basis === 'total' ? 'on' : ''} onClick={() => onBasis('total')}>{r.category === 'sourdough' ? 'Effective flour' : 'All flour'}</button>
         </div>
       )}
 

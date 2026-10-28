@@ -208,7 +208,7 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 - Still-life of the recipe's ingredients and tools, never the finished bake. The photos are AI-generated from prompts embedded in `src/assets/recipes/*.json`.
 - Window light from the left, travertine and cream, nothing else.
 - It sits at the top of the recipe page: 21:9 from 640px with 14px corners, and full-bleed 3:2 on phones. The crop sits slightly below centre (`object-position: 50% 62%`).
-- Served as 768w and 1536w WebP. All eight recipes have one; a future recipe without a photo simply starts with the title.
+- Served as 768w and 1536w WebP. A recipe without a photo simply starts with the title.
 
 ### Ingredient Stage (signature list)
 - Uppercase label caption over a strong hairline, then a semantic table of rows: grotesk name with a taupe note, right-aligned serif quantity, small unit.

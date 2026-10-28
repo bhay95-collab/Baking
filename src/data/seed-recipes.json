@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "library_title": "Hay’s Crust & Crumb — Recipe Ratio Library",
   "generated_on": "2026-10-28",
   "calculation_conventions": {
@@ -19,80 +19,255 @@
   "recipes": [
     {
       "id": "classic_sourdough",
-      "name": "Classic Sourdough",
+      "name": "Classic White Sourdough",
       "category": "sourdough",
-      "source": "user-provided recipe, 24 Oct 2026",
+      "source": "user-provided “Sour Dough — The Bread Recipe Files” sheet, 28 Oct 2026; supersedes the 520 g formula",
       "ratio_basis": {
-        "amount": 520,
+        "amount": 598,
         "unit": "g_flour",
-        "label": "main dough flour"
+        "label": "added dough flour"
       },
       "yield": {
         "count": 1,
         "unit": "loaf",
-        "base_dough_mass_g": 1012
+        "base_dough_mass_g": 1164
       },
       "components": [
         {
+          "id": "starter_build",
+          "label": "Stiff starter build (1:5:3)",
+          "include_in_dough_mass": false,
+          "ingredients": [
+            {
+              "id": "mature_starter",
+              "name": "Mature stiff starter",
+              "amount": 15,
+              "unit": "g",
+              "role": "build_seed",
+              "weight_equivalent_g": 15,
+              "note": "Kept from your last build."
+            },
+            {
+              "id": "build_flour",
+              "name": "Strong white flour",
+              "amount": 75,
+              "unit": "g",
+              "role": "build_flour",
+              "weight_equivalent_g": 75
+            },
+            {
+              "id": "build_water",
+              "name": "Water",
+              "amount": 45,
+              "unit": "g",
+              "role": "build_water",
+              "weight_equivalent_g": 45
+            }
+          ]
+        },
+        {
           "id": "dough",
-          "label": "Main dough",
+          "label": "Dough",
           "include_in_dough_mass": true,
           "ingredients": [
             {
               "id": "bread_flour",
-              "name": "Bread flour",
-              "amount": 520,
+              "name": "Strong white flour",
+              "amount": 598,
               "unit": "g",
               "role": "flour",
-              "weight_equivalent_g": 520,
+              "weight_equivalent_g": 598,
               "ratio_percent": 100.0
             },
             {
               "id": "water",
               "name": "Water",
-              "amount": 370,
+              "amount": 450,
               "unit": "g",
               "role": "water",
-              "weight_equivalent_g": 370,
-              "ratio_percent": 71.1538
+              "weight_equivalent_g": 450,
+              "ratio_percent": 75.2508
             },
             {
               "id": "starter",
-              "name": "100% hydration sourdough starter",
-              "amount": 110,
+              "name": "Stiff starter (60% hydration)",
+              "amount": 102,
               "unit": "g",
               "role": "starter",
-              "weight_equivalent_g": 110,
-              "note": "Contains 55 g flour and 55 g water at original scale; do not double-count starter in dough mass.",
-              "ratio_percent": 21.1538
+              "weight_equivalent_g": 102,
+              "ratio_percent": 17.0569,
+              "note": "From the build above. Contains about 64 g flour and 38 g water; it is not extra flour or water."
             },
             {
               "id": "salt",
               "name": "Salt",
-              "amount": 12,
+              "amount": 14,
               "unit": "g",
               "role": "salt",
-              "weight_equivalent_g": 12,
-              "ratio_percent": 2.3077
+              "weight_equivalent_g": 14,
+              "ratio_percent": 2.3411
             }
           ]
         }
       ],
       "method": [],
       "notes": [
-        "Baker percentages shown against 520g added flour; starter flour is not part of this displayed percentage denominator.",
-        "For true hydration, include starter-derived water and flour.",
-        "No original method was supplied in this request."
+        "Baker’s percentages are against 598 g added flour. True hydration also counts the flour and water inside the stiff starter.",
+        "Stiff starter is 60% hydration: a 1:5:3 build (mature starter : flour : water), with the mature starter kept stiff too.",
+        "Build sizing: the build always leaves enough to seed the next build of the same size, plus about 18 g lost to the jar. At 1 loaf this is exactly the sheet’s 15 + 75 + 45 g. The sheet’s 2-loaf build (25 + 125 + 75 g) left only 21 g, less than the 25 g the next build needs, so the app builds 28 + 140 + 84 g for 2 loaves.",
+        "No method is on the source sheet."
       ],
       "derived": {
-        "added_flour_g": 520,
-        "starter_hydration_percent": 100,
-        "starter_flour_g": 55,
-        "starter_water_g": 55,
-        "effective_total_flour_g": 575,
-        "effective_total_water_g": 425,
-        "effective_hydration_percent": 73.913,
-        "prefermented_flour_percent": 9.5652
+        "added_flour_g": 598,
+        "starter_hydration_percent": 60,
+        "starter_build_ratio": [
+          1,
+          5,
+          3
+        ],
+        "starter_spare_loss_g": 18,
+        "starter_flour_g": 63.75,
+        "starter_water_g": 38.25,
+        "effective_total_flour_g": 661.75,
+        "effective_total_water_g": 488.25,
+        "effective_hydration_percent": 73.7817,
+        "prefermented_flour_percent": 9.6335
+      }
+    },
+    {
+      "id": "sourdough_wheat_rye",
+      "name": "White, Whole Wheat & Rye Sourdough",
+      "category": "sourdough",
+      "source": "user-provided “Sour Dough — The Bread Recipe Files” sheet (Wheat + Rye), 28 Oct 2026",
+      "ratio_basis": {
+        "amount": 598,
+        "unit": "g_flour",
+        "label": "added dough flour (all three flours)"
+      },
+      "yield": {
+        "count": 1,
+        "unit": "loaf",
+        "base_dough_mass_g": 1164
+      },
+      "components": [
+        {
+          "id": "starter_build",
+          "label": "Stiff starter build (1:5:3)",
+          "include_in_dough_mass": false,
+          "ingredients": [
+            {
+              "id": "mature_starter",
+              "name": "Mature stiff starter",
+              "amount": 15,
+              "unit": "g",
+              "role": "build_seed",
+              "weight_equivalent_g": 15,
+              "note": "Kept from your last build."
+            },
+            {
+              "id": "build_flour",
+              "name": "Strong white flour",
+              "amount": 75,
+              "unit": "g",
+              "role": "build_flour",
+              "weight_equivalent_g": 75
+            },
+            {
+              "id": "build_water",
+              "name": "Water",
+              "amount": 45,
+              "unit": "g",
+              "role": "build_water",
+              "weight_equivalent_g": 45
+            }
+          ]
+        },
+        {
+          "id": "dough",
+          "label": "Dough",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "white_flour",
+              "name": "Strong white flour",
+              "amount": 499,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 499,
+              "ratio_percent": 83.4448
+            },
+            {
+              "id": "wholewheat_flour",
+              "name": "Whole wheat flour",
+              "amount": 66,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 66,
+              "ratio_percent": 11.0368
+            },
+            {
+              "id": "rye_flour",
+              "name": "Wholegrain rye flour",
+              "amount": 33,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 33,
+              "ratio_percent": 5.5184
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 450,
+              "unit": "g",
+              "role": "water",
+              "weight_equivalent_g": 450,
+              "ratio_percent": 75.2508
+            },
+            {
+              "id": "starter",
+              "name": "Stiff starter (60% hydration)",
+              "amount": 102,
+              "unit": "g",
+              "role": "starter",
+              "weight_equivalent_g": 102,
+              "ratio_percent": 17.0569,
+              "note": "From the build above. Contains about 64 g flour and 38 g water; it is not extra flour or water."
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 14,
+              "unit": "g",
+              "role": "salt",
+              "weight_equivalent_g": 14,
+              "ratio_percent": 2.3411
+            }
+          ]
+        }
+      ],
+      "method": [],
+      "notes": [
+        "Same total flour, water, starter and salt as Classic White; 99 g of the white flour is swapped for whole wheat (66 g) and wholegrain rye (33 g).",
+        "Whole wheat and rye drink more water than white flour, so this dough will feel slightly stiffer at the same 450 g water.",
+        "Stiff starter is 60% hydration: a 1:5:3 build (mature starter : flour : water).",
+        "Build sizing: the build always leaves enough to seed the next build of the same size, plus about 18 g lost to the jar. At 1 loaf this is exactly the sheet’s 15 + 75 + 45 g. The sheet’s 2-loaf build (25 + 125 + 75 g) left only 21 g, less than the 25 g the next build needs, so the app builds 28 + 140 + 84 g for 2 loaves.",
+        "No method is on the source sheet."
+      ],
+      "derived": {
+        "added_flour_g": 598,
+        "starter_hydration_percent": 60,
+        "starter_build_ratio": [
+          1,
+          5,
+          3
+        ],
+        "starter_spare_loss_g": 18,
+        "starter_flour_g": 63.75,
+        "starter_water_g": 38.25,
+        "effective_total_flour_g": 661.75,
+        "effective_total_water_g": 488.25,
+        "effective_hydration_percent": 73.7817,
+        "prefermented_flour_percent": 9.6335
       }
     },
     {

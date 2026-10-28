@@ -22,6 +22,7 @@ const noun = (one: string, many: string, field: keyof ScaleInputs = 'value'): Pi
 
 const COUNT: Record<string, { verb: string; one: string; many: string; name: string }> = {
   classic_sourdough: { verb: 'Make', one: 'loaf', many: 'loaves', name: 'Loaves' },
+  sourdough_wheat_rye: { verb: 'Make', one: 'loaf', many: 'loaves', name: 'Loaves' },
   poolish_pizza: { verb: 'Make', one: 'batch', many: 'batches', name: 'Batches' },
   bens_focaccia: { verb: 'Bake', one: 'tray', many: 'trays', name: 'Trays' },
   bens_raisin_bread: { verb: 'Bake', one: 'tin loaf', many: 'tin loaves', name: 'Loaves' },
