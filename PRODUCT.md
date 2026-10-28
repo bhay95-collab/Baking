@@ -26,7 +26,7 @@ Ben's own formulas with the baking maths done properly: preferments and starter 
 - Seed data: `src/data/seed-recipes.json` (extracted from `docs/brief.md`); immutable at runtime.
 - Scaling limits 0.1×–20×; invalid targets explain themselves and never silently change output.
 - Hosting: intended for Vercel; the Vercel connector could not create the project (403), so Ben links it manually.
-- Undecided: recipe photography (none for now; Ben may supply his own bakes later).
+- Photography: still-life only; Ben may swap in photos of his own bakes later.
 
 ## Brand Commitments
 - Name: Hay's Crust & Crumb.
@@ -35,7 +35,7 @@ Ben's own formulas with the baking maths done properly: preferments and starter 
 
 ## Evidence on Hand
 - Recipe data and method text in `src/data/seed-recipes.json`; design/data brief in `docs/brief.md`.
-- No photography exists. Do not invent bake photos, testimonials, or yields beyond the source data.
+- Recipe photos: AI-generated still-lifes of ingredients and tools (not Ben's bakes) for sourdough, pizza, focaccia, raisin bread and hot cross buns in `src/assets/recipes/`. Croissants, red croissants and risotto have none yet. Never present a generated image as one of Ben's own bakes; do not invent testimonials or yields beyond the source data.
 
 ## Product Principles
 1. Originals are sacred: show them exactly, never overwrite them.

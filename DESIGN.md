@@ -204,6 +204,12 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 ### Navigation
 - Walnut top bar, sticky. Links are cream at 78% opacity. Active is full cream with a bronze-light 1px underline. On phones the links scroll in one row under the mark.
 
+### Recipe Photo
+- Still-life of the recipe's ingredients and tools, never the finished bake. The photos are AI-generated from prompts embedded in `src/assets/recipes/*.json`.
+- Window light from the left, travertine and cream, nothing else.
+- It sits at the top of the recipe page: 21:9 from 640px with 14px corners, and full-bleed 3:2 on phones. The crop sits slightly below centre (`object-position: 50% 62%`).
+- Served as 768w and 1536w WebP. Recipes without a photo simply start with the title.
+
 ### Ingredient Stage (signature list)
 - Uppercase label caption over a strong hairline, then a semantic table of rows: grotesk name with a taupe note, right-aligned serif quantity, small unit.
 - Edited amounts turn bronze-ink and get an "Edited" pill.
@@ -228,3 +234,4 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 - **Don't** wrap content in cards or nest panels; the sentence panel and dialog are the only raised surfaces.
 - **Don't** put a tracked-caps eyebrow above a heading.
 - **Don't** use the script face for anything but the "Hay's" mark.
+- **Don't** show AI photos of finished bakes; they would pass for Ben's own. Show ingredients and tools only.

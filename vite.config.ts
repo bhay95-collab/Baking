@@ -23,7 +23,7 @@ export default defineConfig({
           { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' },
         ],
       },
-      workbox: { globPatterns: ['**/*.{js,css,html,svg,woff,woff2,json}'] },
+      workbox: { globPatterns: ['**/*.{js,css,html,svg,woff,woff2,json,webp}'] },
     }),
   ],
   test: { include: ['tests/**/*.test.ts'] },

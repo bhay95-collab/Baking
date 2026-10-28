@@ -9,6 +9,7 @@ import { IngredientsView, MethodView, NotesList, RatiosView, StatusChip } from '
 import { VersionDialog } from './Editor';
 import { PrintSheet } from './PrintSheet';
 import { Icon } from './icons';
+import { RECIPE_PHOTOS } from './photos';
 import type { AppStore } from './store';
 import type { BasisMode } from '../engine/metrics';
 
@@ -91,6 +92,20 @@ export function RecipeDetail({ routeId, store, go }: { routeId: string; store: A
   return (
     <article className="detail" aria-labelledby="rec-title">
       <a className="back" href="#/recipes"><Icon name="back" size={16} /> All recipes</a>
+      {RECIPE_PHOTOS[seed.id] && (
+        <figure className="hero-photo">
+          <img
+            src={RECIPE_PHOTOS[seed.id].src}
+            srcSet={RECIPE_PHOTOS[seed.id].srcSet}
+            sizes="(min-width: 1200px) 830px, (min-width: 960px) calc(100vw - 420px), 100vw"
+            width={1536}
+            height={1024}
+            alt={RECIPE_PHOTOS[seed.id].alt}
+            fetchPriority="high"
+            decoding="async"
+          />
+        </figure>
+      )}
       <header className="detail-head">
         <h1 id="rec-title">{title}</h1>
         <p className="source">
