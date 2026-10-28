@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { TILE_ORDER, getSeedRecipe } from '../engine/seed';
 import { scaleRecipe } from '../engine/scale';
 import { computeMetrics } from '../engine/metrics';
@@ -9,13 +9,13 @@ import { IngredientsView, MethodView, NotesList, RatiosView, StatusChip } from '
 import { VersionDialog } from './Editor';
 import { PrintSheet } from './PrintSheet';
 import { Icon } from './icons';
-import { RECIPE_PHOTOS } from './photos';
+import { RECIPE_PHOTOS, type RecipePhoto } from './photos';
 import type { AppStore } from './store';
 import type { BasisMode } from '../engine/metrics';
 
 const yieldText = (r: Recipe) => {
   const y = r.yield;
-  if (y.count_range) return `${y.count_range.join('–')} ${y.unit}s`;
+  if (y.count_range) return `${y.count_range.join('–')} ${y.unit.replace('medium ', '')}s`;
   const n = y.count ?? 1;
   const unit = y.unit.replace('main-course serving', n === 1 ? 'serving' : 'servings').replace('tin loaf', n === 1 ? 'tin loaf' : 'tin loaves');
   return `${n} ${n === 1 || unit.endsWith('s') ? unit : unit === 'loaf' ? 'loaves' : `${unit}s`}`;
@@ -25,7 +25,7 @@ function keyFigure(r: Recipe, s: Settings): string | null {
   const ms = computeMetrics(scaleRecipe(r, { factor: 1 }));
   const m = ms.find((x) => ['hyd', 'liquid'].includes(x.id) && x.value !== null) ?? ms.find((x) => ['fruitpct', 'stockratio'].includes(x.id));
   if (!m) return null;
-  const v = m.text ?? formatMetric(m.value!, m.format, m.decimals ?? 1, s.precision);
+  const v = m.text ?? formatMetric(m.value!, m.format, 1, s.precision);
   return m.id === 'fruitpct' ? `${v} dried fruit` : `${v} ${m.label.toLowerCase()}`;
 }
 
@@ -64,6 +64,33 @@ export function RecipeIndex({ activeId, store }: { activeId: string | null; stor
   );
 }
 
+/** Fades the photo in once decoded, so the stone-coloured frame never flashes a half-painted image. */
+function HeroPhoto({ photo }: { photo: RecipePhoto }) {
+  const ref = useRef<HTMLImageElement>(null);
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    if (ref.current?.complete) setLoaded(true);
+  }, []);
+  return (
+    <figure className="hero-photo">
+      <img
+        ref={ref}
+        className={loaded ? 'loaded' : undefined}
+        src={photo.src}
+        srcSet={photo.srcSet}
+        sizes="(min-width: 1200px) 830px, (min-width: 960px) calc(100vw - 420px), 100vw"
+        width={1536}
+        height={1024}
+        alt={photo.alt}
+        fetchPriority="high"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+      />
+    </figure>
+  );
+}
+
 type Tab = 'ingredients' | 'method' | 'ratios';
 
 export function RecipeDetail({ routeId, store, go }: { routeId: string; store: AppStore; go: (hash: string) => void }) {
@@ -92,20 +119,7 @@ export function RecipeDetail({ routeId, store, go }: { routeId: string; store: A
   return (
     <article className="detail" aria-labelledby="rec-title">
       <a className="back" href="#/recipes"><Icon name="back" size={16} /> All recipes</a>
-      {RECIPE_PHOTOS[seed.id] && (
-        <figure className="hero-photo">
-          <img
-            src={RECIPE_PHOTOS[seed.id].src}
-            srcSet={RECIPE_PHOTOS[seed.id].srcSet}
-            sizes="(min-width: 1200px) 830px, (min-width: 960px) calc(100vw - 420px), 100vw"
-            width={1536}
-            height={1024}
-            alt={RECIPE_PHOTOS[seed.id].alt}
-            fetchPriority="high"
-            decoding="async"
-          />
-        </figure>
-      )}
+      {RECIPE_PHOTOS[seed.id] && <HeroPhoto photo={RECIPE_PHOTOS[seed.id]} />}
       <header className="detail-head">
         <h1 id="rec-title">{title}</h1>
         <p className="source">

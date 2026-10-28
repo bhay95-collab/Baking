@@ -39,6 +39,17 @@ export function Lab({ routeId, store, carry, go }: { routeId: string; store: App
         <h1>Ratio Lab</h1>
         <p className="lede">Say how much you want. Every stage is worked out for you, with the original formula left untouched.</p>
       </header>
+      <div className="chooser-select field">
+        <label htmlFor="lab-recipe">Recipe</label>
+        <select id="lab-recipe" value={variant ? routeId : activeSeed === 'croissant_red' ? 'croissant_classic' : activeSeed} onChange={(e) => go(`#/lab/${e.target.value === 'croissant_classic' && activeSeed === 'croissant_red' ? 'croissant_red' : e.target.value}`)}>
+          {CHOOSER.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
+          {store.state.variants.length > 0 && (
+            <optgroup label="Your versions">
+              {store.state.variants.map((v) => <option key={v.id} value={v.id}>{v.name}</option>)}
+            </optgroup>
+          )}
+        </select>
+      </div>
       <nav className="chooser" aria-label="Choose a recipe to scale">
         <ul>
           {CHOOSER.map((c) => {

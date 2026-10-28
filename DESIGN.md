@@ -155,9 +155,13 @@ Warm, low-chroma earth tones. Colour does structural jobs (shell, ink, interacti
 - **Quantity** (400, 1.9rem, lining tabular figures): ingredient amounts, totals (2.2rem) and headline facts (1.55rem).
 - **Title** (400, 1.42rem): index recipe names, version names, sub-heads.
 - **Body** (400, 1rem, 1.55): reading text; measure capped near 64–70ch.
-- **Label** (600, 0.7–0.8rem, 0.14–0.18em tracking, uppercase): stage captions, tab labels, fact labels. These are headings in their own right, never eyebrows above another heading.
+- **Label** (600, 0.72rem `--fs-label`, 0.14–0.18em tracking, uppercase): stage captions, tab labels, fact labels. These are headings in their own right, never eyebrows above another heading.
+- **Caption** (400, 0.82rem `--fs-caption`): hints, notes under ingredients, metadata, units.
+- **UI** (400–500, 0.92rem `--fs-ui`): buttons, chips, nav links, form labels.
 
 ### Named Rules
+**The Four-Small-Sizes Rule.** Everything under body size is one of label 0.72, caption 0.82, UI 0.92 or body 1rem. Do not add a fifth.
+
 **The Serif-For-Numbers Rule.** Every weighed quantity is set in the display serif with lining tabular figures, right-aligned. Units are small grotesk in taupe.
 
 ## Layout
@@ -174,6 +178,11 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 - **Dialog elevation** (`box-shadow: 0 24px 60px -20px rgba(43,33,27,.35), 0 2px 8px rgba(43,33,27,.08)`): only for modal dialogs.
 - **Daylight wash** (`radial-gradient(120% 90% at 8% 0%, rgba(255,255,255,.34), transparent 62%)` over a paper-to-stone gradient): only on the sentence panel.
 
+### Motion
+- Frequent actions (typing in the sentence, switching tabs and recipes, page changes) are instant. Page changes jump to the top without smooth scrolling.
+- Feedback uses `cubic-bezier(0.23, 1, 0.32, 1)` for 160–240 ms: colour and border changes 160 ms, pressed buttons `scale(0.97)`, dialogs 200 ms (from `scale(0.97)` and 0 opacity, centred), first-paint quantities and the recipe photo fade 240–260 ms.
+- Hover styles exist only under `@media (hover: hover) and (pointer: fine)`.
+
 **The Window-Light Rule.** One soft daylight falloff, on one panel. No streaks, gloss, glass or glows anywhere.
 
 ## Shapes
@@ -181,7 +190,7 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 - Buttons, chips and segments are pills (999px). This follows Ben's interior-design reference.
 - Inputs and notices are 8px.
 - The sentence panel and dialog are 14px.
-- Sentence blanks have 6px top corners and an underline.
+- Sentence blanks have 6px top corners and an underline. Focus rings follow each element's own corners.
 - Lists and tables have no containers: just hairlines.
 
 ## Components

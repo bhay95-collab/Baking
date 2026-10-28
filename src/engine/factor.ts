@@ -127,7 +127,7 @@ export function inputsFromFactor(factor: number, base: BaseInfo, prev?: Partial<
   return {
     value: trim(factor, 3),
     balls,
-    ballWeight: trim((base.mass * factor) / ballsN, 2),
+    ballWeight: trim((base.mass * factor) / ballsN, 1),
     servings: base.riceG ? trim((base.riceG * factor) / portion, 2) : '',
     portionG,
   };
