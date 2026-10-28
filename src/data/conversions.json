@@ -1,0 +1,193 @@
+{
+ "version": "1.0.0",
+ "note": "Densities from commonly published cup weights (US cup, spooned and levelled). They vary by brand and how you scoop, so weigh when you can.",
+ "usCupMl": 236.588,
+ "groups": [
+  {
+   "id": "flour",
+   "label": "Flour and grains"
+  },
+  {
+   "id": "sweet",
+   "label": "Sugar and sweet"
+  },
+  {
+   "id": "fat",
+   "label": "Fats"
+  },
+  {
+   "id": "liquid",
+   "label": "Liquids"
+  },
+  {
+   "id": "grain",
+   "label": "Oats and rice"
+  },
+  {
+   "id": "other",
+   "label": "Other"
+  }
+ ],
+ "items": [
+  {
+   "id": "flour_plain",
+   "name": "Plain / all-purpose flour",
+   "group": "flour",
+   "gPerMl": 0.5072,
+   "gPerUsCup": 120,
+   "note": "King Arthur: 120 g per US cup"
+  },
+  {
+   "id": "flour_bread",
+   "name": "Bread flour",
+   "group": "flour",
+   "gPerMl": 0.5072,
+   "gPerUsCup": 120,
+   "note": ""
+  },
+  {
+   "id": "flour_wholewheat",
+   "name": "Whole wheat flour",
+   "group": "flour",
+   "gPerMl": 0.4776,
+   "gPerUsCup": 113,
+   "note": ""
+  },
+  {
+   "id": "flour_cake",
+   "name": "Cake flour",
+   "group": "flour",
+   "gPerMl": 0.4819,
+   "gPerUsCup": 114,
+   "note": ""
+  },
+  {
+   "id": "semolina",
+   "name": "Semolina",
+   "group": "flour",
+   "gPerMl": 0.7059,
+   "gPerUsCup": 167,
+   "note": ""
+  },
+  {
+   "id": "cornmeal",
+   "name": "Cornmeal or polenta",
+   "group": "flour",
+   "gPerMl": 0.5917,
+   "gPerUsCup": 140,
+   "note": ""
+  },
+  {
+   "id": "sugar",
+   "name": "Caster / granulated sugar",
+   "group": "sweet",
+   "gPerMl": 0.8369,
+   "gPerUsCup": 198,
+   "note": ""
+  },
+  {
+   "id": "sugar_brown",
+   "name": "Brown sugar, packed",
+   "group": "sweet",
+   "gPerMl": 0.9003,
+   "gPerUsCup": 213,
+   "note": ""
+  },
+  {
+   "id": "sugar_icing",
+   "name": "Icing sugar",
+   "group": "sweet",
+   "gPerMl": 0.4776,
+   "gPerUsCup": 113,
+   "note": ""
+  },
+  {
+   "id": "honey",
+   "name": "Honey or golden syrup",
+   "group": "sweet",
+   "gPerMl": 1.4371,
+   "gPerUsCup": 340,
+   "note": ""
+  },
+  {
+   "id": "cocoa",
+   "name": "Cocoa powder",
+   "group": "sweet",
+   "gPerMl": 0.355,
+   "gPerUsCup": 84,
+   "note": ""
+  },
+  {
+   "id": "butter",
+   "name": "Butter",
+   "group": "fat",
+   "gPerMl": 0.9595,
+   "gPerUsCup": 227,
+   "note": ""
+  },
+  {
+   "id": "oil",
+   "name": "Oil",
+   "group": "fat",
+   "gPerMl": 0.913,
+   "gPerUsCup": 216,
+   "note": ""
+  },
+  {
+   "id": "water",
+   "name": "Water",
+   "group": "liquid",
+   "gPerMl": 1.0017,
+   "gPerUsCup": 237,
+   "note": ""
+  },
+  {
+   "id": "milk",
+   "name": "Milk",
+   "group": "liquid",
+   "gPerMl": 1.0356,
+   "gPerUsCup": 245,
+   "note": ""
+  },
+  {
+   "id": "cream",
+   "name": "Cream",
+   "group": "liquid",
+   "gPerMl": 1.0144,
+   "gPerUsCup": 240,
+   "note": ""
+  },
+  {
+   "id": "oats",
+   "name": "Rolled oats",
+   "group": "grain",
+   "gPerMl": 0.3762,
+   "gPerUsCup": 89,
+   "note": ""
+  },
+  {
+   "id": "rice",
+   "name": "Rice, uncooked",
+   "group": "grain",
+   "gPerMl": 0.782,
+   "gPerUsCup": 185,
+   "note": ""
+  },
+  {
+   "id": "salt",
+   "name": "Table salt (fine)",
+   "group": "other",
+   "gPerMl": 1.2173,
+   "gPerUsCup": 288,
+   "note": "Coarse and flaky salts weigh much less per spoon; weigh them."
+  },
+  {
+   "id": "baking_powder",
+   "name": "Baking powder",
+   "group": "other",
+   "gPerMl": 0.8031,
+   "gPerUsCup": 190,
+   "note": ""
+  }
+ ]
+}

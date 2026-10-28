@@ -112,6 +112,12 @@ export function SettingsPage({ store }: { store: AppStore }) {
             <label key={k} className="radio"><input type="radio" name="prec" checked={settings.precision === k} onChange={() => store.setSettings({ precision: k })} /><span><b>{l}</b> <span className="muted">— {d}</span></span></label>
           ))}
         </fieldset>
+        <fieldset className="radios">
+          <legend>Cups and spoons</legend>
+          {(['au', 'us'] as const).map((k) => (
+            <label key={k} className="radio"><input type="radio" name="cup" checked={settings.cup === k} onChange={() => store.setSettings({ cup: k })} /><span><b>{k === 'au' ? 'Australian' : 'US'}</b> <span className="muted">— {k === 'au' ? '250 ml cup, 20 ml tablespoon, 5 ml teaspoon' : '237 ml cup, 15 ml tablespoon, 5 ml teaspoon'}</span></span></label>
+          ))}
+        </fieldset>
         <label className="check"><input type="checkbox" checked={settings.showEquivalents} onChange={(e) => store.setSettings({ showEquivalents: e.target.checked })} /> Show gram equivalents beside spoons, eggs and millilitres</label>
         <label className="check"><input type="checkbox" checked={settings.showOriginal} onChange={(e) => store.setSettings({ showOriginal: e.target.checked })} /> Show original amounts beside scaled ones</label>
         <button type="button" className="btn ghost" onClick={() => store.setSettings({ ...DEFAULT_SETTINGS })}>Restore display defaults</button>
