@@ -1,0 +1,1158 @@
+{
+  "schema_version": "1.0.0",
+  "library_title": "Hay’s Crust & Crumb — Recipe Ratio Library",
+  "generated_on": "2026-10-28",
+  "calculation_conventions": {
+    "ratio_percent_formula": "For recipe ingredient gram-equivalent: 100 × ingredient grams equivalent / recipe.ratio_basis.amount. For rice recipe, this is a practical g-vs-ml ratio, not baker percentage.",
+    "display_bakers_percent_only_for_flour_recipes": true,
+    "canonical_quantity": "The ingredient.amount and ingredient.unit reproduce the supplied recipe where applicable. Estimates for converted spoons, eggs and volume are annotated and must not overwrite original quantities.",
+    "scaling": "scale_factor = target_yield / recipe.yield.count (for exact count). For flour/rice targeting, scale_factor = target_basis_amount / recipe.ratio_basis.amount. Multiply each numeric ingredient amount by scale_factor. Preserve unit, stage and role.",
+    "dough_mass": "Only include measured, weighted ingredients from components with include_in_dough_mass=true; exclude toppings, glaze, optional working flour and to-taste entries. Use volume-to-weight conversions only as approximate and warn when unquantified ingredients make totals incomplete.",
+    "sourdough_hydration": "If starter hydration is H (decimal), starter flour = starter grams / (1+H); starter water = starter grams × H/(1+H). Effective hydration = (added water + starter water)/(added flour + starter flour) × 100.",
+    "pizza_poolish": "Keep ingredients separated into poolish and final additions. Calculate overall hydration using both flour stages and both water stages; never add water or flour twice. Treat the poster’s “600g poolish” as a rounded stage label; the 611g prepared poolish (including yeast and malt) is all used in the final dough.",
+    "red_croissant": "Default croissant recipe has two butter entries: dough butter and laminate butter. Red variant is additive and has its own 50g-flour red sheet. Do not include that flour in the denominator of the main-dough percentages, unless switching deliberately to a whole-formula view.",
+    "risotto": "Rice, wine and stock use practical g:ml:ml ratios. Stock is a range-sensitive liquid, not a fixed dough hydration.",
+    "rounding": "Calculate from unrounded numbers. Present flour, water and fat to nearest gram; yeast and spices to at least 0.1g at small scales; percentage displays to one or two decimals.",
+    "integer_ingredient_handling": "For eggs and oranges, preserve fractional scaling and offer weighed equivalents rather than silently rounding egg counts or orange yields.",
+    "optional_ingredients": "Do not enable optional fillings unless the user selects them. Salt in the pizza recipe is a BASE ingredient (30g), not an optional addition. Do not silently change the original recipes."
+  },
+  "recipes": [
+    {
+      "id": "classic_sourdough",
+      "name": "Classic Sourdough",
+      "category": "sourdough",
+      "source": "user-provided recipe, 24 Oct 2026",
+      "ratio_basis": {
+        "amount": 520,
+        "unit": "g_flour",
+        "label": "main dough flour"
+      },
+      "yield": {
+        "count": 1,
+        "unit": "loaf",
+        "base_dough_mass_g": 1012
+      },
+      "components": [
+        {
+          "id": "dough",
+          "label": "Main dough",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "bread_flour",
+              "name": "Bread flour",
+              "amount": 520,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 520,
+              "ratio_percent": 100.0
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 370,
+              "unit": "g",
+              "role": "water",
+              "weight_equivalent_g": 370,
+              "ratio_percent": 71.1538
+            },
+            {
+              "id": "starter",
+              "name": "100% hydration sourdough starter",
+              "amount": 110,
+              "unit": "g",
+              "role": "starter",
+              "weight_equivalent_g": 110,
+              "note": "Contains 55 g flour and 55 g water at original scale; do not double-count starter in dough mass.",
+              "ratio_percent": 21.1538
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 12,
+              "unit": "g",
+              "role": "salt",
+              "weight_equivalent_g": 12,
+              "ratio_percent": 2.3077
+            }
+          ]
+        }
+      ],
+      "method": [],
+      "notes": [
+        "Baker percentages shown against 520g added flour; starter flour is not part of this displayed percentage denominator.",
+        "For true hydration, include starter-derived water and flour.",
+        "No original method was supplied in this request."
+      ],
+      "derived": {
+        "added_flour_g": 520,
+        "starter_hydration_percent": 100,
+        "starter_flour_g": 55,
+        "starter_water_g": 55,
+        "effective_total_flour_g": 575,
+        "effective_total_water_g": 425,
+        "effective_hydration_percent": 73.913,
+        "prefermented_flour_percent": 9.5652
+      }
+    },
+    {
+      "id": "poolish_pizza",
+      "name": "Classic Poolish Pizza",
+      "category": "pizza",
+      "source": "user-provided complete Hay’s Classic Poolish Pizza poster, 28 Oct 2026; supersedes incomplete earlier formula",
+      "ratio_basis": {
+        "amount": 1000,
+        "unit": "g_flour",
+        "label": "combined flour (poolish + final additions)"
+      },
+      "yield": {
+        "count": 1,
+        "unit": "batch",
+        "base_dough_mass_g": 1751,
+        "suggested_pizza_balls": 6,
+        "approx_weight_per_ball_g_at_suggested_count": 291.83
+      },
+      "components": [
+        {
+          "id": "poolish",
+          "label": "Poolish",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "poolish_flour",
+              "name": "Bread or pizza flour",
+              "amount": 300,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 300,
+              "ratio_percent": 30.0
+            },
+            {
+              "id": "poolish_water",
+              "name": "Water",
+              "amount": 300,
+              "unit": "g",
+              "role": "water",
+              "weight_equivalent_g": 300,
+              "ratio_percent": 30.0
+            },
+            {
+              "id": "poolish_yeast",
+              "name": "Dry yeast",
+              "amount": 6,
+              "unit": "g",
+              "role": "yeast",
+              "weight_equivalent_g": 6,
+              "ratio_percent": 0.6
+            },
+            {
+              "id": "malt",
+              "name": "Barley malt",
+              "amount": 5,
+              "unit": "g",
+              "role": "malt",
+              "weight_equivalent_g": 5,
+              "ratio_percent": 0.5,
+              "source_label": "MALT BARLEY"
+            }
+          ]
+        },
+        {
+          "id": "final_dough",
+          "label": "Final mix additions",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "final_flour",
+              "name": "Bread or pizza flour",
+              "amount": 700,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 700,
+              "ratio_percent": 70.0
+            },
+            {
+              "id": "final_water",
+              "name": "Water",
+              "amount": 400,
+              "unit": "g",
+              "role": "water",
+              "weight_equivalent_g": 400,
+              "ratio_percent": 40.0
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 30,
+              "unit": "g",
+              "role": "salt",
+              "weight_equivalent_g": 30,
+              "ratio_percent": 3.0
+            },
+            {
+              "id": "olive_oil",
+              "name": "Olive oil",
+              "amount": 10,
+              "unit": "g",
+              "role": "fat",
+              "weight_equivalent_g": 10,
+              "ratio_percent": 1.0
+            }
+          ]
+        }
+      ],
+      "method": [
+        "Combine poolish-stage ingredients; use all of the prepared poolish in the main dough.",
+        "Add remaining flour, water, salt and olive oil to the poolish to form the final dough.",
+        "The poster lists quantities only; it does not prescribe a timed fermentation or baking schedule."
+      ],
+      "notes": [
+        "This 28 Oct 2026 image is the authoritative complete pizza formula: final dough salt 30g (3%) and olive oil 10g (1%). Supersedes prior inferred olive oil 30g and omitted salt.",
+        "Poolish is described as about 600g on the poster but actual measured poolish mass is 611g (300 flour + 300 water + 6 yeast + 5 malt). Use all of the poolish rather than weighing out precisely 600g.",
+        "The poster rounds one finished batch to about 1,700g and two batches to about 3,400g. Exact ingredient totals are 1,751g and 3,502g. Use calculated totals when sizing pizza balls.",
+        "6g dry yeast represents 2% of the flour in the poolish; for long fermentation, support independent yeast editing while keeping the original value as default.",
+        "30% of total flour is prefermented, at 100% poolish hydration."
+      ],
+      "derived": {
+        "total_flour_g": 1000,
+        "total_water_g": 700,
+        "hydration_percent": 70,
+        "poolish_flour_fraction_percent": 30,
+        "poolish_hydration_percent": 100,
+        "poolish_total_mass_g": 611,
+        "main_additions_mass_g": 1140,
+        "dough_mass_g": 1751,
+        "salt_percent": 3,
+        "oil_percent": 1,
+        "six_ball_weight_g": 291.8333333333333
+      }
+    },
+    {
+      "id": "bens_focaccia",
+      "name": "Ben’s Focaccia",
+      "category": "focaccia",
+      "source": "attached Ben’s Focaccia Recipe.docx",
+      "ratio_basis": {
+        "amount": 1200,
+        "unit": "g_flour",
+        "label": "main dough flour"
+      },
+      "yield": {
+        "count": 1,
+        "unit": "large roasting tray",
+        "estimated_dough_mass_g_excluding_finishing": 2170
+      },
+      "components": [
+        {
+          "id": "dough",
+          "label": "Focaccia dough",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "bread_flour",
+              "name": "High-protein bread flour",
+              "amount": 1200,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 1200,
+              "ratio_percent": 100.0
+            },
+            {
+              "id": "water",
+              "name": "Warm water",
+              "amount": 750,
+              "unit": "ml",
+              "role": "water",
+              "weight_equivalent_g": 750,
+              "weight_equivalent_is_approximate": true,
+              "ratio_percent": 62.5
+            },
+            {
+              "id": "olive_oil",
+              "name": "Olive oil",
+              "amount": 200,
+              "unit": "ml",
+              "role": "fat",
+              "weight_equivalent_g": 182.0,
+              "weight_equivalent_is_approximate": true,
+              "note": "Original volume preserved. Assumed 0.91g/ml only for ratio and dough-weight estimation.",
+              "ratio_percent": 15.1667
+            },
+            {
+              "id": "salt",
+              "name": "Kosher salt",
+              "amount": 24,
+              "unit": "g",
+              "role": "salt",
+              "weight_equivalent_g": 24,
+              "ratio_percent": 2.0
+            },
+            {
+              "id": "instant_yeast",
+              "name": "Instant dry yeast",
+              "amount": 14,
+              "unit": "g",
+              "role": "yeast",
+              "weight_equivalent_g": 14,
+              "ratio_percent": 1.1667
+            }
+          ]
+        },
+        {
+          "id": "finishing",
+          "label": "Finishing and toppings",
+          "include_in_dough_mass": false,
+          "ingredients": [
+            {
+              "id": "flake_salt",
+              "name": "Strong flake salt",
+              "amount": null,
+              "unit": "to_taste",
+              "exclude_from_dough_mass": true
+            },
+            {
+              "id": "optional_toppings",
+              "name": "Desired toppings",
+              "amount": null,
+              "unit": "to_taste",
+              "exclude_from_dough_mass": true
+            },
+            {
+              "id": "extra_oil",
+              "name": "Extra oil for the tray, topping and finishing",
+              "amount": null,
+              "unit": "to_taste",
+              "exclude_from_dough_mass": true
+            }
+          ]
+        }
+      ],
+      "method": [
+        "Mix warm water and yeast; rest about 10 minutes until foamy.",
+        "Mix flour and kosher salt. Stir olive oil into the yeast-water mixture and add to the flour; mix until incorporated.",
+        "Rest covered for 30 minutes.",
+        "Stretch and fold the dough, then rest for 30 minutes. Repeat until four stretch-and-fold sessions have been completed, with 30-minute rests.",
+        "Optionally refrigerate the dough for 24 hours after folding.",
+        "Move dough to a generously oiled large tray; stretch gently to the corners, resting 5 minutes if it resists.",
+        "Proof in the tray 30 minutes; meanwhile preheat fan oven to 220°C.",
+        "Oil, dimple, top with desired ingredients and flake salt.",
+        "Bake fan 220°C for 25–30 minutes until golden; oil lightly and rest 10–15 minutes."
+      ],
+      "notes": [
+        "Source calls this a high hydration dough, but WATER hydration is exactly 62.5%. Olive oil is not water and should be counted separately.",
+        "The 200ml dough oil is separate from additional tray/finishing oil.",
+        "Topping ideas: balsamic-roasted cherry tomatoes/olives/rosemary; pesto/bocconcini; rosemary."
+      ],
+      "derived": {
+        "water_hydration_percent": 62.5,
+        "olive_oil_percent_estimated_by_mass": 15.1667,
+        "fan_oven_c": 220,
+        "bake_minutes": [
+          25,
+          30
+        ]
+      }
+    },
+    {
+      "id": "bens_raisin_bread",
+      "name": "Ben’s Raisin Bread",
+      "category": "enriched_bread",
+      "source": "attached Ben's Raisin Bread Recipe(1).docx",
+      "ratio_basis": {
+        "amount": 500,
+        "unit": "g_flour",
+        "label": "main dough flour"
+      },
+      "yield": {
+        "count": 1,
+        "unit": "tin loaf"
+      },
+      "components": [
+        {
+          "id": "dough",
+          "label": "Raisin dough",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "bread_flour",
+              "name": "Bread flour",
+              "amount": 500,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 500,
+              "ratio_percent": 100.0
+            },
+            {
+              "id": "water",
+              "name": "Water",
+              "amount": 410,
+              "unit": "ml",
+              "role": "water",
+              "weight_equivalent_g": 410,
+              "weight_equivalent_is_approximate": true,
+              "ratio_percent": 82.0
+            },
+            {
+              "id": "sultanas",
+              "name": "Sultanas",
+              "amount": 110,
+              "unit": "g",
+              "role": "inclusion",
+              "weight_equivalent_g": 110,
+              "ratio_percent": 22.0
+            },
+            {
+              "id": "malt_extract",
+              "name": "Malt extract",
+              "amount": 40,
+              "unit": "g",
+              "role": "sweetener",
+              "weight_equivalent_g": 40,
+              "note": "Original quantity approximately 40g.",
+              "ratio_percent": 8.0
+            },
+            {
+              "id": "yeast",
+              "name": "Yeast",
+              "amount": 5,
+              "unit": "g",
+              "role": "yeast",
+              "weight_equivalent_g": 5,
+              "ratio_percent": 1.0
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 8,
+              "unit": "g",
+              "role": "salt",
+              "weight_equivalent_g": 8,
+              "ratio_percent": 1.6
+            },
+            {
+              "id": "cinnamon",
+              "name": "Ground cinnamon",
+              "amount": 2,
+              "unit": "tbsp",
+              "role": "spice",
+              "weight_equivalent_g": 15.6,
+              "weight_equivalent_is_approximate": true,
+              "note": "Approximate 7.8g per tablespoon for baker-percentage display; the source uses 2 tablespoons.",
+              "ratio_percent": 3.12
+            },
+            {
+              "id": "orange_zest",
+              "name": "Orange zest",
+              "amount": 1,
+              "unit": "orange",
+              "role": "aromatic"
+            }
+          ]
+        }
+      ],
+      "method": [
+        "Grease a lidded bread loaf tin.",
+        "Combine water, malt, yeast, salt, orange zest and sultanas; let stand 10 minutes.",
+        "Combine flour and cinnamon separately, then mix wet and dry ingredients to a shaggy dough; rest 10 minutes.",
+        "Slap-and-fold dough, return to proofing chamber for 30 minutes.",
+        "Laminate dough by hand, roll into a log seam-down and place into tin; proof covered 2–3 hours.",
+        "Remove the tin lid before dough reaches the top and allow dough to rise to the rim.",
+        "Bake at 220°C for 45 minutes; cool on a rack at least 1 hour before slicing."
+      ],
+      "notes": [
+        "Source uses sultanas, despite the name raisin bread.",
+        "82% is nominal water-to-flour hydration; sultanas absorb some water.",
+        "Cinnamon density is approximate; preserve the source’s 2-tablespoon quantity as the editable canonical measurement."
+      ],
+      "derived": {
+        "nominal_hydration_percent": 82,
+        "bake_c": 220,
+        "bake_minutes": 45,
+        "tin_loaves": 1
+      }
+    },
+    {
+      "id": "hot_cross_buns",
+      "name": "Hot Cross Buns",
+      "category": "enriched_bread",
+      "source": "attached Hot Cross Buns.pdf, visible page 1",
+      "ratio_basis": {
+        "amount": 600,
+        "unit": "g_flour",
+        "label": "main dough flour"
+      },
+      "yield": {
+        "count": 12,
+        "unit": "bun",
+        "bake_minutes": 30
+      },
+      "components": [
+        {
+          "id": "dough",
+          "label": "Bun dough",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "plain_flour",
+              "name": "Plain flour",
+              "amount": 600,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 600,
+              "ratio_percent": 100.0
+            },
+            {
+              "id": "raisins",
+              "name": "Raisins",
+              "amount": 150,
+              "unit": "g",
+              "role": "inclusion",
+              "weight_equivalent_g": 150,
+              "ratio_percent": 25.0
+            },
+            {
+              "id": "orange_zest_juice",
+              "name": "Zest and juice",
+              "amount": 1,
+              "unit": "large_orange",
+              "role": "liquid_and_aromatic",
+              "note": "Juice amount not given in grams or ml; do not assume a fixed hydration contribution."
+            },
+            {
+              "id": "milk",
+              "name": "Lukewarm milk",
+              "amount": 125,
+              "unit": "ml",
+              "role": "liquid",
+              "weight_equivalent_g": 125,
+              "weight_equivalent_is_approximate": true,
+              "note": "Milk is measured by volume; liquid percentage is not equivalent to full dough hydration.",
+              "ratio_percent": 20.8333
+            },
+            {
+              "id": "dried_yeast",
+              "name": "Dried yeast",
+              "amount": 7,
+              "unit": "g",
+              "role": "yeast",
+              "weight_equivalent_g": 7,
+              "ratio_percent": 1.1667
+            },
+            {
+              "id": "caster_sugar",
+              "name": "Caster sugar",
+              "amount": 75,
+              "unit": "g",
+              "role": "sugar",
+              "weight_equivalent_g": 75,
+              "ratio_percent": 12.5
+            },
+            {
+              "id": "fine_sea_salt",
+              "name": "Fine sea salt",
+              "amount": 1,
+              "unit": "tsp",
+              "role": "salt",
+              "weight_equivalent_g": 5,
+              "weight_equivalent_is_approximate": true,
+              "note": "Approximate weight only; retain 1 tsp as canonical unit.",
+              "ratio_percent": 0.8333
+            },
+            {
+              "id": "cinnamon",
+              "name": "Ground cinnamon",
+              "amount": 2,
+              "unit": "tsp",
+              "role": "spice",
+              "weight_equivalent_g": 5.2,
+              "weight_equivalent_is_approximate": true,
+              "ratio_percent": 0.8667
+            },
+            {
+              "id": "allspice",
+              "name": "Ground allspice",
+              "amount": 0.5,
+              "unit": "tsp",
+              "role": "spice",
+              "weight_equivalent_g": 1.0,
+              "weight_equivalent_is_approximate": true,
+              "ratio_percent": 0.1667
+            },
+            {
+              "id": "ginger",
+              "name": "Ground ginger",
+              "amount": 0.5,
+              "unit": "tsp",
+              "role": "spice",
+              "weight_equivalent_g": 0.9,
+              "weight_equivalent_is_approximate": true,
+              "ratio_percent": 0.15
+            },
+            {
+              "id": "nutmeg",
+              "name": "Ground nutmeg",
+              "amount": 0.25,
+              "unit": "tsp",
+              "role": "spice",
+              "weight_equivalent_g": 0.55,
+              "weight_equivalent_is_approximate": true,
+              "ratio_percent": 0.0917
+            },
+            {
+              "id": "vanilla",
+              "name": "Vanilla extract",
+              "amount": 1,
+              "unit": "tsp",
+              "role": "aromatic",
+              "weight_equivalent_g": 5,
+              "weight_equivalent_is_approximate": true,
+              "ratio_percent": 0.8333
+            },
+            {
+              "id": "eggs",
+              "name": "Eggs, beaten",
+              "amount": 4,
+              "unit": "egg",
+              "role": "liquid_and_protein",
+              "weight_equivalent_g": 200,
+              "weight_equivalent_is_approximate": true,
+              "note": "Estimated 50g edible beaten egg per egg; original recipe specifies 4 eggs.",
+              "ratio_percent": 33.3333
+            },
+            {
+              "id": "butter",
+              "name": "Butter, diced, room temperature",
+              "amount": 175,
+              "unit": "g",
+              "role": "fat",
+              "weight_equivalent_g": 175,
+              "ratio_percent": 29.1667
+            },
+            {
+              "id": "currants",
+              "name": "Currants",
+              "amount": 60,
+              "unit": "g",
+              "role": "inclusion",
+              "weight_equivalent_g": 60,
+              "ratio_percent": 10.0
+            }
+          ]
+        },
+        {
+          "id": "working_and_finish",
+          "label": "Working flour and glaze",
+          "include_in_dough_mass": false,
+          "ingredients": [
+            {
+              "id": "additional_flour",
+              "name": "Extra plain flour",
+              "amount": 50,
+              "unit": "g",
+              "role": "working_flour",
+              "weight_equivalent_g": 50,
+              "note": "Original: 600g plus 50g extra. Keep separate; unclear how much extra is incorporated.",
+              "ratio_percent": 8.3333
+            },
+            {
+              "id": "apricot_jam",
+              "name": "Apricot jam",
+              "amount": 2,
+              "unit": "tbsp",
+              "role": "glaze",
+              "weight_equivalent_g": 40,
+              "weight_equivalent_is_approximate": true,
+              "note": "Approximate weight, finishing glaze, not part of bun dough.",
+              "ratio_percent": 6.6667
+            }
+          ]
+        }
+      ],
+      "method": [
+        "The attached one-page PDF contains ingredient quantities and a visible “Cook time: 30 mins” line only.",
+        "Full proofing, shaping and crossing instructions are not present in the source; do not claim an exact original method."
+      ],
+      "notes": [
+        "Original recipe says 600g plain flour plus 50g extra; 600g is the dough baker-percentage basis.",
+        "Oranges and eggs supply variable water; avoid reporting hydration from milk alone as overall hydration.",
+        "Keep apricot jam outside the dough in a finishing component; extra flour outside the fixed dough formula.",
+        "The conversion weights for spices, eggs, milk and jam are estimates and should be editable in the app."
+      ],
+      "derived": {
+        "bun_count": 12,
+        "fruit_total_g": 210,
+        "fruit_to_flour_percent": 35,
+        "butter_to_flour_percent": 29.1667,
+        "sugar_to_flour_percent": 12.5
+      }
+    },
+    {
+      "id": "croissant_classic",
+      "name": "Classic Butter Croissants",
+      "category": "laminated_pastry",
+      "source": "assistant recipe from 27 Oct 2026, recovered details",
+      "ratio_basis": {
+        "amount": 600,
+        "unit": "g_flour",
+        "label": "main dough flour"
+      },
+      "yield": {
+        "count_range": [
+          14,
+          16
+        ],
+        "unit": "medium croissant",
+        "base_total_unbaked_mass_g": 1421
+      },
+      "components": [
+        {
+          "id": "detrempe",
+          "label": "Main croissant dough (détrempe)",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Strong plain / bread flour",
+              "amount": 600,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 600,
+              "ratio_percent": 100.0
+            },
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 90,
+              "unit": "g",
+              "role": "sugar",
+              "weight_equivalent_g": 90,
+              "ratio_percent": 15.0
+            },
+            {
+              "id": "cold_milk",
+              "name": "Cold milk",
+              "amount": 280,
+              "unit": "g",
+              "role": "liquid",
+              "weight_equivalent_g": 280,
+              "ratio_percent": 46.6667
+            },
+            {
+              "id": "cold_water",
+              "name": "Cold water",
+              "amount": 100,
+              "unit": "g",
+              "role": "liquid",
+              "weight_equivalent_g": 100,
+              "ratio_percent": 16.6667
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 12,
+              "unit": "g",
+              "role": "salt",
+              "weight_equivalent_g": 12,
+              "ratio_percent": 2.0
+            },
+            {
+              "id": "instant_yeast",
+              "name": "Instant yeast",
+              "amount": 9,
+              "unit": "g",
+              "role": "yeast",
+              "weight_equivalent_g": 9,
+              "ratio_percent": 1.5
+            },
+            {
+              "id": "butter_in_dough",
+              "name": "Softened butter, in dough",
+              "amount": 30,
+              "unit": "g",
+              "role": "fat",
+              "weight_equivalent_g": 30,
+              "ratio_percent": 5.0
+            }
+          ]
+        },
+        {
+          "id": "lamination",
+          "label": "Butter block for lamination",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "butter_lamination",
+              "name": "Unsalted butter for butter block",
+              "amount": 300,
+              "unit": "g",
+              "role": "laminating_fat",
+              "weight_equivalent_g": 300,
+              "ratio_percent": 50.0
+            }
+          ]
+        }
+      ],
+      "method": [
+        "Use the Ooni Halo Pro spiral mixer: approximately 3 minutes at 20–25% speed then 4–6 minutes at 30–40% speed; target dough temperature 20–23°C.",
+        "Chill dough overnight, approximately 8–12 hours at 2–5°C.",
+        "Prepare butter block at approximately 12–16°C; enclose in chilled dough.",
+        "Perform 3 single folds, chilling dough 30–45 minutes between folds.",
+        "Roll to 4–4.5mm final thickness and cut/shape the croissants.",
+        "Proof at 24–25°C for about 2–3 hours until noticeably puffy and gently wobbly; avoid overheating the lamination butter.",
+        "Bake in a preheated fan oven at about 190°C for 16–21 minutes until deeply golden; adjust to oven and size."
+      ],
+      "notes": [
+        "Milk plus water is 380g / 600g = 63.33% nominal liquid, not literal water hydration because milk includes solids.",
+        "The lamination butter block is separate from the 30g butter mixed into the dough.",
+        "Base formula produces 14–16 medium croissants according to the previous recipe."
+      ],
+      "derived": {
+        "nominal_milk_plus_water_percent": 63.3333,
+        "lamination_butter_percent": 50,
+        "butter_in_dough_percent": 5,
+        "mix_target_dough_temp_c": [
+          20,
+          23
+        ],
+        "butter_block_temp_c": [
+          12,
+          16
+        ],
+        "proof_c": [
+          24,
+          25
+        ],
+        "proof_hours": [
+          2,
+          3
+        ],
+        "bake_fan_c": 190,
+        "bake_minutes": [
+          16,
+          21
+        ]
+      }
+    },
+    {
+      "id": "croissant_red",
+      "name": "Bright-Red Layer Croissants",
+      "category": "laminated_pastry",
+      "source": "assistant recipe from 27 Oct 2026, recovered details",
+      "ratio_basis": {
+        "amount": 600,
+        "unit": "g_flour",
+        "label": "main croissant dough flour; red sheet is additional"
+      },
+      "yield": {
+        "count_range": [
+          14,
+          16
+        ],
+        "unit": "medium croissant",
+        "estimated_unbaked_mass_g_at_1_5g_colour": 1527.5
+      },
+      "components": [
+        {
+          "id": "detrempe",
+          "label": "Main croissant dough (détrempe)",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "flour",
+              "name": "Strong plain / bread flour",
+              "amount": 600,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 600,
+              "ratio_percent": 100.0
+            },
+            {
+              "id": "sugar",
+              "name": "Sugar",
+              "amount": 90,
+              "unit": "g",
+              "role": "sugar",
+              "weight_equivalent_g": 90,
+              "ratio_percent": 15.0
+            },
+            {
+              "id": "cold_milk",
+              "name": "Cold milk",
+              "amount": 280,
+              "unit": "g",
+              "role": "liquid",
+              "weight_equivalent_g": 280,
+              "ratio_percent": 46.6667
+            },
+            {
+              "id": "cold_water",
+              "name": "Cold water",
+              "amount": 100,
+              "unit": "g",
+              "role": "liquid",
+              "weight_equivalent_g": 100,
+              "ratio_percent": 16.6667
+            },
+            {
+              "id": "salt",
+              "name": "Salt",
+              "amount": 12,
+              "unit": "g",
+              "role": "salt",
+              "weight_equivalent_g": 12,
+              "ratio_percent": 2.0
+            },
+            {
+              "id": "instant_yeast",
+              "name": "Instant yeast",
+              "amount": 9,
+              "unit": "g",
+              "role": "yeast",
+              "weight_equivalent_g": 9,
+              "ratio_percent": 1.5
+            },
+            {
+              "id": "butter_in_dough",
+              "name": "Softened butter, in dough",
+              "amount": 30,
+              "unit": "g",
+              "role": "fat",
+              "weight_equivalent_g": 30,
+              "ratio_percent": 5.0
+            }
+          ]
+        },
+        {
+          "id": "lamination",
+          "label": "Butter block for lamination",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "butter_lamination",
+              "name": "Unsalted butter for butter block",
+              "amount": 300,
+              "unit": "g",
+              "role": "laminating_fat",
+              "weight_equivalent_g": 300,
+              "ratio_percent": 50.0
+            }
+          ]
+        },
+        {
+          "id": "red_sheet",
+          "label": "Additional bright-red outer pastry sheet",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "red_flour",
+              "name": "Flour",
+              "amount": 50,
+              "unit": "g",
+              "role": "flour",
+              "weight_equivalent_g": 50,
+              "ratio_percent": 8.3333
+            },
+            {
+              "id": "red_sugar",
+              "name": "Sugar",
+              "amount": 10,
+              "unit": "g",
+              "role": "sugar",
+              "weight_equivalent_g": 10,
+              "ratio_percent": 1.6667
+            },
+            {
+              "id": "red_salt",
+              "name": "Salt",
+              "amount": 1,
+              "unit": "g",
+              "role": "salt",
+              "weight_equivalent_g": 1,
+              "ratio_percent": 0.1667
+            },
+            {
+              "id": "red_water",
+              "name": "Cold water",
+              "amount": 40,
+              "unit": "g",
+              "role": "water",
+              "weight_equivalent_g": 40,
+              "ratio_percent": 6.6667
+            },
+            {
+              "id": "red_butter",
+              "name": "Butter",
+              "amount": 4,
+              "unit": "g",
+              "role": "fat",
+              "weight_equivalent_g": 4,
+              "ratio_percent": 0.6667
+            },
+            {
+              "id": "red_colouring",
+              "name": "Concentrated red food colouring",
+              "amount": 1.5,
+              "unit": "g",
+              "role": "colour",
+              "weight_equivalent_g": 1.5,
+              "note": "Start with 1g, up to 2g. Recipe default 1.5g.",
+              "allowable_min": 1,
+              "allowable_max": 2,
+              "ratio_percent": 0.25
+            }
+          ]
+        }
+      ],
+      "method": [
+        "Use the Ooni Halo Pro spiral mixer: approximately 3 minutes at 20–25% speed then 4–6 minutes at 30–40% speed; target dough temperature 20–23°C.",
+        "Chill dough overnight, approximately 8–12 hours at 2–5°C.",
+        "Prepare butter block at approximately 12–16°C; enclose in chilled dough.",
+        "Perform 3 single folds, chilling dough 30–45 minutes between folds.",
+        "After the three single folds, prepare a bright-red dough sheet, roll thinly to about 0.8–1mm and lay over the laminated dough before the final rollout and cutting. Keep cool while working.",
+        "Roll to 4–4.5mm final thickness and cut/shape the croissants.",
+        "Proof at 24–25°C for about 2–3 hours until noticeably puffy and gently wobbly; avoid overheating the lamination butter.",
+        "Bake in a preheated fan oven at about 190°C for 16–21 minutes until deeply golden; adjust to oven and size."
+      ],
+      "variant_of": "croissant_classic",
+      "notes": [
+        "Shares all classic croissant ingredients and adds the separate red pastry sheet. Do not colour the main dough.",
+        "Ratios in this variant use 600g main dough flour as denominator; the 50g red-sheet flour is ADDITIONAL. Total actual flour is 650g.",
+        "Add red sheet only after the three folds, before final sheet-out. 0.8–1mm red outer layer.",
+        "Red colourant quantity 1–2g concentrated colour; default 1.5g for scaling."
+      ],
+      "derived": {
+        "total_flour_including_red_sheet_g": 650,
+        "main_dough_flour_g": 600,
+        "extra_red_flour_g": 50,
+        "red_sheet_thickness_mm": [
+          0.8,
+          1.0
+        ],
+        "nominal_milk_plus_water_percent_main_dough": 63.3333
+      }
+    },
+    {
+      "id": "classic_risotto",
+      "name": "Standard Risotto",
+      "category": "rice",
+      "source": "proposed standard ratio, 28 Oct 2026",
+      "ratio_basis": {
+        "amount": 240,
+        "unit": "g_rice",
+        "label": "dry rice weight; wine and stock ml are compared numerically to rice grams"
+      },
+      "yield": {
+        "count": 3,
+        "unit": "main-course serving",
+        "rice_g_per_serving": 80
+      },
+      "components": [
+        {
+          "id": "risotto",
+          "label": "Risotto ingredients",
+          "include_in_dough_mass": true,
+          "ingredients": [
+            {
+              "id": "arborio_rice",
+              "name": "Arborio or Carnaroli rice (dry)",
+              "amount": 240,
+              "unit": "g",
+              "role": "rice",
+              "weight_equivalent_g": 240,
+              "ratio_percent": 100.0
+            },
+            {
+              "id": "white_wine",
+              "name": "Dry white wine",
+              "amount": 80,
+              "unit": "ml",
+              "role": "wine",
+              "weight_equivalent_g": 80,
+              "weight_equivalent_is_approximate": true,
+              "ratio_percent": 33.3333
+            },
+            {
+              "id": "stock",
+              "name": "Hot stock",
+              "amount": 900,
+              "unit": "ml",
+              "role": "stock",
+              "weight_equivalent_g": 900,
+              "weight_equivalent_is_approximate": true,
+              "note": "This is the starting planning amount; actual absorption varies by rice, heat and pan.",
+              "ratio_percent": 375.0
+            },
+            {
+              "id": "onion",
+              "name": "Finely diced onion or shallot",
+              "amount": 60,
+              "unit": "g",
+              "role": "aromatic",
+              "weight_equivalent_g": 60,
+              "ratio_percent": 25.0
+            },
+            {
+              "id": "butter",
+              "name": "Butter for finishing",
+              "amount": 30,
+              "unit": "g",
+              "role": "fat",
+              "weight_equivalent_g": 30,
+              "ratio_percent": 12.5
+            },
+            {
+              "id": "parmesan",
+              "name": "Finely grated Parmesan",
+              "amount": 45,
+              "unit": "g",
+              "role": "cheese",
+              "weight_equivalent_g": 45,
+              "ratio_percent": 18.75
+            },
+            {
+              "id": "olive_oil",
+              "name": "Olive oil for cooking",
+              "amount": 15,
+              "unit": "ml",
+              "role": "fat",
+              "weight_equivalent_g": 13.65,
+              "weight_equivalent_is_approximate": true,
+              "ratio_percent": 5.6875
+            },
+            {
+              "id": "salt_pepper",
+              "name": "Salt and pepper",
+              "amount": null,
+              "unit": "to_taste",
+              "role": "seasoning"
+            }
+          ]
+        }
+      ],
+      "method": [
+        "Sweat finely diced onion or shallot in olive oil without browning.",
+        "Add dry rice and toast briefly, stirring until coated.",
+        "Add wine and reduce, then add hot stock gradually while stirring intermittently.",
+        "Cook until rice is al dente and loose enough to flow; stock addition and timing depend on rice.",
+        "Off the heat, stir in butter and Parmesan. Adjust consistency with reserved hot stock; season to taste."
+      ],
+      "notes": [
+        "Standard planning ratio: 1 part dry rice by weight : 0.333 part wine by volume : 3.75 parts stock by volume.",
+        "Recommended variable stock range: 3.5–4.25mL per 1g dry rice (840–1,020mL at 240g rice), add as needed.",
+        "Use 80g dry rice per adult for a main-course portion; 60g as a lighter or side portion.",
+        "Ratios are RICE-based practical ratios, not flour-based baker percentages."
+      ],
+      "derived": {
+        "rice_to_wine_to_stock_practical_ratio": [
+          1,
+          0.3333,
+          3.75
+        ],
+        "stock_ml_per_g_rice_range": [
+          3.5,
+          4.25
+        ]
+      }
+    }
+  ]
+}
