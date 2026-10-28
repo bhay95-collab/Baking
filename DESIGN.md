@@ -183,6 +183,14 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 - Feedback uses `cubic-bezier(0.23, 1, 0.32, 1)` for 160–240 ms: colour and border changes 160 ms, pressed buttons `scale(0.97)`, dialogs 200 ms (from `scale(0.97)` and 0 opacity, centred), first-paint quantities and the recipe photo fade 240–260 ms.
 - Hover styles exist only under `@media (hover: hover) and (pointer: fine)`.
 
+### Materials
+- The walnut top bar is a translucent shell (94% walnut, 20px blur, saturate 150%) so content slides beneath it. It becomes solid under `prefers-reduced-transparency` and `prefers-contrast: more`, and respects device safe areas.
+
+### Accessibility
+- Layout holds at 200% root text with no horizontal scrolling: grids use `minmax(0, 1fr)`, quantity cells and buttons wrap, and tabs and nav wrap rather than scroll.
+- Reduced motion keeps opacity fades and drops movement, scale and blur. Higher contrast darkens borders and secondary text.
+- Number fields use a "Done" key that closes the keyboard and have autocorrect off.
+
 **The Window-Light Rule.** One soft daylight falloff, on one panel. No streaks, gloss, glass or glows anywhere.
 
 ## Shapes

@@ -3,14 +3,13 @@ import { DEFAULT_TWEAKS, type Recipe, type Tweaks, type Variant } from '../engin
 import { TILE_ORDER, getSeedRecipe } from '../engine/seed';
 import { calculateDoughMass, scaleRecipe, splitDough } from '../engine/scale';
 import {
-  MAX_FACTOR, MIN_FACTOR, baseInfo, factorFromInputs, inputsFromFactor, modesFor, valueForMode,
+  baseInfo, factorFromInputs, inputsFromFactor, modesFor, valueForMode,
   type BaseInfo, type ScaleInputs, type ScaleMode,
 } from '../engine/factor';
 import { computeMetrics, type BasisMode } from '../engine/metrics';
 import { formatMeasure, formatMetric } from '../engine/format';
 import { IngredientsView, RatiosView } from './Views';
 import { PrintSheet } from './PrintSheet';
-import { ConfirmDialog } from './Editor';
 import { Icon } from './icons';
 import { defaultMode, phrasesFor, type Phrase } from './sentences';
 import type { AppStore } from './store';
@@ -95,7 +94,6 @@ function LabBench({ seed, variant, routeId, store, carry, go }: { seed: Recipe; 
   const [error, setError] = useState<string | null>(null);
   const [basis, setBasis] = useState<BasisMode>('recipe');
   const [showOriginal, setShowOriginal] = useState(false);
-  const [confirmReset, setConfirmReset] = useState(false);
 
   useEffect(() => {
     carry.current = null;
@@ -210,10 +208,10 @@ function LabBench({ seed, variant, routeId, store, carry, go }: { seed: Recipe; 
         )}
         <div className="actions">
           <button type="button" className="btn ghost" onClick={() => window.print()}><Icon name="print" /> Print bake sheet</button>
-          <button type="button" className="btn text" disabled={isOne && !error} onClick={() => setConfirmReset(true)}><Icon name="reset" /> Back to 1×</button>
+          <a className="btn ghost" href={`#/recipes/${routeId}`}>Method &amp; notes <Icon name="arrow" /></a>
+          <button type="button" className="btn text" disabled={isOne && !error} onClick={reset}><Icon name="reset" /> Back to 1×</button>
           <label className="check"><input type="checkbox" checked={showOriginal} onChange={(e) => setShowOriginal(e.target.checked)} /> Show original amounts</label>
         </div>
-        <p className="hint limits">Batches from {MIN_FACTOR}× to {MAX_FACTOR}× the original.</p>
       </div>
 
       <IngredientsView scaled={scaled} settings={settings} showOriginal={showOriginal} />
@@ -222,10 +220,8 @@ function LabBench({ seed, variant, routeId, store, carry, go }: { seed: Recipe; 
         <summary><Icon name="chevron" size={16} /> Ratios at this size</summary>
         <RatiosView scaled={scaled} basis={basis} onBasis={setBasis} settings={settings} />
       </details>
-      <p className="hint method-link">Method, timings and source notes are on the <a href={`#/recipes/${routeId}`}>recipe page</a>.</p>
 
       <PrintSheet scaled={scaled} title={title} settings={settings} scaleLabel={isOne ? 'original quantities' : `scaled ${+factor.toFixed(3)}×`} edited={!!variant} />
-      <ConfirmDialog open={confirmReset} onClose={() => setConfirmReset(false)} title="Back to one batch?" body="This puts the amounts back to the original recipe size." cta="Back to 1×" onConfirm={reset} />
     </>
   );
 }
@@ -259,6 +255,10 @@ function Sentence({ phrase, inputs, onInputs, error, uid }: { phrase: Phrase; in
               aria-label={p.label}
               inputMode={p.numeric ? 'numeric' : 'decimal'}
               autoComplete="off"
+              autoCorrect="off"
+              spellCheck={false}
+              enterKeyHint="done"
+              onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
               size={p.size}
               style={{ width: `${Math.max(p.size, String(inputs[p.field]).length) + 0.6}ch` }}
               value={inputs[p.field]}
