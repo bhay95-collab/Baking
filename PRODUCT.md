@@ -35,7 +35,7 @@ Ben's own formulas with the baking maths done properly: preferments and starter 
 
 ## Evidence on Hand
 - Recipe data and method text in `src/data/seed-recipes.json`; design/data brief in `docs/brief.md`.
-- Recipe photos: AI-generated still-lifes of ingredients and tools (not Ben's bakes) for sourdough, pizza, focaccia, raisin bread and hot cross buns in `src/assets/recipes/`. Croissants, red croissants and risotto have none yet. Never present a generated image as one of Ben's own bakes; do not invent testimonials or yields beyond the source data.
+- Recipe photos: AI-generated still-lifes of ingredients and tools (not Ben's bakes) for all eight recipes in `src/assets/recipes/`. Never present a generated image as one of Ben's own bakes; do not invent testimonials or yields beyond the source data.
 
 ## Product Principles
 1. Originals are sacred: show them exactly, never overwrite them.
