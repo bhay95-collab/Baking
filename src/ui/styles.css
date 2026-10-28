@@ -403,7 +403,7 @@ dialog.modal::backdrop { background: rgba(43, 33, 27, 0.38); }
 /* ---------- motion ----------
    Frequent actions (typing in the sentence, switching tabs and recipes) stay instant.
    Feedback is short and ease-out; nothing animates longer than 240 ms. */
-.btn, .chip-btn, .chooser a, .seg button, .seg label, .tabs button, .topbar nav a, .index li a, .sentence .blank, .switch-track, input, select {
+.btn, .chip-btn, .chooser a, .seg button, .seg label, .tabs button, .topbar nav a, .index li a, summary, .sentence .blank, .switch-track, input, select {
   transition-property: background-color, border-color, color, transform, box-shadow;
   transition-duration: 160ms;
   transition-timing-function: var(--ease-out);
@@ -418,10 +418,20 @@ dialog.modal::backdrop { background: rgba(43, 33, 27, 0.38); }
 .toast:not(:empty) { animation: settle 240ms var(--ease-out) backwards; }
 
 /* dialogs enter from a slightly smaller, transparent state; modals scale from the centre */
-dialog.modal { opacity: 1; transform: none; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
+dialog.modal { opacity: 1; transform: none; transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), overlay 140ms allow-discrete, display 140ms allow-discrete; }
+dialog.modal:not([open]) { opacity: 0; transform: scale(0.97) translateY(6px); transition-duration: 140ms; }
 @starting-style { dialog.modal[open] { opacity: 0; transform: scale(0.97) translateY(6px); } }
 dialog.modal::backdrop { transition: background-color 200ms var(--ease-out); }
+dialog.modal:not([open])::backdrop { background-color: rgba(43, 33, 27, 0); transition-duration: 140ms; }
 @starting-style { dialog.modal[open]::backdrop { background: rgba(43, 33, 27, 0); } }
+
+/* Accordions: content eases open and shut in step with the chevron. Browsers without
+   ::details-content / interpolate-size keep the old instant behaviour. */
+@media (prefers-reduced-motion: no-preference) {
+  :root { interpolate-size: allow-keywords; }
+  details::details-content { block-size: 0; opacity: 0; overflow: clip; transition: block-size 220ms var(--ease-out), opacity 160ms var(--ease-out), content-visibility 220ms allow-discrete; }
+  details[open]::details-content { block-size: auto; opacity: 1; }
+}
 
 /* Response: feedback begins on press (not release) and lets go gently. No tap delay. */
 a, button, input, select, summary, label { touch-action: manipulation; }
@@ -443,6 +453,10 @@ a, button, input, select, summary, label { touch-action: manipulation; }
   .index li a:hover .ix-name { color: var(--bronze-ink); }
 }
 
+/* Pressed state wins over hover, so it sits after the hover block. Rows you tap (no border to change, no shape to shrink) answer with a quiet tint, instantly. */
+.index li a:active, .tabs button:active, summary:active { background-color: rgba(228, 218, 204, 0.55); transition-duration: 80ms; }
+.switch:active .switch-track { transform: scale(0.96); }
+
 /* Reduced motion keeps comprehension aids (fades) and drops movement, blur and scale. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; }
@@ -450,6 +464,8 @@ a, button, input, select, summary, label { touch-action: manipulation; }
   .switch-track::after { transition: none; }
   .notes summary .icon, .lab-ratios summary .icon { transition: none; }
   .qty-main b, .result-line b, .toast:not(:empty) { animation: none; }
+  .switch:active .switch-track { transform: none; }
+  dialog.modal:not([open]) { transform: none; }
   @starting-style { dialog.modal[open] { opacity: 0; transform: none; } }
 }
 @media (prefers-reduced-transparency: reduce) {
