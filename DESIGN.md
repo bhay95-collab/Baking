@@ -182,6 +182,9 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 - Frequent actions (typing in the sentence, switching tabs and recipes, page changes) are instant. Page changes jump to the top without smooth scrolling.
 - Feedback uses `cubic-bezier(0.23, 1, 0.32, 1)` for 160–240 ms: colour and border changes 160 ms, pressed buttons `scale(0.97)`, dialogs 200 ms (from `scale(0.97)` and 0 opacity, centred), first-paint quantities and the recipe photo fade 240–260 ms.
 - Hover styles exist only under `@media (hover: hover) and (pointer: fine)`.
+- Pressed rows (recipe index, tabs, accordion headings) take a quiet stone tint in 80 ms; the switch shrinks to `scale(0.96)`. Buttons and chips use `scale(0.97)`.
+- Accordions (`details`) ease open and shut in step with their chevron: block size over 220 ms, opacity 160 ms. Browsers without `::details-content` just snap.
+- Dialogs leave faster than they arrive: 200 ms in, 140 ms out, centred. Their content stays mounted until the exit finishes (`Modal.tsx`).
 
 ### Materials
 - The walnut top bar is a translucent shell (94% walnut, 20px blur, saturate 150%) so content slides beneath it. It becomes solid under `prefers-reduced-transparency` and `prefers-contrast: more`, and respects device safe areas.
