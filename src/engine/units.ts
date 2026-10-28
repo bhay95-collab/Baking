@@ -7,7 +7,7 @@ const COUNT_UNITS = new Set(['egg', 'orange', 'large_orange']);
 export function unitKind(unit: Unit): UnitKind {
   if (unit === 'g') return 'mass';
   if (unit === 'ml') return 'volume';
-  if (unit === 'tsp' || unit === 'tbsp') return 'spoon';
+  if (unit === 'tsp' || unit === 'tbsp' || unit === 'cup') return 'spoon';
   if (COUNT_UNITS.has(unit)) return 'count';
   if (unit === 'to_taste') return 'taste';
   return 'other';
@@ -21,6 +21,7 @@ export function unitLabel(unit: Unit, amount: number | null): string {
     case 'ml': return 'mL';
     case 'tsp': return 'tsp';
     case 'tbsp': return 'tbsp';
+    case 'cup': return one ? 'cup' : 'cups';
     case 'egg': return one ? 'egg' : 'eggs';
     case 'orange': return one ? 'orange' : 'oranges';
     case 'large_orange': return one ? 'large orange' : 'large oranges';

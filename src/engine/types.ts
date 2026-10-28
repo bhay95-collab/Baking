@@ -147,10 +147,13 @@ export interface Settings {
   precision: 'auto' | 'tenth' | 'hundredth';
   showEquivalents: boolean;
   showOriginal: boolean;
+  /** Size of a cup and spoons: Australian (250 ml) or US (237 ml). */
+  cup: 'au' | 'us';
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   precision: 'auto',
   showEquivalents: true,
   showOriginal: false,
+  cup: 'au',
 };

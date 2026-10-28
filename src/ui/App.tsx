@@ -4,11 +4,13 @@ import { useAppState } from './store';
 import { RecipeDetail, RecipeIndex } from './RecipePage';
 import { Lab, type LabCarry } from './Lab';
 import { SettingsPage, Variants } from './Pages';
+import { RatioDetail, RatioIndex } from './RatioPages';
 import { Logo } from './icons';
 
 type Route =
   | { page: 'recipes'; id: string | null }
   | { page: 'lab'; id: string }
+  | { page: 'ratios'; id: string | null }
   | { page: 'variants' }
   | { page: 'settings' };
 
@@ -18,6 +20,7 @@ function parse(hash: string): Route {
   const p = hash.replace(/^#\/?/, '').split('/');
   switch (p[0]) {
     case 'lab': return { page: 'lab', id: p[1] || DEFAULT_ID };
+    case 'ratios': return { page: 'ratios', id: p[1] || null };
     case 'variants': return { page: 'variants' };
     case 'settings': return { page: 'settings' };
     case 'recipes': return { page: 'recipes', id: p[1] || null };
@@ -55,7 +58,8 @@ export function App() {
   const nav: [string, string, Route['page']][] = [
     ['#/recipes', 'Recipes', 'recipes'],
     [`#/lab/${lastId.current}`, 'Ratio Lab', 'lab'],
-    ['#/variants', 'Your versions', 'variants'],
+    ['#/ratios', 'Ratios', 'ratios'],
+    ['#/variants', 'Versions', 'variants'],
     ['#/settings', 'Settings', 'settings'],
   ];
 
@@ -87,6 +91,7 @@ export function App() {
           </div>
         )}
         {route.page === 'lab' && <Lab routeId={route.id} store={store} carry={carry} go={go} />}
+        {route.page === 'ratios' && (route.id ? <RatioDetail key={route.id} id={route.id} store={store} /> : <RatioIndex />)}
         {route.page === 'variants' && <Variants store={store} go={go} />}
         {route.page === 'settings' && <SettingsPage store={store} />}
       </main>

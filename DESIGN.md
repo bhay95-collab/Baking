@@ -242,6 +242,11 @@ Flat. Depth comes from the travertine → paper tonal step and hairlines. There 
 - Each added item is a hairline row: name and "% of flour" on the left, a serif grams field (bronze underline, the same blank as the scaling sentence) and a remove button on the right. Typing your own amount turns the figure ink-coloured and shows "Back to n g".
 - A summary line gives the total and grams per loaf. A paper notice explains when combined amounts were scaled down; a rust message appears above 40% of flour.
 
+### Ratio Card (Quick Ratios)
+- A short page: title, the ratio in bronze serif, an optional "starting point" notice (paper, 8px, only where sources disagree), version pills, then the scaling sentence ("I have [300] g of [Plain flour ▾].") and a hairline "You need" list in the same serif-quantity style as recipes.
+- Approximate weights (`≈ 390 g`) appear only for cups, spoons and eggs; millilitres and grams are already measured.
+- The list page groups cards under label headings, two columns from 900px, with a search field.
+
 ### Scaling Sentence (signature component)
 - The display serif sentence with inline `<input>` blanks: bronze-ink value, bronze underline, translucent paper fill. Hover and focus go to white with an ink underline.
 - The portion choice is an inline `<select>` in the same style.
