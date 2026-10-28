@@ -1,6 +1,6 @@
 # Hay's Crust & Crumb
 
-Private, local-first recipe book and scaler. Eight recipes (sourdough, poolish pizza, focaccia, raisin bread, hot cross buns, classic and red croissants, risotto).
+Private, local-first recipe book and scaler. Nine recipes (classic white sourdough, white/whole wheat/rye sourdough, poolish pizza, focaccia, raisin bread, hot cross buns, classic and red croissants, risotto).
 
 - **Recipes** — the originals exactly as written, with method, notes and baker's percentages. Make your own version of any recipe here.
 - **Ratio Lab** — the one place scaling happens. Finish a sentence ("Make 14 pizza balls of 250 g", "Feed 8 people", "Make 5 loaves") and every stage is recalculated.

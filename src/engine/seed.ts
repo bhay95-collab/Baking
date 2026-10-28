@@ -19,9 +19,10 @@ export function getSeedRecipe(id: string): Recipe | undefined {
   return SEED.recipes.find((r) => r.id === id);
 }
 
-/** Display order / short names for the eight recipe tiles. */
+/** Display order and short names for the recipe chooser and index. */
 export const TILE_ORDER: { id: string; tile: string; filter: string }[] = [
-  { id: 'classic_sourdough', tile: 'Sourdough', filter: 'Bread' },
+  { id: 'classic_sourdough', tile: 'White Sourdough', filter: 'Bread' },
+  { id: 'sourdough_wheat_rye', tile: 'Wheat & Rye Sourdough', filter: 'Bread' },
   { id: 'poolish_pizza', tile: 'Poolish Pizza', filter: 'Pizza' },
   { id: 'bens_focaccia', tile: 'Focaccia', filter: 'Bread' },
   { id: 'bens_raisin_bread', tile: 'Raisin Bread', filter: 'Bread' },

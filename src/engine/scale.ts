@@ -22,11 +22,38 @@ export interface ScaleOptions {
 
 const EPS = 1e-9;
 
-/** Which ingredient keys are driven by a tweak rather than a typed quantity. */
-export function tweakDriven(recipe: Recipe, ing: Ingredient): 'stock' | 'colour' | null {
+const BUILD_ROLES = ['build_seed', 'build_flour', 'build_water'] as const;
+
+/** Which ingredient keys are driven by a tweak or a rule rather than a typed quantity. */
+export function tweakDriven(recipe: Recipe, ing: Ingredient): 'stock' | 'colour' | 'build' | null {
   if (ing.role === 'stock' && recipe.ratio_basis.unit === 'g_rice') return 'stock';
   if (ing.role === 'colour') return 'colour';
+  if (ing.role && (BUILD_ROLES as readonly string[]).includes(ing.role) && Array.isArray(recipe.derived?.starter_build_ratio)) return 'build';
   return null;
+}
+
+export interface StarterBuild {
+  seed: number;
+  flour: number;
+  water: number;
+  total: number;
+  needed: number;
+  spare: number;
+}
+
+/**
+ * Size a starter build (seed : flour : water by `ratio`) so that after taking `neededG` for the
+ * dough, what is left still seeds the next build of the same size plus `lossG` lost to the jar.
+ * The seed is rounded up to a whole gram; flour and water follow the ratio exactly.
+ */
+export function starterBuild(neededG: number, ratio: readonly number[], lossG: number): StarterBuild {
+  const [a, b, c] = ratio;
+  const sum = a + b + c;
+  const seed = Math.ceil((a * (neededG + lossG)) / (sum - a) - 1e-9);
+  const flour = (seed * b) / a;
+  const water = (seed * c) / a;
+  const total = seed + flour + water;
+  return { seed, flour, water, total, needed: neededG, spare: total - neededG };
 }
 
 /**
@@ -42,9 +69,17 @@ export function scaleRecipe(recipe: Recipe, opts: ScaleOptions): ScaledRecipe {
   // Pass 1: base amounts (edited or seed). Pass 2: tweak-driven amounts that depend on other rows.
   
   let riceBase = 0;
+  let starterBase = 0;
   for (const c of recipe.components)
-    for (const i of c.ingredients)
+    for (const i of c.ingredients) {
       if (i.role && RICE_ROLES.includes(i.role) && i.unit === 'g') riceBase += amounts[ingKey(c, i)] ?? i.amount ?? 0;
+      if (i.role === 'starter') starterBase += amounts[ingKey(c, i)] ?? i.amount ?? 0;
+    }
+  const ratio = recipe.derived?.starter_build_ratio as number[] | undefined;
+  const loss = (recipe.derived?.starter_spare_loss_g as number | undefined) ?? 0;
+  // The build is not linear in the batch: it is re-sized for the starter this batch needs.
+  const build = ratio ? { base: starterBuild(starterBase, ratio, loss), now: starterBuild(starterBase * factor, ratio, loss) } : null;
+  const pick = (b: StarterBuild, role?: string) => (role === 'build_seed' ? b.seed : role === 'build_flour' ? b.flour : b.water);
 
   const components: ScaledComponent[] = recipe.components.map((c) => ({
     id: c.id,
@@ -61,12 +96,14 @@ export function scaleRecipe(recipe: Recipe, opts: ScaleOptions): ScaledRecipe {
         baseAmount = amounts[key];
         edited = true;
       }
-      const amount = baseAmount === null ? null : baseAmount * factor;
+      if (driven === 'build' && build) baseAmount = pick(build.base, i.role);
+      const amount = baseAmount === null ? null : driven === 'build' && build ? pick(build.now, i.role) : baseAmount * factor;
       const gramsFromUnit = i.unit === 'g';
       const baseGrams = gramsFromUnit ? baseAmount : scaleEquivalent(i.amount, i.weight_equivalent_g, baseAmount);
-      const grams = baseGrams === null ? null : baseGrams * factor;
+      const grams = baseGrams === null ? null : gramsFromUnit ? amount : baseGrams * factor;
       let status: ScaledIngredient['status'] = Math.abs(factor - 1) > EPS ? 'calculated' : 'original';
-      if (driven) status = 'suggested';
+      if (driven === 'build') status = amount !== null && i.amount !== null && Math.abs(amount - i.amount) < EPS ? 'original' : 'calculated';
+      else if (driven) status = 'suggested';
       if (edited) status = 'personal_edit';
       return {
         key,

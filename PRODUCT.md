@@ -10,7 +10,7 @@ web
 Ben (the owner) baking at home: phone on the kitchen bench, sometimes floury hands, bright daylight. Friends he shares the link with also open it to read and scale recipes on their own devices; they do not change Ben's originals (any edits stay on their own device).
 
 ## Product Purpose
-A private recipe book and scaling tool for Ben's own formulas: eight recipes (sourdough, poolish pizza, focaccia, raisin bread, hot cross buns, classic and bright-red croissants, risotto). It shows each original exactly as written and turns a plain request ("14 pizza balls of 250 g", "risotto for 8", "5 loaves") into a correct, stage-by-stage ingredient list with no arithmetic. Success: open on a phone, pick a recipe, say how much you want, weigh out the numbers.
+A private recipe book and scaling tool for Ben's own formulas: nine recipes (classic white sourdough, white/whole wheat/rye sourdough, poolish pizza, focaccia, raisin bread, hot cross buns, classic and bright-red croissants, risotto). It shows each original exactly as written and turns a plain request ("14 pizza balls of 250 g", "risotto for 8", "5 loaves") into a correct, stage-by-stage ingredient list with no arithmetic. Success: open on a phone, pick a recipe, say how much you want, weigh out the numbers.
 
 ## Positioning
 Ben's own formulas with the baking maths done properly: preferments and starter counted once, true vs added-water hydration kept distinct, eggs and spoons kept in their real units, and the originals frozen so scaling and personal versions can never corrupt them.
@@ -23,7 +23,8 @@ Ben's own formulas with the baking maths done properly: preferments and starter 
 
 ## Capabilities and Constraints
 - Stack: React + TypeScript + Vite PWA; pure calculation engine in `src/engine/` with tests in `tests/`.
-- Seed data: `src/data/seed-recipes.json` (extracted from `docs/brief.md`); immutable at runtime.
+- Seed data: `src/data/seed-recipes.json` (extracted from `docs/brief.md`; both sourdoughs updated from Ben's Oct 2026 recipe sheet); immutable at runtime.
+- Sourdough uses a stiff 60% starter built 1:5:3; the app sizes each build so the leftover seeds the next build of the same size plus ~18 g jar loss.
 - Scaling limits 0.1×–20×; invalid targets explain themselves and never silently change output.
 - Hosting: intended for Vercel; the Vercel connector could not create the project (403), so Ben links it manually.
 - Photography: still-life only; Ben may swap in photos of his own bakes later.
@@ -35,7 +36,7 @@ Ben's own formulas with the baking maths done properly: preferments and starter 
 
 ## Evidence on Hand
 - Recipe data and method text in `src/data/seed-recipes.json`; design/data brief in `docs/brief.md`.
-- Recipe photos: AI-generated still-lifes of ingredients and tools (not Ben's bakes) for all eight recipes in `src/assets/recipes/`. Never present a generated image as one of Ben's own bakes; do not invent testimonials or yields beyond the source data.
+- Recipe photos: AI-generated still-lifes of ingredients and tools (not Ben's bakes) for every recipe except White, Whole Wheat & Rye Sourdough (photo pending) in `src/assets/recipes/`. Never present a generated image as one of Ben's own bakes; do not invent testimonials or yields beyond the source data.
 
 ## Product Principles
 1. Originals are sacred: show them exactly, never overwrite them.

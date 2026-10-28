@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { SEED, getSeedRecipe } from '../src/engine/seed';
-import { calculateDoughMass, scaleRecipe, splitDough, ingKey } from '../src/engine/scale';
+import { calculateDoughMass, scaleRecipe, splitDough, ingKey, starterBuild } from '../src/engine/scale';
 import { baseInfo, factorFromInputs, inputsFromFactor, stepMultiplier } from '../src/engine/factor';
 import { basisGrams, calculateEffectiveHydration, calculatePreferment, computeMetrics, ratioRows, starterBreakdown } from '../src/engine/metrics';
 import { formatAmount, formatFraction, formatMeasure } from '../src/engine/format';
@@ -16,17 +16,18 @@ const scale = (id: string, factor = 1, extra: object = {}) => scaleRecipe(R(id),
 const g = (s: ReturnType<typeof scale>, key: string) => s.components.flatMap((c) => c.ingredients).find((i) => i.key === key)!;
 
 describe('seed', () => {
-  it('is valid and has all eight recipes', () => {
+  it('is valid and has all nine recipes', () => {
     expect(validateSeed(raw)).toEqual([]);
     expect(SEED.recipes.map((r) => r.id)).toEqual([
-      'classic_sourdough', 'poolish_pizza', 'bens_focaccia', 'bens_raisin_bread',
+      'classic_sourdough', 'sourdough_wheat_rye', 'poolish_pizza', 'bens_focaccia', 'bens_raisin_bread',
       'hot_cross_buns', 'croissant_classic', 'croissant_red', 'classic_risotto',
     ]);
   });
-  it('matches the JSON embedded in docs/brief.md', () => {
+  it('matches the JSON embedded in docs/brief.md, except the updated sourdough recipes', () => {
     const md = readFileSync(new URL('../docs/brief.md', import.meta.url), 'utf8');
     const json = JSON.parse(/```json\n([\s\S]*?)\n```/.exec(md)![1]);
-    expect(raw).toEqual(json);
+    const unchanged = (rs: { id: string }[]) => rs.filter((r) => !['classic_sourdough', 'sourdough_wheat_rye'].includes(r.id));
+    expect(unchanged(raw.recipes)).toEqual(unchanged(json.recipes));
   });
   it('is frozen', () => {
     expect(Object.isFrozen(SEED.recipes[0].components[0].ingredients[0])).toBe(true);
@@ -37,33 +38,77 @@ describe('seed', () => {
   });
 });
 
-describe('sourdough', () => {
-  it('1 loaf: 1,012 g dough, 73.913% true hydration', () => {
+describe('sourdough (stiff starter, Oct 2026 sheet)', () => {
+  it('classic white 1 loaf: 1,164 g dough, 73.78% true hydration at 60% starter', () => {
     const s = scale('classic_sourdough');
-    expect(g(s, 'dough.bread_flour').amount).toBe(520);
-    expect(calculateDoughMass(s).grams).toBeCloseTo(1012, 9);
+    expect(g(s, 'dough.bread_flour').amount).toBe(598);
+    expect(g(s, 'dough.water').amount).toBe(450);
+    expect(g(s, 'dough.starter').amount).toBe(102);
+    expect(g(s, 'dough.salt').amount).toBe(14);
+    expect(calculateDoughMass(s).grams).toBeCloseTo(1164, 9);
     const b = starterBreakdown(s)!;
-    expect(b.totalFlour).toBeCloseTo(575, 9);
-    expect(b.totalWater).toBeCloseTo(425, 9);
-    expect(b.effectiveHydrationPct).toBeCloseTo(73.913, 3);
-    expect(b.addedWaterPct).toBeCloseTo(71.1538, 3);
-    expect(b.prefermentedFlourPct).toBeCloseTo(9.5652, 3);
+    expect(b.starterFlour).toBeCloseTo(63.75, 9);
+    expect(b.starterWater).toBeCloseTo(38.25, 9);
+    expect(b.totalFlour).toBeCloseTo(661.75, 9);
+    expect(b.totalWater).toBeCloseTo(488.25, 9);
+    expect(b.effectiveHydrationPct).toBeCloseTo(73.7817, 3);
+    expect(b.addedWaterPct).toBeCloseTo(75.2508, 3);
+    expect(b.prefermentedFlourPct).toBeCloseTo(9.6335, 3);
   });
-  it('2 loaves: doubled, 2,024 g', () => {
+  it('classic white 2 loaves: doubled, 2,328 g', () => {
     const s = scale('classic_sourdough', 2);
-    expect(g(s, 'dough.bread_flour').amount).toBe(1040);
-    expect(g(s, 'dough.water').amount).toBe(740);
-    expect(g(s, 'dough.starter').amount).toBe(220);
-    expect(g(s, 'dough.salt').amount).toBe(24);
-    expect(calculateDoughMass(s).grams).toBeCloseTo(2024, 9);
+    expect(g(s, 'dough.bread_flour').amount).toBe(1196);
+    expect(g(s, 'dough.water').amount).toBe(900);
+    expect(g(s, 'dough.starter').amount).toBe(204);
+    expect(g(s, 'dough.salt').amount).toBe(28);
+    expect(calculateDoughMass(s).grams).toBeCloseTo(2328, 9);
+  });
+  it('wheat & rye: same totals, 499 + 66 + 33 g flour', () => {
+    const s = scale('sourdough_wheat_rye');
+    expect(g(s, 'dough.white_flour').amount).toBe(499);
+    expect(g(s, 'dough.wholewheat_flour').amount).toBe(66);
+    expect(g(s, 'dough.rye_flour').amount).toBe(33);
+    expect(basisGrams(s, 'recipe')).toBe(598);
+    expect(calculateDoughMass(s).grams).toBeCloseTo(1164, 9);
+    expect(calculateDoughMass(scale('sourdough_wheat_rye', 2)).grams).toBeCloseTo(2328, 9);
+    expect(starterBreakdown(s)!.effectiveHydrationPct).toBeCloseTo(73.7817, 3);
+    expect(computeMetrics(s).find((m) => m.id === 'wholegrain')!.value).toBeCloseTo(16.5552, 3);
+  });
+  it('starter build at 1 loaf is exactly the sheet: 15 + 75 + 45 = 135 g, 33 g kept', () => {
+    for (const id of ['classic_sourdough', 'sourdough_wheat_rye']) {
+      const s = scale(id);
+      expect(g(s, 'starter_build.mature_starter').amount).toBe(15);
+      expect(g(s, 'starter_build.build_flour').amount).toBe(75);
+      expect(g(s, 'starter_build.build_water').amount).toBe(45);
+      expect(g(s, 'starter_build.build_flour').status).toBe('original');
+    }
+  });
+  it('starter build always leaves the next seed + 18 g: 2 loaves = 28/140/84, 48 g kept', () => {
+    const s = scale('classic_sourdough', 2);
+    expect(g(s, 'starter_build.mature_starter').amount).toBe(28);
+    expect(g(s, 'starter_build.build_flour').amount).toBe(140);
+    expect(g(s, 'starter_build.build_water').amount).toBe(84);
+    for (const n of [0.5, 1, 1.5, 2, 3, 5, 10]) {
+      const b = starterBuild(102 * n, [1, 5, 3], 18);
+      expect(b.spare).toBeGreaterThanOrEqual(b.seed + 18 - 1e-9);
+      expect(b.flour).toBeCloseTo(b.seed * 5, 9);
+      expect(b.water).toBeCloseTo(b.seed * 3, 9);
+    }
+    expect(starterBuild(510, [1, 5, 3], 18)).toMatchObject({ seed: 66, flour: 330, water: 198, total: 594 });
+  });
+  it('build is not dough: kept out of dough weight and hydration', () => {
+    const s = scale('classic_sourdough', 5);
+    expect(s.components.find((c) => c.id === 'starter_build')!.includeInDoughMass).toBe(false);
+    expect(calculateDoughMass(s).grams).toBeCloseTo(5820, 9);
+    expect(starterBreakdown(s)!.effectiveHydrationPct).toBeCloseTo(73.7817, 3);
   });
   it('ratio basis: added flour vs effective flour', () => {
     const s = scale('classic_sourdough');
-    expect(basisGrams(s, 'recipe')).toBeCloseTo(520, 9);
-    expect(basisGrams(s, 'total')).toBeCloseTo(575, 9);
+    expect(basisGrams(s, 'recipe')).toBeCloseTo(598, 9);
+    expect(basisGrams(s, 'total')).toBeCloseTo(661.75, 9);
     const rows = ratioRows(s, 'recipe');
-    expect(rows.find((r) => r.key === 'dough.water')!.percent).toBeCloseTo(71.1538, 3);
-    expect(rows.find((r) => r.key === 'dough.starter')!.percent).toBeCloseTo(21.1538, 3);
+    expect(rows.find((r) => r.key === 'dough.water')!.percent).toBeCloseTo(75.2508, 3);
+    expect(rows.find((r) => r.key === 'dough.starter')!.percent).toBeCloseTo(17.0569, 3);
   });
   it('generic effective hydration formula', () => {
     const r = calculateEffectiveHydration({ addedFlour: 500, addedWater: 350, starter: 100, starterHydration: 0.5 });
@@ -229,10 +274,10 @@ describe('scale targets & validation', () => {
   const base = baseInfo(R('classic_sourdough'));
   const inp = (value: string) => ({ value, balls: '6', ballWeight: '', servings: '', portionG: '80' });
   it('flour target', () => {
-    expect(factorFromInputs('basis', inp('1040'), base)).toEqual({ ok: true, factor: 2 });
+    expect(factorFromInputs('basis', inp('1196'), base)).toEqual({ ok: true, factor: 2 });
   });
   it('dough mass target', () => {
-    const r = factorFromInputs('mass', inp('2024'), base);
+    const r = factorFromInputs('mass', inp('2328'), base);
     expect(r.ok && r.factor).toBeCloseTo(2, 9);
   });
   it('count target', () => {
