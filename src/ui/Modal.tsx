@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react';
+import { Icon } from './icons';
 
 /** Native <dialog> wrapper: focus trap, Esc to close, click backdrop to close. */
 export function Modal({ open, onClose, title, children, wide }: { open: boolean; onClose: () => void; title: string; children: ReactNode; wide?: boolean }) {
@@ -23,7 +24,7 @@ export function Modal({ open, onClose, title, children, wide }: { open: boolean;
         <div className="modal-body">
           <div className="modal-head">
             <h2>{title}</h2>
-            <button type="button" className="btn ghost icon-btn" onClick={onClose} aria-label="Close">✕</button>
+            <button type="button" className="btn text icon-btn" onClick={onClose} aria-label="Close"><Icon name="close" /></button>
           </div>
           {children}
         </div>

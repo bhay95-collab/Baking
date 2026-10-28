@@ -1,61 +1,75 @@
 import { useEffect, useRef, useState } from 'react';
 import { SEED } from '../engine/seed';
 import { useAppState } from './store';
-import { Workbench } from './Workbench';
-import { RatioLab, RecipePicker, SettingsPage, Variants } from './Pages';
-import { HeroSlice, Logo, Starburst } from './art';
+import { RecipeDetail, RecipeIndex } from './RecipePage';
+import { Lab, type LabCarry } from './Lab';
+import { SettingsPage, Variants } from './Pages';
+import { Logo } from './icons';
 
-type Route = { page: 'recipes'; id: string } | { page: 'lab' } | { page: 'variants' } | { page: 'settings' };
+type Route =
+  | { page: 'recipes'; id: string | null }
+  | { page: 'lab'; id: string }
+  | { page: 'variants' }
+  | { page: 'settings' };
 
 const DEFAULT_ID = SEED.recipes[0].id;
 
 function parse(hash: string): Route {
   const p = hash.replace(/^#\/?/, '').split('/');
   switch (p[0]) {
-    case 'lab': return { page: 'lab' };
+    case 'lab': return { page: 'lab', id: p[1] || DEFAULT_ID };
     case 'variants': return { page: 'variants' };
     case 'settings': return { page: 'settings' };
-    case 'recipes': return { page: 'recipes', id: p[1] || DEFAULT_ID };
-    default: return { page: 'recipes', id: DEFAULT_ID };
+    case 'recipes': return { page: 'recipes', id: p[1] || null };
+    default: return { page: 'recipes', id: null };
   }
 }
-
-const NAV: [string, string, Route['page']][] = [['#/', 'Recipes', 'recipes'], ['#/lab', 'Ratio Lab', 'lab'], ['#/variants', 'Saved Variants', 'variants'], ['#/settings', 'Settings / Backup', 'settings']];
 
 export function App() {
   const store = useAppState();
   const [route, setRoute] = useState<Route>(() => parse(window.location.hash));
-  const carry = useRef<number | null>(null);
-  const lastRecipe = useRef(route.page === 'recipes' ? route.id : DEFAULT_ID);
+  const carry = useRef<LabCarry | null>(null);
+  const lastId = useRef<string>(DEFAULT_ID);
   const main = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const on = () => {
+      const prev = route;
       const r = parse(window.location.hash);
       setRoute(r);
-      window.scrollTo({ top: 0 });
-      main.current?.focus({ preventScroll: true });
+      // Moving between pages resets scroll and focus; switching recipe inside the Lab keeps your place.
+      if (!(prev.page === 'lab' && r.page === 'lab')) {
+        window.scrollTo({ top: 0 });
+        main.current?.focus({ preventScroll: true });
+      }
     };
     window.addEventListener('hashchange', on);
     return () => window.removeEventListener('hashchange', on);
-  }, []);
+  }, [route]);
 
-  if (route.page === 'recipes') lastRecipe.current = route.id;
-  const go = (id: string) => {
-    window.location.hash = `#/recipes/${id}`;
+  if ((route.page === 'recipes' || route.page === 'lab') && route.id) lastId.current = route.id;
+  const go = (hash: string) => {
+    window.location.hash = hash;
   };
+
+  const nav: [string, string, Route['page']][] = [
+    ['#/recipes', 'Recipes', 'recipes'],
+    [`#/lab/${lastId.current}`, 'Ratio Lab', 'lab'],
+    ['#/variants', 'Your versions', 'variants'],
+    ['#/settings', 'Settings', 'settings'],
+  ];
 
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
       <header className="topbar no-print">
         <div className="topbar-in">
-          <a href="#/" className="brand"><Logo /></a>
+          <a href="#/recipes" className="brand" aria-label="Hay’s Crust & Crumb, all recipes"><Logo /></a>
           <nav aria-label="Main">
             <ul>
-              {NAV.map(([href, label, page]) => (
+              {nav.map(([href, label, page]) => (
                 <li key={page}>
-                  <a href={page === 'recipes' ? `#/recipes/${lastRecipe.current}` : href} aria-current={route.page === page ? 'page' : undefined}>{label}</a>
+                  <a href={href} aria-current={route.page === page ? 'page' : undefined}>{label}</a>
                 </li>
               ))}
             </ul>
@@ -63,33 +77,22 @@ export function App() {
         </div>
       </header>
 
-      <div className="shell">
+      <main id="main" tabIndex={-1} ref={main} className="shell">
         {route.page === 'recipes' && (
-          <div className="hero no-print">
-            <HeroSlice />
-            <div>
-              <p className="hero-kicker"><Starburst /> Slow dough. Big flavour.</p>
-              <p className="hero-sub">Your batch, your rules. Pick a formula, set a target, bake without the arithmetic.</p>
+          <div className={`book${route.id ? ' has-detail' : ''}`}>
+            <RecipeIndex activeId={route.id ?? (window.matchMedia?.('(min-width: 960px)').matches ? DEFAULT_ID : null)} store={store} />
+            <div className="book-page">
+              <RecipeDetail key={route.id ?? DEFAULT_ID} routeId={route.id ?? DEFAULT_ID} store={store} go={go} />
             </div>
-            <div className="checker" aria-hidden="true" />
           </div>
         )}
-        <main id="main" tabIndex={-1} ref={main}>
-          {route.page === 'recipes' && (
-            <>
-              <div className="no-print"><RecipePicker activeId={route.id} store={store} go={go} /></div>
-              <Workbench key={route.id} routeId={route.id} store={store} carry={carry} go={go} />
-            </>
-          )}
-          {route.page === 'lab' && <RatioLab />}
-          {route.page === 'variants' && <Variants store={store} go={go} />}
-          {route.page === 'settings' && <SettingsPage store={store} />}
-        </main>
-        <footer className="foot no-print">
-          <div className="checker" aria-hidden="true" />
-          <p>Hay’s Crust &amp; Crumb · private, works offline, nothing leaves this device.</p>
-        </footer>
-      </div>
+        {route.page === 'lab' && <Lab routeId={route.id} store={store} carry={carry} go={go} />}
+        {route.page === 'variants' && <Variants store={store} go={go} />}
+        {route.page === 'settings' && <SettingsPage store={store} />}
+      </main>
+      <footer className="foot no-print">
+        <p>Hay’s Crust &amp; Crumb · a private recipe book · works offline, nothing leaves this device</p>
+      </footer>
     </>
   );
 }

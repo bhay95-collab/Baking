@@ -1,16 +1,17 @@
+import { createPortal } from 'react-dom';
 import { calculateDoughMass } from '../engine/scale';
 import { formatAmount, formatGrams } from '../engine/format';
 import { unitKind } from '../engine/units';
 import type { ScaledRecipe, Settings } from '../engine/types';
 import { guidanceChips, METHOD_META } from './meta';
 
-/** Plain, ink-friendly sheet. Hidden on screen; shown by the print stylesheet. */
+/** Plain, ink-friendly sheet, portalled outside #root so print CSS can hide the app wholesale. */
 export function PrintSheet({ scaled, title, settings, scaleLabel, edited }: { scaled: ScaledRecipe; title: string; settings: Settings; scaleLabel: string; edited: boolean }) {
   const mass = calculateDoughMass(scaled);
   const meta = METHOD_META[scaled.recipe.id];
   const date = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
   const rice = scaled.recipe.ratio_basis.unit === 'g_rice';
-  return (
+  return createPortal(
     <section className="print-sheet" aria-hidden="true">
       <header>
         <p className="ps-brand">Hay’s Crust &amp; Crumb</p>
@@ -56,6 +57,7 @@ export function PrintSheet({ scaled, title, settings, scaleLabel, edited }: { sc
           <p className="ps-note">{guidanceChips(scaled.recipe).map((c) => `${c.label}: ${c.value}`).join(' · ')}</p>
         )}
       </div>
-    </section>
+    </section>,
+    document.body,
   );
 }

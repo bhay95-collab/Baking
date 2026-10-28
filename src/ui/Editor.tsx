@@ -5,15 +5,29 @@ import { ingKey, tweakDriven } from '../engine/scale';
 import { formatAmount } from '../engine/format';
 import type { Recipe } from '../engine/types';
 
-/** Edit base (1×) amounts of the working copy. Never touches the seed. */
-export function EditDialog({ open, onClose, recipe, amounts, onApply }: { open: boolean; onClose: () => void; recipe: Recipe; amounts: Record<string, number>; onApply: (next: Record<string, number>) => void }) {
+/**
+ * Make or edit a personal version: a name plus 1× amounts. The seed is never touched —
+ * what is saved is only the difference from the original.
+ */
+export function VersionDialog({ open, onClose, recipe, amounts, title, initialName, cta, onSave }: {
+  open: boolean;
+  onClose: () => void;
+  recipe: Recipe;
+  amounts: Record<string, number>;
+  title: string;
+  initialName: string;
+  cta: string;
+  onSave: (name: string, amounts: Record<string, number>) => void;
+}) {
   const [draft, setDraft] = useState<Record<string, string>>({});
+  const [name, setName] = useState(initialName);
   useEffect(() => {
     if (!open) return;
     const d: Record<string, string> = {};
     for (const c of recipe.components) for (const i of c.ingredients) if (i.amount !== null) d[ingKey(c, i)] = String(+(amounts[ingKey(c, i)] ?? i.amount).toFixed(4));
     setDraft(d);
-  }, [open, recipe, amounts]);
+    setName(initialName);
+  }, [open, recipe, amounts, initialName]);
 
   const errors: Record<string, string> = {};
   const parsed: Record<string, number> = {};
@@ -25,47 +39,55 @@ export function EditDialog({ open, onClose, recipe, amounts, onApply }: { open: 
       if (r.ok) parsed[k] = r.value;
       else errors[k] = r.error;
     }
-  const hasErr = Object.keys(errors).length > 0;
+  const hasErr = Object.keys(errors).length > 0 || !name.trim();
 
   return (
-    <Modal open={open} onClose={onClose} title="Edit base formula" wide>
-      <p className="hint">These are the 1× amounts of your working copy. The original recipe is never changed — you can reset any time or save the result as a personal variant.</p>
+    <Modal open={open} onClose={onClose} title={title} wide>
+      <p className="muted">Change any amount for one batch. The original recipe stays exactly as written; your version is saved separately on this device.</p>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           if (!hasErr) {
-            onApply(parsed);
+            onSave(name.trim(), parsed);
             onClose();
           }
         }}
       >
+        <div className="field">
+          <label htmlFor="ver-name">Name of your version</label>
+          <input id="ver-name" value={name} maxLength={120} onChange={(e) => setName(e.target.value)} aria-invalid={!name.trim()} />
+        </div>
         {recipe.components.map((c) => {
           const rows = c.ingredients.filter((i) => i.amount !== null);
           if (!rows.length) return null;
           return (
             <fieldset key={c.id} className="edit-group">
-              <legend className="sticker small">{c.label}</legend>
+              <legend>{c.label}</legend>
               {rows.map((i) => {
                 const k = ingKey(c, i);
                 const driven = tweakDriven(recipe, i);
                 const changed = parsed[k] !== undefined && Math.abs(parsed[k] - (i.amount ?? 0)) > 1e-9;
                 return (
-                  <div className="edit-row" key={k}>
+                  <div className={`edit-row${changed ? ' changed' : ''}`} key={k}>
                     <label htmlFor={`e-${k}`}>{i.name}</label>
                     {driven ? (
-                      <span className="muted">{driven === 'stock' ? 'Set by the stock allowance slider' : 'Set by the colour slider'}</span>
+                      <span className="muted small">Adjusted in Ratio Lab ({driven === 'stock' ? 'stock allowance' : 'colour strength'})</span>
                     ) : (
                       <>
                         <div className="input-unit">
                           <input id={`e-${k}`} inputMode="decimal" autoComplete="off" value={draft[k] ?? ''} onChange={(e) => setDraft({ ...draft, [k]: e.target.value })} aria-invalid={!!errors[k]} />
-                          <span>{formatAmount(1, i.unit).unit.replace(/^eggs?$/, 'egg(s)') || i.unit}</span>
+                          <span>{formatAmount(2, i.unit).unit}</span>
                         </div>
-                        <button type="button" className="btn ghost small" disabled={!changed} onClick={() => setDraft({ ...draft, [k]: String(i.amount) })} aria-label={`Revert ${i.name} to ${i.amount}`}>
-                          {changed ? `↺ ${i.amount}` : 'Original'}
-                        </button>
+                        {changed ? (
+                          <button type="button" className="btn text small" onClick={() => setDraft({ ...draft, [k]: String(i.amount) })} aria-label={`Put ${i.name} back to ${i.amount}`}>
+                            Original: {i.amount}
+                          </button>
+                        ) : (
+                          <span className="muted small">As written</span>
+                        )}
                       </>
                     )}
-                    {errors[k] && <p className="alert small" role="alert">{errors[k]}</p>}
+                    {errors[k] && <p className="error small" role="alert">{errors[k]}</p>}
                   </div>
                 );
               })}
@@ -74,8 +96,7 @@ export function EditDialog({ open, onClose, recipe, amounts, onApply }: { open: 
         })}
         <div className="modal-actions">
           <button type="button" className="btn ghost" onClick={onClose}>Cancel</button>
-          <button type="button" className="btn ghost" onClick={() => onApply({})}>Reset all to original</button>
-          <button type="submit" className="btn primary" disabled={hasErr}>Apply edits</button>
+          <button type="submit" className="btn primary" disabled={hasErr}>{cta}</button>
         </div>
       </form>
     </Modal>
