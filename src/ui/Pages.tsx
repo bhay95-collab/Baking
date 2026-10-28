@@ -1,149 +1,11 @@
-import { useMemo, useRef, useState } from 'react';
-import { SEED, TILE_ORDER, getSeedRecipe } from '../engine/seed';
-import { scaleRecipe } from '../engine/scale';
-import { calculateEffectiveHydration, recipeShares } from '../engine/metrics';
-import { formatMeasure, formatPercent } from '../engine/format';
-import { parseNumber } from '../engine/parse';
+import { useRef, useState } from 'react';
+import { SEED } from '../engine/seed';
 import { exportState, parseImport } from '../engine/storage';
 import { DEFAULT_SETTINGS, type Settings } from '../engine/types';
 import { duplicateVariant } from '../engine/variants';
 import { ConfirmDialog, NameDialog } from './Editor';
-import { RecipeIcon } from './art';
+import { Icon } from './icons';
 import type { AppStore } from './store';
-
-/* ------------------------------------------------------------------ Recipe picker */
-
-const FILTERS = ['All', 'Bread', 'Pizza', 'Pastry', 'Rice', 'My variants'] as const;
-
-export function RecipePicker({ activeId, store, go }: { activeId: string; store: AppStore; go: (id: string) => void }) {
-  const [filter, setFilter] = useState<(typeof FILTERS)[number]>('All');
-  const variants = store.state.variants;
-  const activeSeedId = variants.find((v) => v.id === activeId)?.baseId ?? activeId;
-  const tiles = TILE_ORDER.filter((t) => filter === 'All' || t.filter === filter);
-  return (
-    <section aria-labelledby="pick-h" className="picker">
-      <div className="picker-head">
-        <h2 id="pick-h" className="sr-only">Choose a recipe</h2>
-        <div className="chips" role="group" aria-label="Filter recipes">
-          {FILTERS.map((f) => (
-            <button key={f} type="button" className={`chip-btn${filter === f ? ' on' : ''}`} aria-pressed={filter === f} onClick={() => setFilter(f)}>
-              {f}{f === 'My variants' && variants.length ? ` (${variants.length})` : ''}
-            </button>
-          ))}
-        </div>
-      </div>
-      <ul className="tiles">
-        {filter !== 'My variants' &&
-          tiles.map((t) => (
-            <li key={t.id}>
-              <button type="button" className={`tile${activeSeedId === t.id ? ' on' : ''}`} aria-current={activeId === t.id ? 'page' : undefined} onClick={() => go(t.id)}>
-                <RecipeIcon id={t.id} size={52} />
-                <span className="tile-name">{t.tile}</span>
-              </button>
-            </li>
-          ))}
-        {(filter === 'All' || filter === 'My variants') &&
-          variants.map((v) => (
-            <li key={v.id}>
-              <button type="button" className={`tile variant${activeId === v.id ? ' on' : ''}`} aria-current={activeId === v.id ? 'page' : undefined} onClick={() => go(v.id)}>
-                <RecipeIcon id={v.baseId} size={52} />
-                <span className="tile-name">{v.name}</span>
-                <span className="tag personal_edit">✎ Variant</span>
-              </button>
-            </li>
-          ))}
-      </ul>
-      {filter === 'My variants' && variants.length === 0 && <p className="empty">No variants yet. Open a recipe, tap <b>Edit formula</b>, then <b>Save as variant</b>.</p>}
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ Ratio Lab */
-
-const fmtP = (n: number | null, d = 1) => (n === null ? '—' : formatPercent(n, d));
-
-export function RatioLab() {
-  const rows = useMemo(
-    () =>
-      TILE_ORDER.map((t) => {
-        const r = getSeedRecipe(t.id)!;
-        return { id: t.id, name: t.tile, sh: recipeShares(scaleRecipe(r, { factor: 1 })) };
-      }),
-    [],
-  );
-  const [flour, setFlour] = useState('500');
-  const [water, setWater] = useState('350');
-  const [starter, setStarter] = useState('0');
-  const [sh, setSh] = useState('100');
-  const [target, setTarget] = useState('75');
-
-  const f = parseNumber(flour, { label: 'Flour' });
-  const w = parseNumber(water, { label: 'Water', allowZero: true });
-  const s = parseNumber(starter, { label: 'Starter', allowZero: true });
-  const h = parseNumber(sh, { label: 'Starter hydration', allowZero: true });
-  const t = parseNumber(target, { label: 'Target hydration' });
-  const errs = [f, w, s, h].flatMap((x) => (x.ok ? [] : [x.error]));
-  const calc = f.ok && w.ok && s.ok && h.ok ? calculateEffectiveHydration({ addedFlour: f.value, addedWater: w.value, starter: s.value, starterHydration: h.value / 100 }) : null;
-  const needWater = calc && t.ok ? (t.value / 100) * calc.totalFlour - calc.starterWater : null;
-
-  return (
-    <div className="page">
-      <h1>Ratio Lab</h1>
-      <p className="lede">Compare formulas side by side, or check a dough’s true hydration.</p>
-
-      <section className="panel" aria-labelledby="cmp-h">
-        <h2 id="cmp-h" className="panel-title">Compare all formulas</h2>
-        <div className="table-scroll" tabIndex={0} role="region" aria-label="Comparison table, scrolls sideways on small screens">
-          <table className="ratio-table compare">
-            <thead>
-              <tr><th scope="col">Recipe</th><th scope="col" className="num">Hydration</th><th scope="col" className="num">Salt</th><th scope="col" className="num">Yeast</th><th scope="col" className="num">Fat</th><th scope="col" className="num">Sugar</th><th scope="col" className="num">Prefermented</th></tr>
-            </thead>
-            <tbody>
-              {rows.map((r) => (
-                <tr key={r.id}>
-                  <th scope="row"><a href={`#/recipes/${r.id}`}>{r.name}</a></th>
-                  <td className="num">{fmtP(r.sh.hydration, 1)}<span className="muted small block">{r.sh.hydrationKind}</span></td>
-                  <td className="num">{fmtP(r.sh.salt, 1)}</td>
-                  <td className="num">{fmtP(r.sh.yeast, 2)}</td>
-                  <td className="num">{fmtP(r.sh.fat, 1)}</td>
-                  <td className="num">{fmtP(r.sh.sugar, 1)}</td>
-                  <td className="num">{fmtP(r.sh.prefermented, 1)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="hint">Each figure is against that recipe’s own flour (sourdough: effective flour incl. starter; croissants: main-dough flour). “Hydration” means different things per recipe — read the small label. Risotto is rice-based, so it has no baker’s percentages. Pizza yeast is % of total flour.</p>
-      </section>
-
-      <section className="panel" aria-labelledby="hyd-h">
-        <h2 id="hyd-h" className="panel-title">True hydration calculator</h2>
-        <div className="field-row wrap">
-          <div className="field"><label htmlFor="l-f">Flour (g)</label><input id="l-f" inputMode="decimal" value={flour} onChange={(e) => setFlour(e.target.value)} /></div>
-          <div className="field"><label htmlFor="l-w">Added water (g)</label><input id="l-w" inputMode="decimal" value={water} onChange={(e) => setWater(e.target.value)} /></div>
-          <div className="field"><label htmlFor="l-s">Starter (g)</label><input id="l-s" inputMode="decimal" value={starter} onChange={(e) => setStarter(e.target.value)} /></div>
-          <div className="field"><label htmlFor="l-h">Starter hydration (%)</label><input id="l-h" inputMode="decimal" value={sh} onChange={(e) => setSh(e.target.value)} /></div>
-        </div>
-        {errs.length > 0 && <p className="alert" role="alert">{errs[0]}</p>}
-        {calc && (
-          <dl className="results">
-            <div><dt>True hydration</dt><dd>{formatPercent(calc.effectiveHydrationPct, 2)}</dd></div>
-            <div><dt>Total flour</dt><dd>{formatMeasure(calc.totalFlour)} g</dd></div>
-            <div><dt>Total water</dt><dd>{formatMeasure(calc.totalWater)} g</dd></div>
-            <div><dt>Prefermented flour</dt><dd>{formatPercent(calc.prefermentedFlourPct, 1)}</dd></div>
-          </dl>
-        )}
-        {calc && (
-          <div className="field inline">
-            <label htmlFor="l-t">Water needed for a target hydration of (%)</label>
-            <input id="l-t" inputMode="decimal" value={target} onChange={(e) => setTarget(e.target.value)} />
-            <p className="ball-result">{needWater === null ? '' : needWater < 0 ? 'The starter alone already exceeds that target.' : <>Add <b>{formatMeasure(needWater)} g</b> water.</>}</p>
-          </div>
-        )}
-      </section>
-    </div>
-  );
-}
 
 /* ------------------------------------------------------------------ Saved variants */
 
@@ -155,14 +17,16 @@ export function Variants({ store, go }: { store: AppStore; go: (id: string) => v
   const del = variants.find((v) => v.id === deleting);
   return (
     <div className="page">
-      <h1>Saved Variants</h1>
-      <p className="lede">Your personal versions. The original recipes are never changed.</p>
-      {!store.canSave && <p className="alert warn" role="note">This browser mode can’t save data. Use <a href="#/settings">Backup → Export</a> to keep your variants.</p>}
+      <header className="page-head">
+        <h1>Your versions</h1>
+        <p className="lede">Personal changes to Ben’s recipes, kept on this device. The originals are never changed.</p>
+      </header>
+      {!store.canSave && <p className="notice" role="note">This browser can’t save between visits (private mode?). Use <a href="#/settings">Settings → Export backup</a> to keep your versions.</p>}
       {variants.length === 0 ? (
-        <div className="panel empty-state">
-          <p className="panel-title">Nothing saved yet</p>
-          <p>Open any recipe, tap <b>Edit formula</b> to change an amount, then <b>Save as variant</b>.</p>
-          <a className="btn primary" href="#/">Pick a recipe</a>
+        <div className="empty-state">
+          <p className="empty-title">No versions yet</p>
+          <p>Open a recipe and choose <b>Make my own version</b> to change an amount — less yeast, more salt, a different flour.</p>
+          <a className="btn primary" href="#/recipes">Browse recipes</a>
         </div>
       ) : (
         <ul className="variant-list">
@@ -172,27 +36,27 @@ export function Variants({ store, go }: { store: AppStore; go: (id: string) => v
               ? base.components.flatMap((c) => c.ingredients.flatMap((i) => (`${c.id}.${i.id}` in v.amounts ? [`${i.name}: ${i.amount} → ${v.amounts[`${c.id}.${i.id}`]} ${i.unit}`] : [])))
               : [];
             return (
-              <li key={v.id} className="panel variant-card">
-                <RecipeIcon id={v.baseId} size={56} />
+              <li key={v.id} className="variant-row">
                 <div className="vc-main">
                   <h2>{v.name}</h2>
                   <p className="muted">Based on {base?.name ?? v.baseId} · version {v.version} · updated {new Date(v.updatedAt).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
                   {changes.length ? <ul className="changes">{changes.map((c) => <li key={c}>{c}</li>)}</ul> : <p className="muted">No amount changes (settings only).</p>}
-                  {!base && <p className="alert small">The original recipe for this variant is missing from this version of the app.</p>}
+                  {!base && <p className="error small">The original recipe for this version is missing from this version of the app.</p>}
                 </div>
                 <div className="vc-actions">
-                  <button type="button" className="btn primary" disabled={!base} onClick={() => go(v.id)}>Open</button>
-                  <button type="button" className="btn" onClick={() => store.upsertVariant(duplicateVariant(v))}>Duplicate</button>
-                  <button type="button" className="btn" onClick={() => setRenaming(v.id)}>Rename</button>
-                  <button type="button" className="btn danger-ghost" onClick={() => setDeleting(v.id)}>Delete</button>
+                  <button type="button" className="btn primary" disabled={!base} onClick={() => go(`#/recipes/${v.id}`)}>Open</button>
+                  <button type="button" className="btn ghost" disabled={!base} onClick={() => go(`#/lab/${v.id}`)}>Scale</button>
+                  <button type="button" className="btn text" onClick={() => store.upsertVariant(duplicateVariant(v))}><Icon name="copy" /> Duplicate</button>
+                  <button type="button" className="btn text" onClick={() => setRenaming(v.id)}><Icon name="edit" /> Rename</button>
+                  <button type="button" className="btn text danger" onClick={() => setDeleting(v.id)}><Icon name="trash" /> Delete</button>
                 </div>
               </li>
             );
           })}
         </ul>
       )}
-      <NameDialog open={!!ren} onClose={() => setRenaming(null)} title="Rename variant" label="Variant name" initial={ren?.name ?? ''} cta="Rename" onSubmit={(name) => ren && store.upsertVariant({ ...ren, name, updatedAt: new Date().toISOString(), version: ren.version + 1 })} />
-      <ConfirmDialog open={!!del} onClose={() => setDeleting(null)} title="Delete this variant?" body={`“${del?.name ?? ''}” will be removed from this device. Export a backup first if you might want it back.`} cta="Delete" danger onConfirm={() => del && store.deleteVariant(del.id)} />
+      <NameDialog open={!!ren} onClose={() => setRenaming(null)} title="Rename version" label="Name" initial={ren?.name ?? ''} cta="Rename" onSubmit={(name) => ren && store.upsertVariant({ ...ren, name, updatedAt: new Date().toISOString(), version: ren.version + 1 })} />
+      <ConfirmDialog open={!!del} onClose={() => setDeleting(null)} title="Delete this version?" body={`“${del?.name ?? ''}” will be removed from this device. Export a backup first if you might want it back.`} cta="Delete" danger onConfirm={() => del && store.deleteVariant(del.id)} />
     </div>
   );
 }
@@ -213,7 +77,7 @@ export function SettingsPage({ store }: { store: AppStore }) {
     a.download = `crust-and-crumb-backup-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
-    setMsg({ ok: true, text: `Exported ${store.state.variants.length} variant(s) and your settings.` });
+    setMsg({ ok: true, text: `Exported ${store.state.variants.length} version(s) and your settings.` });
   };
 
   const onFile = async (file: File | undefined) => {
@@ -221,7 +85,7 @@ export function SettingsPage({ store }: { store: AppStore }) {
     try {
       const incoming = parseImport(await file.text());
       store.importMerge(incoming);
-      setMsg({ ok: true, text: `Imported ${incoming.variants.length} variant(s). Matching variants keep whichever copy is newer.` });
+      setMsg({ ok: true, text: `Imported ${incoming.variants.length} version(s). Matching versions keep whichever copy is newer.` });
     } catch (e) {
       setMsg({ ok: false, text: e instanceof Error ? e.message : 'Import failed.' });
     }
@@ -236,9 +100,12 @@ export function SettingsPage({ store }: { store: AppStore }) {
 
   return (
     <div className="page">
-      <h1>Settings &amp; Backup</h1>
-      <section className="panel" aria-labelledby="disp-h">
-        <h2 id="disp-h" className="panel-title">Display</h2>
+      <header className="page-head">
+        <h1>Settings</h1>
+        <p className="lede">Display preferences and backups for this device.</p>
+      </header>
+      <section className="section" aria-labelledby="disp-h">
+        <h2 id="disp-h" className="section-title">Display</h2>
         <fieldset className="radios">
           <legend>Rounding</legend>
           {prec.map(([k, l, d]) => (
@@ -251,25 +118,25 @@ export function SettingsPage({ store }: { store: AppStore }) {
         <p className="hint">Rounding only changes what is shown. Every calculation uses full precision.</p>
       </section>
 
-      <section className="panel" aria-labelledby="bk-h">
-        <h2 id="bk-h" className="panel-title">Backup</h2>
-        <p>Everything lives on this device only — no account, no server. Export a file now and then so a cleared browser doesn’t lose your variants.</p>
-        {!store.canSave && <p className="alert warn" role="note">This browser mode can’t save data between visits. Export before you close the tab.</p>}
+      <section className="section" aria-labelledby="bk-h">
+        <h2 id="bk-h" className="section-title">Backup</h2>
+        <p>Everything lives on this device only — no account, no server. Export a file now and then so a cleared browser doesn’t lose your versions.</p>
+        {!store.canSave && <p className="notice" role="note">This browser can’t save between visits. Export before you close the tab.</p>}
         <div className="row-btns">
-          <button type="button" className="btn primary" onClick={download}>⬇ Export backup</button>
-          <button type="button" className="btn" onClick={() => fileRef.current?.click()}>⬆ Import backup</button>
+          <button type="button" className="btn primary" onClick={download}><Icon name="download" /> Export backup</button>
+          <button type="button" className="btn ghost" onClick={() => fileRef.current?.click()}><Icon name="upload" /> Import backup</button>
           <input ref={fileRef} type="file" accept="application/json,.json" hidden onChange={(e) => onFile(e.target.files?.[0])} />
         </div>
-        <div role="status" aria-live="polite">{msg && <p className={msg.ok ? 'ok-msg' : 'alert'}>{msg.text}</p>}</div>
+        <div role="status" aria-live="polite">{msg && <p className={msg.ok ? 'ok-msg' : 'error'}>{msg.text}</p>}</div>
         <hr />
-        <button type="button" className="btn danger-ghost" onClick={() => setConfirmReset(true)}>Erase all variants and settings</button>
+        <button type="button" className="btn text danger" onClick={() => setConfirmReset(true)}><Icon name="trash" /> Erase all versions and settings</button>
       </section>
 
-      <section className="panel" aria-labelledby="ab-h">
-        <h2 id="ab-h" className="panel-title">About</h2>
-        <p>Recipe data v{SEED.schema_version}, generated {SEED.generated_on}. Eight recipes. Original quantities are frozen; your edits live in variants only.</p>
+      <section className="section" aria-labelledby="ab-h">
+        <h2 id="ab-h" className="section-title">About</h2>
+        <p>Recipe data v{SEED.schema_version}, {SEED.generated_on}. Eight recipes. Original quantities are frozen; your changes live in your versions only. Works offline once loaded.</p>
       </section>
-      <ConfirmDialog open={confirmReset} onClose={() => setConfirmReset(false)} title="Erase everything?" body="This removes all saved variants and resets settings on this device. It can’t be undone — export a backup first." cta="Erase" danger onConfirm={store.resetAll} />
+      <ConfirmDialog open={confirmReset} onClose={() => setConfirmReset(false)} title="Erase everything?" body="This removes all saved versions and resets settings on this device. It can’t be undone — export a backup first." cta="Erase" danger onConfirm={store.resetAll} />
     </div>
   );
 }

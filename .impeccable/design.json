@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T00:00:00Z",
+  "title": "Design System: Hay's Crust & Crumb",
+  "extensions": {
+    "colorMeta": {
+      "travertine": { "role": "neutral", "displayName": "Travertine", "tonalRamp": ["#3a332b", "#5a5046", "#7d7265", "#a39686", "#c6b9a8", "#ddd3c6", "#efe8de", "#f8f4ee"] },
+      "espresso-ink": { "role": "neutral", "displayName": "Espresso Ink", "tonalRamp": ["#1a130f", "#2b211b", "#43362c", "#5c4d41", "#7a6a5c", "#a0907f", "#c9bcad", "#ece4da"] },
+      "walnut": { "role": "secondary", "displayName": "Walnut", "tonalRamp": ["#22180f", "#33251a", "#4a3628", "#5d4635", "#7a604b", "#9c8169", "#c4ad96", "#e9dccd"] },
+      "bronze": { "role": "primary", "displayName": "Bronze", "tonalRamp": ["#3b2b16", "#55401f", "#6f522c", "#8a6a3f", "#a68555", "#c2a272", "#dcc196", "#f0e3cc"] },
+      "sage": { "role": "state", "displayName": "Sage" },
+      "rust": { "role": "state", "displayName": "Rust" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page and recipe titles." },
+      "sentence": { "displayName": "Scaling sentence", "purpose": "Ratio Lab's fill-in-the-blank target." },
+      "quantity": { "displayName": "Quantity", "purpose": "Every weighed amount and total." },
+      "mark": { "displayName": "Script mark", "purpose": "The 'Hay's' logotype only." }
+    },
+    "shadows": [
+      { "name": "dialog", "value": "0 24px 60px -20px rgba(43,33,27,.35), 0 2px 8px rgba(43,33,27,.08)", "purpose": "Modal dialogs only." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "All state transitions." },
+      { "name": "settle", "value": "0.45s: opacity .25→1, blur 3px→0, translateY 2px→0", "purpose": "Quantities re-setting after the sentence changes." }
+    ],
+    "breakpoints": [
+      { "name": "gutter", "value": "720px" },
+      { "name": "book-two-column", "value": "960px" },
+      { "name": "lab-two-column", "value": "1040px" }
+    ]
+  },
+  "components": [
+    { "name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "Main action per view.", "html": "<button class=\"ds-btn-primary\">Scale in Ratio Lab</button>", "css": ".ds-btn-primary{font:500 .95rem 'Hanken Grotesk Variable',sans-serif;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid #2b211b;background:#2b211b;color:#f8f4ee;cursor:pointer;transition:background-color .2s cubic-bezier(.16,1,.3,1)}.ds-btn-primary:hover{background:#4a3628;border-color:#4a3628}.ds-btn-primary:focus-visible{outline:2px solid #8a6a3f;outline-offset:3px}" },
+    { "name": "Ghost Button", "kind": "button", "refersTo": "button-ghost", "description": "Secondary actions.", "html": "<button class=\"ds-btn-ghost\">Print</button>", "css": ".ds-btn-ghost{font:500 .95rem 'Hanken Grotesk Variable',sans-serif;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid #b9a892;background:transparent;color:#2b211b;cursor:pointer}.ds-btn-ghost:hover{border-color:#2b211b}.ds-btn-ghost:focus-visible{outline:2px solid #8a6a3f;outline-offset:3px}" },
+    { "name": "Chip", "kind": "chip", "refersTo": "chip-selected", "description": "Recipe chooser and phrasing switch.", "html": "<a class=\"ds-chip\">Focaccia</a><a class=\"ds-chip ds-on\">Poolish Pizza</a>", "css": ".ds-chip{display:inline-flex;align-items:center;min-height:42px;padding:0 16px;margin-right:8px;border-radius:999px;border:1px solid #b9a892;color:#5c4d41;font:400 .92rem 'Hanken Grotesk Variable',sans-serif;text-decoration:none}.ds-chip:hover{border-color:#2b211b;color:#2b211b}.ds-chip.ds-on{background:#2b211b;border-color:#2b211b;color:#f8f4ee}" },
+    { "name": "Input", "kind": "input", "refersTo": "input", "description": "Standard field.", "html": "<input class=\"ds-input\" value=\"240\">", "css": ".ds-input{font:400 1.05rem 'Hanken Grotesk Variable',sans-serif;min-height:46px;padding:8px 12px;background:#f8f4ee;border:1px solid #b9a892;border-radius:8px;color:#2b211b}.ds-input:focus-visible{outline:2px solid #8a6a3f;outline-offset:1px;border-color:#8a6a3f}" },
+    { "name": "Navigation", "kind": "nav", "refersTo": "topbar", "description": "Walnut shell band.", "html": "<nav class=\"ds-nav\"><span class=\"ds-mark\">Hay’s</span><a class=\"ds-on\">Ratio Lab</a><a>Recipes</a></nav>", "css": ".ds-nav{display:flex;align-items:center;gap:12px;background:#4a3628;padding:10px 16px}.ds-mark{font:2rem 'Mrs Saint Delafield',cursive;color:#dcc196;margin-right:16px}.ds-nav a{color:rgba(243,234,220,.78);font:.92rem 'Hanken Grotesk Variable',sans-serif;padding:10px 0;border-bottom:1px solid transparent}.ds-nav a:hover{color:#f3eadc}.ds-nav a.ds-on{color:#f3eadc;border-bottom-color:#dcc196}" },
+    { "name": "Scaling Sentence", "kind": "custom", "description": "Signature fill-in-the-blank target.", "html": "<p class=\"ds-sentence\">Make <input class=\"ds-blank\" value=\"14\" size=\"3\"> pizza balls of <input class=\"ds-blank\" value=\"250\" size=\"4\"> g each.</p>", "css": ".ds-sentence{font:400 2.4rem/1.5 'Gilda Display',Georgia,serif;color:#2b211b;margin:0}.ds-blank{font:inherit;color:#6f522c;text-align:center;background:rgba(255,255,255,.45);border:0;border-bottom:1.5px solid #8a6a3f;border-radius:6px 6px 0 0;padding:0 .12em;width:3ch}.ds-blank:hover{background:rgba(255,255,255,.75);border-color:#2b211b}.ds-blank:focus-visible{outline:none;background:#fff;border-bottom:2px solid #2b211b}" },
+    { "name": "Ingredient Row", "kind": "custom", "description": "Weighed list row.", "html": "<div class=\"ds-row\"><span>Bread or pizza flour</span><span class=\"ds-qty\">1,399 <small>g</small></span></div>", "css": ".ds-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid #d6caba;font:1.03rem 'Hanken Grotesk Variable',sans-serif;color:#2b211b}.ds-qty{font:400 1.9rem/1 'Gilda Display',Georgia,serif;font-variant-numeric:lining-nums tabular-nums}.ds-qty small{font:.9rem 'Hanken Grotesk Variable',sans-serif;color:#6e5f53}" }
+  ],
+  "narrative": {
+    "northStar": "The Baker's Formula Book",
+    "overview": "A private notebook of formulas kept on a stone bench: travertine ground, a walnut spine across the top, bronze where your hand goes. The page is quiet so the numbers can be loud. Scaling is a sentence, not a form.",
+    "keyCharacteristics": ["Light only, daylight kitchen.", "One serif voice for titles, sentences and quantities; one grotesk for UI; script for the mark only.", "Hairline rules instead of cards.", "Bronze marks interaction."],
+    "rules": [
+      { "name": "The Earth-Only Rule", "body": "No saturated or neon hue enters the UI. A new state colour must be an earth tone and must carry meaning.", "section": "colors" },
+      { "name": "The Bronze-Means-Touch Rule", "body": "Bronze appears where the visitor can act or has acted. It is never decoration.", "section": "colors" },
+      { "name": "The Serif-For-Numbers Rule", "body": "Every weighed quantity is set in the display serif with lining tabular figures, right-aligned. Units are small grotesk in taupe.", "section": "typography" },
+      { "name": "The Window-Light Rule", "body": "One soft daylight falloff, on one panel. No streaks, gloss, glass or glows anywhere.", "section": "elevation" }
+    ],
+    "dos": ["Do set every weighed quantity in Gilda Display with lining tabular figures, right-aligned.", "Do separate content with hairlines (#D6CABA) and space, not boxes.", "Do reserve bronze for interaction and rust/sage for meaning.", "Do keep tap targets at 44px or more and text contrast at 4.5:1 or more (taupe #6E5F53 is the floor for small text)."],
+    "donts": ["Don't reintroduce the neon world: no navy grounds, cyan outlines, hard offset shadows, checkerboards, starbursts or cartoon icons.", "Don't wrap content in cards or nest panels; the sentence panel and dialog are the only raised surfaces.", "Don't put a tracked-caps eyebrow above a heading.", "Don't use the script face for anything but the \"Hay's\" mark."]
+  }
+}

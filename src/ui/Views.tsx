@@ -4,26 +4,26 @@ import { calculateDoughMass } from '../engine/scale';
 import { formatAmount, formatGrams, formatMeasure, formatPercent } from '../engine/format';
 import { unitKind } from '../engine/units';
 import type { ScaledIngredient, ScaledRecipe, Settings, SourceStatus } from '../engine/types';
-import { METHOD_BADGE, METHOD_META, STATUS_ICON, STATUS_LABEL, STATUS_SHORT, guidanceChips } from './meta';
-import { Starburst } from './art';
+import { Icon } from './icons';
+import { METHOD_BADGE, METHOD_META, STATUS_LABEL, STATUS_SHORT, guidanceChips } from './meta';
 
 export function StatusChip({ status }: { status: SourceStatus | 'estimated' }) {
   return (
     <span className={`tag ${status}`} title={STATUS_LABEL[status]}>
-      <span aria-hidden="true">{STATUS_ICON[status]}</span> {STATUS_SHORT[status]}
+      {STATUS_SHORT[status]}
     </span>
   );
 }
 
 /* ------------------------------------------------------------------ Ingredients */
 
-function Row({ i, settings }: { i: ScaledIngredient; settings: Settings }) {
+function Row({ i, settings, showOriginal }: { i: ScaledIngredient; settings: Settings; showOriginal: boolean }) {
   const a = formatAmount(i.amount, i.unit, settings.precision);
   const kind = unitKind(i.unit);
   // 1 mL ≈ 1 g liquids (water, milk, wine, stock) need no equivalent line; oil, spoons and eggs do.
   const oneToOne = i.amount !== null && i.grams !== null && kind === 'volume' && Math.abs(i.grams / i.amount - 1) < 1e-9;
   const showEq = settings.showEquivalents && i.grams !== null && kind !== 'mass' && kind !== 'taste' && !oneToOne;
-  const orig = settings.showOriginal && i.amount !== null && i.seedAmount !== null && Math.abs(i.amount - i.seedAmount) > 1e-9
+  const orig = showOriginal && i.amount !== null && i.seedAmount !== null && Math.abs(i.amount - i.seedAmount) > 1e-9
     ? formatAmount(i.seedAmount, i.unit, settings.precision).text
     : null;
   const taste = i.amount === null;
@@ -46,8 +46,7 @@ function Row({ i, settings }: { i: ScaledIngredient; settings: Settings }) {
             {a.hint && <span className="qty-hint">{a.hint}</span>}
             {showEq && (
               <span className="qty-eq">
-                ≈ {formatGrams(i.grams!, settings.precision)}
-                {i.gramsApproximate && <> <StatusChip status="estimated" /></>}
+                ≈ {formatGrams(i.grams!, settings.precision)}{i.gramsApproximate && <i>, estimated</i>}
               </span>
             )}
             {orig && <span className="qty-orig">original {orig}</span>}
@@ -58,7 +57,7 @@ function Row({ i, settings }: { i: ScaledIngredient; settings: Settings }) {
   );
 }
 
-export function IngredientsView({ scaled, settings }: { scaled: ScaledRecipe; settings: Settings }) {
+export function IngredientsView({ scaled, settings, showOriginal = false }: { scaled: ScaledRecipe; settings: Settings; showOriginal?: boolean }) {
   const mass = calculateDoughMass(scaled);
   const isRice = scaled.recipe.ratio_basis.unit === 'g_rice';
   const poolish = scaled.recipe.id === 'poolish_pizza' ? calculatePreferment(scaled) : null;
@@ -66,7 +65,7 @@ export function IngredientsView({ scaled, settings }: { scaled: ScaledRecipe; se
     <div className="stages">
       {scaled.components.map((c) => (
         <section key={c.id} className="stage" aria-labelledby={`st-${c.id}`}>
-          <h3 id={`st-${c.id}`} className="sticker"><Starburst /> {c.label}</h3>
+          <h3 id={`st-${c.id}`} className="stage-title">{c.label}</h3>
           <table className="ing-table">
             <caption className="sr-only">{c.label}</caption>
             <thead className="sr-only"><tr><th scope="col">Ingredient</th><th scope="col">Amount</th></tr></thead>
@@ -80,7 +79,7 @@ export function IngredientsView({ scaled, settings }: { scaled: ScaledRecipe; se
                   <td className="qty"><span className="qty-main"><b>{formatMeasure(poolish.poolishMass, settings.precision)}</b> <span className="unit">g</span></span></td>
                 </tr>
               )}
-              {c.ingredients.map((i) => <Row key={i.key} i={i} settings={settings} />)}
+              {c.ingredients.map((i) => <Row key={i.key} i={i} settings={settings} showOriginal={showOriginal} />)}
             </tbody>
           </table>
           {!c.includeInDoughMass && <p className="hint stage-note">Not counted in dough weight.</p>}
@@ -88,12 +87,12 @@ export function IngredientsView({ scaled, settings }: { scaled: ScaledRecipe; se
       ))}
       {!isRice && (
         <div className="total-bar" role="status">
-          <span>{scaled.recipe.id === 'poolish_pizza' ? 'Actual final dough' : 'Dough / formula weight'}{mass.approximate && ' (approx.)'}{mass.incomplete && ' (partial)'}</span>
-          <strong>{mass.incomplete ? '≥ ' : mass.approximate ? '≈ ' : ''}{formatGrams(mass.grams, settings.precision)}</strong>
+          <span>{scaled.recipe.id === 'poolish_pizza' ? 'Final dough' : scaled.recipe.category === 'laminated_pastry' ? 'Formula weight' : 'Dough weight'}</span>
+          <strong>{mass.incomplete ? 'at least ' : mass.approximate ? '≈ ' : ''}{formatGrams(mass.grams, settings.precision)}</strong>
           {(mass.approximate || mass.incomplete) && (
             <small>
-              {mass.incomplete ? 'Some ingredients (e.g. orange juice) have no stated weight, so this is a minimum. ' : ''}
-              {mass.approximate ? 'Includes volume, spoon or egg conversions — treat as a guide, not a scale reading.' : ''}
+              {mass.incomplete ? 'Orange juice and zest have no stated weight, so this is a minimum. ' : ''}
+              {mass.approximate ? 'Includes estimated conversions for oil, spoons or eggs — a guide, not a scale reading.' : ''}
             </small>
           )}
         </div>
@@ -118,8 +117,8 @@ export function MethodView({ scaled }: { scaled: ScaledRecipe }) {
       </div>
 
       {yeastPizza && (
-        <p className="alert warn" role="note">
-          <strong>Heads up on yeast.</strong> 6 g dry yeast on 300 g of poolish flour is 2% — a lot for a long warm poolish. Use it for a short ferment, or keep the poolish cool/fridge-cold if you leave it longer. The recipe above is unchanged; edit the yeast if you want a long version.
+        <p className="notice" role="note">
+          <strong>A note on yeast.</strong> 6 g dry yeast on 300 g of poolish flour is 2% — a lot for a long warm poolish. Use it for a short ferment, or keep the poolish cool/fridge-cold if you leave it longer. The recipe above is unchanged; edit the yeast if you want a long version.
         </p>
       )}
 
@@ -153,7 +152,6 @@ export function MethodView({ scaled }: { scaled: ScaledRecipe }) {
         <button type="button" className="btn ghost" onClick={() => setDone({})}>Clear ticks</button>
       )}
 
-      <NotesList notes={r.notes} />
     </div>
   );
 }
@@ -161,8 +159,8 @@ export function MethodView({ scaled }: { scaled: ScaledRecipe }) {
 export function NotesList({ notes }: { notes: string[] }) {
   if (!notes.length) return null;
   return (
-    <details className="notes" open>
-      <summary>Notes from the source</summary>
+    <details className="notes">
+      <summary><Icon name="chevron" size={16} /> Notes from the source</summary>
       <ul>{notes.map((n, k) => <li key={k}>{n}</li>)}</ul>
     </details>
   );
@@ -208,7 +206,7 @@ export function RatiosView({ scaled, basis, onBasis, settings }: { scaled: Scale
 
       {sb && (
         <section className="explain">
-          <h3 className="sub-title">Two views of the same dough</h3>
+          <h3 className="sub-head">Two views of the same dough</h3>
           <table className="ratio-table">
             <tbody>
               <tr><th scope="row">Added flour</th><td className="num">{formatMeasure(sb.totalFlour - sb.starterFlour)} g</td></tr>
@@ -227,7 +225,7 @@ export function RatiosView({ scaled, basis, onBasis, settings }: { scaled: Scale
 
       {pb && (
         <section className="explain">
-          <h3 className="sub-title">Poolish and final mix</h3>
+          <h3 className="sub-head">Poolish and final mix</h3>
           <table className="ratio-table">
             <thead><tr><th scope="col">Stage</th><th scope="col" className="num">Flour</th><th scope="col" className="num">Water</th><th scope="col" className="num">Hydration</th></tr></thead>
             <tbody>
@@ -246,7 +244,6 @@ export function RatiosView({ scaled, basis, onBasis, settings }: { scaled: Scale
       )}
       {r.id === 'hot_cross_buns' && <p className="explain hint">Percentages use the 600 g dough flour. The extra 50 g working flour is listed separately; hydration is not stated because orange juice and egg water have no mass.</p>}
 
-      <NotesList notes={r.notes} />
     </div>
   );
 }

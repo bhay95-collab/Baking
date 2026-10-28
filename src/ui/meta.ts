@@ -33,16 +33,9 @@ export const STATUS_SHORT: Record<SourceStatus | 'estimated', string> = {
   calculated: 'Calculated',
   estimated: 'Estimated',
   suggested: 'Suggested',
-  personal_edit: 'Personal edit',
+  personal_edit: 'Edited',
 };
 
-export const STATUS_ICON: Record<SourceStatus | 'estimated', string> = {
-  original: '●',
-  calculated: 'ƒ',
-  estimated: '≈',
-  suggested: '★',
-  personal_edit: '✎',
-};
 
 const range = (v: unknown, unit: string, sep = '–') =>
   Array.isArray(v) ? `${v[0]}${v[0] === v[1] ? '' : sep + v[1]} ${unit}` : `${v} ${unit}`;
